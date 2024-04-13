@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><!-- <link rel="shortcut icon"  href="/favicon.svg" /> --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="icon" href="/favicon.ico"><link rel="manifest" href="/site.webmanifest"><meta name="generator" content="Astro v4.6.1"><!-- Font preloads --><link rel="preload" href="/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/JetBrainsMono-Bold.woff2" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/JetBrainsMono-Light.woff2" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://hufeispace.com/blog/0001_dom%E6%89%A9%E5%B1%95/"><!-- Primary Meta Tags --><title>DOM扩展</title><meta name="title" content="DOM扩展"><meta name="description" content="querySelect(), querySelectAll()这两个方法遵循CSS的选择器规则，IE8+及其它最新版浏览器均支持这两个方法。 这两个方法的差别在于，一个返回符合匹配规则的第一个元素，一个返回匹配规则的所有元素。若遇到不匹配的情况，前者返回null，后者返回一个空的NodeList。"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://hufeispace.com/blog/0001_dom%E6%89%A9%E5%B1%95/"><meta property="og:title" content="DOM扩展"><meta property="og:description" content="querySelect(), querySelectAll()这两个方法遵循CSS的选择器规则，IE8+及其它最新版浏览器均支持这两个方法。 这两个方法的差别在于，一个返回符合匹配规则的第一个元素，一个返回匹配规则的所有元素。若遇到不匹配的情况，前者返回null，后者返回一个空的NodeList。"><meta property="og:image" content="https://hufeispace.com/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hufeispace.com/blog/0001_dom%E6%89%A9%E5%B1%95/"><meta property="twitter:title" content="DOM扩展"><meta property="twitter:description" content="querySelect(), querySelectAll()这两个方法遵循CSS的选择器规则，IE8+及其它最新版浏览器均支持这两个方法。 这两个方法的差别在于，一个返回符合匹配规则的第一个元素，一个返回匹配规则的所有元素。若遇到不匹配的情况，前者返回null，后者返回一个空的NodeList。"><meta property="twitter:image" content="https://hufeispace.com/blog-placeholder-1.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);--bgColor-transparent: #00000000;--bgColor-neutral-muted: #636e7b66}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Regular.woff2) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Light.woff2) format("woff");font-weight:200;font-style:normal;font-display:swap}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Bold.woff2) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:JetBrainsMono;margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word;color:rgb(var(--gray-dark));line-height:1.5}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:2em 1em}h1,h2,h3,h4,h5,h6{margin:0 0 .5rem;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a{font-weight:700;text-decoration:none}a:hover{color:var(--accent)}p{margin-bottom:1em}.prose p{margin-bottom:2em}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;border-radius:8px}code{padding:.2em .4em;margin:0;font-size:85%;white-space:break-spaces;border-radius:6px;background-color:rgb(var(--gray-light));font-family:JetBrainsMono}pre{padding:.7em;border-radius:8px}pre>code{all:unset}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}@media (max-width: 720px){body{font-size:12px}main{padding:1em}}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{margin:0 auto;max-width:980px;display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}footer[data-astro-cid-sz7xmlte]{grid-area:footer;text-align:center;display:flex;align-items:center;justify-content:center;padding:1.5em}footer[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{font-weight:200;font-size:12px;color:#c8c8c8}footer[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:not(.unset){background-image:none}.gradient-link[data-astro-cid-sz7xmlte]{position:relative;box-decoration-break:clone;text-decoration:none}.gradient-link[data-astro-cid-sz7xmlte]:hover:after{transform:translateZ(0) scale(1)}.gradient-link[data-astro-cid-sz7xmlte]:after{left:0;right:0;bottom:-2px;content:"";height:2px;position:absolute;transform:translateZ(0) scaleX(0);transform-origin:left center;transition:all .15s ease-in-out}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:960px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>HuFei&#39;s Site</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> HOME </a>  <a href="/blog" class="active" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> BLOG </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/hufei365" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>HuFei's GitHub</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img src="https://images.unsplash.com/photo-1685028647245-aa3edbb61c45?&w=720&h=360&fit=crop" alt="" data-astro-cid-bvzihdzo> </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2018-10-27T00:00:00.000Z"> 2018年10月27日 </time>  </div> <h1 data-astro-cid-bvzihdzo>DOM扩展</h1> <hr data-astro-cid-bvzihdzo> </div>  <h3 id="dom扩展">DOM扩展</h3>
+<h4 id="选择符api">选择符API</h4>
+<p><code>querySelect()</code>, <code>querySelectAll()</code>这两个方法遵循CSS的选择器规则，IE8+及其它最新版浏览器均支持这两个方法。
+这两个方法的差别在于，一个返回符合匹配规则的第一个元素，一个返回匹配规则的所有元素。若遇到不匹配的情况，前者返回null，后者返回一个空的NodeList。</p>
+<h4 id="元素遍历">元素遍历</h4>
+<p><em>浏览器对于元素之间的空白，在解析上会有差异。</em>
+之前说过，对于下面这段代码，Chrome回认为ul下有7个子节点（3个<code>&#x3C;li></code>节点，4个文本（li之间的空白）节点）</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">ul</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>1&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>2&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>3&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">ul</span><span style="color:#E1E4E8">></span></span>
+<span class="line"></span></code></pre>
+<p>所以，在childNodes、firstChild及lastChild等的属性解析上，会有差异。
+为避免这一差异，在原有规范的基础上，添加了如下几个属性：</p>
+<ul>
+<li>childElementCount：返回子元素（不包括文本节点和注释）的个数。</li>
+<li>firstElementChild：指向第一个子元素；firstChild 的元素版。</li>
+<li>lastElementChild：指向最后一个子元素；lastChild 的元素版。</li>
+<li>previousElementSibling：指向前一个同辈元素；previousSibling 的元素版。</li>
+<li>nextElementSibling：指向后一个同辈元素；nextSibling 的元素版。</li>
+</ul>
+<h4 id="html5扩展">HTML5扩展</h4>
+<p><strong>getElementsByClassName</strong>
+与<code>getElementsByTagName</code>类似，返回一个NodeList。它的值是动态查询的。</p>
+<p><strong>classList</strong>
+classList的出现，是为了解决之前元素属性className的不便而添加的。在传统方式下，如果我们需要对一个元素的class属性进行操作，首先要找到className。而且对其中某个类的操作继续重写真个className属性。</p>
+<p>so， HTML5为元素都添加了一个classList属性。它有如下方法：</p>
+<ul>
+<li>add(value)：将给定的字符串值添加到列表中。如果值已经存在，就不添加了。</li>
+<li>contains(value)：表示列表中是否存在给定的值，如果存在则返回 true，否则返回 false。</li>
+<li>remove(value)：从列表中删除给定的字符串。</li>
+<li>toggle(value)：如果列表中已经存在给定的值，删除它；如果列表中没有给定的值，添加它。</li>
+</ul>
+<h4 id="焦点管理">焦点管理</h4>
+<ul>
+<li>document.activeElement：这个属性始终指向当前文档中，获得焦点的元素</li>
+<li>hasFocus()：判断当前元素是否获得焦点；</li>
+</ul>
+<h4 id="htmldocument">HTMLDocument</h4>
+<p><strong>readyState</strong>：当前文档的加载状态，只有两个值：</p>
+<ul>
+<li>loading： 文档正在加载中；</li>
+<li>complete： 文档加载完成；</li>
+</ul>
+<p><strong>兼容模式</strong>： document.compatMode；
+在标准模式下，document.compatMode 的 值等于”CSS1Compat”，而在混杂模式下，document.compatMode 的值等于”BackCompat”</p>
+<p><strong>head属性</strong>： document.head；
+HTML5新的对文档中<code>&#x3C;head></code>元素的引用。</p>
+<h4 id="字符集属性">字符集属性</h4>
+<p>document.charset：表示文档中实际使用的字符集， 也可以用来指定新字符集。</p>
+<h4 id="自定义数据属性">自定义数据属性</h4>
+<p>HTML5 规定可以为元素添加非标准的属性，但要添加前缀 data-，目的是为元素提供与渲染无关的 信息，或者提供语义信息。这些属性可以任意添加、随便命名，只要以 data-开头即可</p>
+<h4 id="插入标记">插入标记</h4>
+<p>在用于插入大量HTML标记的情况下，传统的节点操作方法（appendChild等）有些力不从心。
+所以HTML5提供了直接操作HTML字符串的方法和属性。</p>
+<p><strong>innerHTML</strong>： 返回当前节点下所有子节点对应的HTML标记。不同的浏览器对<code>innerHTML</code>特性支持有略微差异，需注意。
+<strong>outerHTML</strong>： 返回当前节点及其所有子节点对应的HTML标记。
+<strong>insertAdjacentHTML</strong>: 最早也是在 IE中出现的， 它接收两个参数：插入位置和要插入的 HTML 文本。</p>
+<p>insertAdjacentHTML方法的第一个参数是插入位置。插入一般包含两类： 同辈元素 或者子元素。</p>
+<ul>
+<li>“beforebegin”，在当前元素之前插入一个紧邻的同辈元素；</li>
+<li>“afterbegin”，在当前元素之下插入一个新的子元素或在第一个子元素之前再插入新的子元素；</li>
+<li>“beforeend”，在当前元素之下插入一个新的子元素或在最后一个子元素之后再插入新的子元素；</li>
+<li>“afterend”，在当前元素之后插入一个紧邻的同辈元素。</li>
+</ul>
+<h4 id="scrollintoview">scrollIntoView</h4>
+<p>将当前元素滚动到当前区域内。接收一个布尔类型的参数，用来确定滚到当前可视区域的具体位置（顶部/底部）。</p>
+<h3 id="专有扩展">专有扩展</h3>
+<h4 id="文档模式">文档模式</h4>
+<p>IE8引入的概念，文档模式决定了你可以使用哪个级别的 CSS。</p>
+<h4 id="children属性">children属性</h4>
+<p>因为浏览器处理元素间的空白字是有差异的，因此就出现了 children 属性。 这个属性是 HTMLCollection 的实例， 只包含元素中同样还是元素的子节点。 除此之外， children 属性与 childNodes 没有什么区别，即在元素只包含元素子节点时，这两个属性的值相同。</p>
+<h4 id="contains方法">contains方法</h4>
+<p>判断某个节点是不是另一个节点的后代。
+这个方法的兼容性比较好，还有另外一个DOM3的方法：<code>compareDocumentPosition()</code>。这个方法用于确定两个节点间的关系，执行该方法会返回一个表示节点关系的掩码（bitmask）。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="center">掩码</th><th align="left">节点关系</th></tr></thead><tbody><tr><td align="center">1</td><td align="left">无关：给定的节点不在当前文档中</td></tr><tr><td align="center">2</td><td align="left">居前：给定的节点在参考节点之前</td></tr><tr><td align="center">4</td><td align="left">居后：给定的节点在参考节点之后</td></tr><tr><td align="center">8</td><td align="left">包含：给定的节点是参考节点的祖先</td></tr><tr><td align="center">16</td><td align="left">被包含：给定的节点是参考节点的后代</td></tr></tbody></table>
+<h4 id="插入文本">插入文本</h4>
+<p><code>innerText</code>，类似于<code>innerHTML</code>属性，只不过innerText会将子节点删除，然后换成一个新的文本节点。
+<code>innerText</code>在低版本的火狐上（FireFox 44及以下）不支持，所以<code>innerText</code>还有一个高版本的属性，叫做<code>textContent</code>。</p>
+<p><code>outerText</code>属性类似于<code>innerText</code>，只不过在进行写属性时，它会将整个节点替换为一个新的文本节点。</p>
+<h4 id="滚动">滚动</h4>
+<p>对<code>scrollIntoView</code>的扩展，</p>
+<ul>
+<li>scrollIntoViewIfNeeded: 如果元素在当前视窗，则不需要做任何滚动操作；</li>
+<li>scrollByLines(lineCount)：将元素的内容滚动指定的行高，lineCount 值可以是正值， 也可以是负值。</li>
+<li>scrollByPages(pageCount)：将元素的内容滚动指定的页面高度，具体高度由元素的高度决定。</li>
+</ul>
+<p>上面这三个方法，只有Safari 和Chrome实现了支持。</p>  </div> </article> </main> <footer class="text-sm leading-[1.75] mt-4" data-astro-cid-sz7xmlte> <div data-astro-cid-sz7xmlte> <span data-astro-cid-sz7xmlte> <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" class="text-slate-400 text-xs" data-astro-cid-sz7xmlte>署名-非商业性使用 4.0 国际许可协议<br data-astro-cid-sz7xmlte>
+转载请保留原文链接及作者</a> </span> </div> </footer>  </body></html>

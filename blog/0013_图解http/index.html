@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><!-- <link rel="shortcut icon"  href="/favicon.svg" /> --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="icon" href="/favicon.ico"><link rel="manifest" href="/site.webmanifest"><meta name="generator" content="Astro v4.6.1"><!-- Font preloads --><link rel="preload" href="/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/JetBrainsMono-Bold.woff2" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/JetBrainsMono-Light.woff2" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://hufeispace.com/blog/0013_%E5%9B%BE%E8%A7%A3http/"><!-- Primary Meta Tags --><title>图解HTTP</title><meta name="title" content="图解HTTP"><meta name="description" content="HTTP最早由Tim Berners Lee提出用于知识共享的一种协议。因为在1989年之前，互联网只属于少数人。 最初的基本理念： 借助多文档之间的互相关联形成的超文本，连成可互相参阅的WWW（World Wide Web， 万维网）。"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://hufeispace.com/blog/0013_%E5%9B%BE%E8%A7%A3http/"><meta property="og:title" content="图解HTTP"><meta property="og:description" content="HTTP最早由Tim Berners Lee提出用于知识共享的一种协议。因为在1989年之前，互联网只属于少数人。 最初的基本理念： 借助多文档之间的互相关联形成的超文本，连成可互相参阅的WWW（World Wide Web， 万维网）。"><meta property="og:image" content="https://hufeispace.com/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hufeispace.com/blog/0013_%E5%9B%BE%E8%A7%A3http/"><meta property="twitter:title" content="图解HTTP"><meta property="twitter:description" content="HTTP最早由Tim Berners Lee提出用于知识共享的一种协议。因为在1989年之前，互联网只属于少数人。 最初的基本理念： 借助多文档之间的互相关联形成的超文本，连成可互相参阅的WWW（World Wide Web， 万维网）。"><meta property="twitter:image" content="https://hufeispace.com/blog-placeholder-1.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);--bgColor-transparent: #00000000;--bgColor-neutral-muted: #636e7b66}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Regular.woff2) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Light.woff2) format("woff");font-weight:200;font-style:normal;font-display:swap}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Bold.woff2) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:JetBrainsMono;margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word;color:rgb(var(--gray-dark));line-height:1.5}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:2em 1em}h1,h2,h3,h4,h5,h6{margin:0 0 .5rem;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a{font-weight:700;text-decoration:none}a:hover{color:var(--accent)}p{margin-bottom:1em}.prose p{margin-bottom:2em}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;border-radius:8px}code{padding:.2em .4em;margin:0;font-size:85%;white-space:break-spaces;border-radius:6px;background-color:rgb(var(--gray-light));font-family:JetBrainsMono}pre{padding:.7em;border-radius:8px}pre>code{all:unset}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}@media (max-width: 720px){body{font-size:12px}main{padding:1em}}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{margin:0 auto;max-width:980px;display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}footer[data-astro-cid-sz7xmlte]{grid-area:footer;text-align:center;display:flex;align-items:center;justify-content:center;padding:1.5em}footer[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{font-weight:200;font-size:12px;color:#c8c8c8}footer[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:not(.unset){background-image:none}.gradient-link[data-astro-cid-sz7xmlte]{position:relative;box-decoration-break:clone;text-decoration:none}.gradient-link[data-astro-cid-sz7xmlte]:hover:after{transform:translateZ(0) scale(1)}.gradient-link[data-astro-cid-sz7xmlte]:after{left:0;right:0;bottom:-2px;content:"";height:2px;position:absolute;transform:translateZ(0) scaleX(0);transform-origin:left center;transition:all .15s ease-in-out}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:960px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>HuFei&#39;s Site</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> HOME </a>  <a href="/blog" class="active" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> BLOG </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/hufei365" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>HuFei's GitHub</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img src="https://images.unsplash.com/photo-1712666410511-4e84e3db6457?&w=720&h=360&fit=crop" alt="" data-astro-cid-bvzihdzo> </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2019-03-31T00:00:00.000Z"> 2019年3月31日 </time>  </div> <h1 data-astro-cid-bvzihdzo>图解HTTP</h1> <hr data-astro-cid-bvzihdzo> </div>  <h1 id="图解http">图解HTTP</h1>
+<h2 id="http起源">HTTP起源</h2>
+<p>HTTP最早由Tim Berners Lee提出用于知识共享的一种协议。因为在1989年之前，互联网只属于少数人。</p>
+<p>最初的基本理念： <strong>借助多文档之间的互相关联形成的超文本，连成可互相参阅的WWW（World Wide Web， 万维网）</strong>。</p>
+<p>构成WWW的三项基本技术：
+1. 用于定义页面文本结构样式的标准通用标记语（Standard Generalized Markup Language)————HTML（HyperText Markup Language）；
+2. 用于传输的协议（HTTP）；
+3. 指定文档所在地址的URL（Uniform Resource Locator）；</p>
+<h2 id="http与web发展的历史节点">HTTP与Web发展的历史节点</h2>
+<ol>
+<li>1990年11月，欧洲核子研究中心（CERN）研发出世界上第一台Web服务器和Web浏览器；</li>
+<li>1990，由于HTML1.0中存在大量模糊的部分，草案被直接放弃；</li>
+<li>1993年，Mosaic问世（现代浏览器的祖先，由国家超级计算机中心[美国国家超级计算机应用中心]研制）</li>
+<li>1994年，网景公司发布Netscape Navigator 1.0； 1995年，微软发布IE1.0， IE2.0，自此微软IE与网景浏览器爆发大战(具体细节：<a href="https://pcedu.pconline.com.cn/747/7470040_all.html#content_page_2">终于还是说再见!回忆那些年一起用过的IE</a>)</li>
+<li>1995年11月，HTML2.0诞生</li>
+<li>2000年左右，网景浏览器败下阵来，自此IE一家独大</li>
+<li>2004年，Mozilla基金会发布Firefox浏览器（与Netscape Navigator同宗），试图夺回失去的份额；</li>
+<li>2008年，Google发布Chrome浏览器，半路杀进浏览器大战，也由于早期Chrome极致的运行速度和简洁时尚的界面，成功获得了市场认可；</li>
+<li>2018年年底，微软宣布其最新版的Edge浏览器，将会采用Chromium内核；至此，基本形成Chrome浏览器一家独大的格局；</li>
+</ol>
+<h2 id="http的几个版本">HTTP的几个版本</h2>
+<ol>
+<li><strong>HTTP/0.9</strong>：HTTP于1990年诞生，在被作为正式的标准确立前的HTTP，被统一称为HTTP/0.9;</li>
+<li><strong>HTTP/1.0</strong>: HTTP 正式标准被确立是在1996年5月，并记载于<a href="https://tools.ietf.org/html/rfc1945">RFC1945</a></li>
+<li><strong>HTTP/1.1</strong>: 1997年1月公布，是目前（2019年3月）的主流版本；
+<ol>
+<li>1.1发布版<a href="https://tools.ietf.org/html/rfc2068">RFC2068</a></li>
+<li>1.1修订版<a href="https://tools.ietf.org/html/rfc2616">RFC2616</a></li>
+</ol>
+</li>
+<li><strong>HTTP/2.0</strong>： 随着使用HTTP协议的场景越来越多，最初的关于HTTP的设想（主要用于文本传输）已经不能满足需求，因此HTTP/2.0诞生<a href="https://tools.ietf.org/html/rfc7540">RFC7540</a></li>
+</ol>
+<h2 id="网络基础tcpip">网络基础TCP/IP</h2>
+<p>首先说明，HTTP是在TCP/IP的基础上运行的。要理解这句话的含义，就要明白<strong>网络分层</strong>的概念。</p>
+<ol>
+<li><strong>应用层</strong>：定义用户提供通信服务时的活动；</li>
+<li><strong>传输层</strong>：定义通信服务中的数据传输机制；</li>
+<li><strong>网络层</strong>：定义通信服务中，数据传输的路径选择；</li>
+<li><strong>数据链路层</strong>： 定义通信服务中，链接网络的硬件部分的标准（例如操作系统，网络适配器NIC，光纤等物理部分）；</li>
+</ol>
+<p>TODO: 网络传输示意图</p>
+<h3 id="与http关系密切的几个协议">与HTTP关系密切的几个协议</h3>
+<ol>
+<li>IP（Internet Protocol）协议， 位于网络层，用于定义数据传输路径。 在网络传输中，没有人能够掌握互联网中的传输局情况————这与<strong>路由选择</strong>这种机制有关；</li>
+<li>TCP协议：确保数据一定能够传输到目标地址。IP协议负责数据传输过程的路径选择，但是无法保证每次都能最终到达目标。TCP协议就是在IP协议的基础上，加了验证机制，如果无法收到目标机器确认收到数据的信号，则TCP协议会再一次发送传输失败的数据。</li>
+<li>DNS协议：DNS（Domain Name System）是用于解析域名与IP地址对应关系的服务。IP地址不方便人类记忆，但是域名可以；但计算机不理解域名，所以需要一个“翻译”角色，用于域名和IP地址的转换。</li>
+</ol>
+<h2 id="uri和url">URI和URL</h2>
+<p>URI（Uniform Resource Identifier）中几个单词的含义。</p>
+<p>Uniform： 统一的格式，用于将处理不同类型的资源；
+Resource： 可以被标识 的任何东西，资源也可以是多个资源的合体
+Identifier： 资源标识符</p>
+<p><a href="https://tools.ietf.org/html/rfc3986">RFC3986</a>给出了URI 的几种格式</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ftp://ftp.is.co.za/rfc/rfc1808.txt</span></span>
+<span class="line"><span>http://www.ietf.org/rfc/rfc2396.txt</span></span>
+<span class="line"><span>ldap://[2001:db8::7]/c=GB?objectClass?one</span></span>
+<span class="line"><span>mailto:John.Doe@example.com</span></span>
+<span class="line"><span>news:comp.infosystems.www.servers.unix</span></span>
+<span class="line"><span>tel:+1-816-555-1212</span></span>
+<span class="line"><span>telnet://192.0.2.16:80/</span></span>
+<span class="line"><span>urn:oasis:names:specification:docbook:dtd:xml:4.1.2</span></span>
+<span class="line"><span></span></span></code></pre>
+<h3 id="uri的格式">URI的格式</h3>
+<ul>
+<li>协议名：指定访问资源时使用的协议，也可以是<code>data:</code>或<code>javascript:</code>等指定数据或脚本程序的方案名</li>
+<li>登录信息：（如果访问的资源需要验证信息）</li>
+<li>服务器地址：（必选）</li>
+<li>服务器端口号：（省略的情况下，使用默认端口号）</li>
+<li>带层次的文件路径：（必选）</li>
+<li>查询字符串：（用于传入参数）</li>
+<li>片段标识符：（用于标记已获取的资源中的子资源）</li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>并不是所有的HTTP协议都要符合RFC的标准，只要能在服务端和客户端进行正常通信，都可以作为一种协议，都可以在实际业务中使用。RFC的标准是一种规范，遵守规范的意义就在于能够符合大众标准，但不是唯一标准。</p>
+<h2 id="https">HTTPS</h2>
+<p>HTTP作为网络通信协议，实际上还有一些缺点：</p>
+<ol>
+<li><strong>明文传输方式，导致通信数据很容易被窃听；</strong></li>
+<li><strong>无法验证通信对象的合法性；</strong></li>
+<li><strong>无法保证通信数据的完整性；</strong></li>
+</ol>
+<h3 id="明文传输">明文传输</h3>
+<p>因为TCP/IP的工作机制，通信数据在互联网中传输是公开的，也就是说是可以被第三方看到的。单独这么看也许不存在问题，但如果传输数据是明文的方式，就不同了。这就好比你在广场上通过大声喊的方式与不远处的同伴说话。不仅你俩能听见彼此的沟通内容，广场上的其它人也能够知道。如果通过HTTP传输的信息是账户密码，信用卡号，那么你的这些敏感信息就会被泄露出去。</p>
+<p>利用网络抓包或者嗅探器工具很容易抓取网络上的通信数据，常用的有<a href="">wireshark</a></p>
+<h3 id="无法验证通信对象的合法性">无法验证通信对象的合法性</h3>
+<p>服务端无法获取当前的请求就是来自于期望的客户端，而客户端也无法验证获取的响应数据来自真正的服务端。直白一点说，就是客户端和服务端无法验证自己到底是和谁在进行通信。</p>
+<ul>
+<li>客户端收到的响应可能来自于伪装的服务器；</li>
+<li>服务端收到的请求可能来自于伪装的客户端；</li>
+<li>服务端无法验证客户端是否具有访问特定自愿的权限（目前服务端可以验证客户端是否具有对应全向，但是仅通过HTTP协议本身无法做到这一点）；</li>
+</ul>
+<h3 id="无法保证数据的完整性">无法保证数据的完整性</h3>
+<p>使用HTTP进行通信，传输报文可以被第三方劫持然后修改后再进行传送，这就会发生数据被修改的情况。所以服务端和客户端收到的数据可能是被第三方修改过的数据但是却没有任何办法去验证是否被修改过。</p>
+<hr>
+<p>针对HTTP存在的安全问题，产生了HTTPS (HTTP + 加密 + 认证 + 完整性保护 = HTTPS)。</p>
+<p>HTTPS不是一种新的应用层协议，而是在HTTP协议的基础上，HTTP通信接口采用SSL（Secure Socket Layer）和 TSL(Transport Layer Security)。</p>
+<p>SSL采用的加密方式： 存在加密算法和加密密钥。 加密算法公开，加密密钥私有。没有对应的密钥，无法解开对应的加密数据。</p>
+<h3 id="加密传输">加密传输</h3>
+<p>使用HTTPS，传输的数据会在加密后进行传输（通过HTTP）。这样，即使数据被第三方截获，如果没有正确的解密密钥依然无法获取通信内容。所以说，只要通信双发约定好密钥，就可以进行安全通信。</p>
+<p>But，在约定密钥前需要服务端和客户端进行协商，这时候密钥还未加密，通信过程依然是不安全的。如果被第三方获知了密钥，则通信内容依然不安全。</p>
+<h3 id="非对称加密">非对称加密</h3>
+<p>什么是<strong>非对称加密</strong>？ 密钥分为公钥和私钥。私钥有服务端保存，公钥可以分发给客户端。客户端只管发送加密后的内容，这样即使数据被第三方截获，因为没有对应的私钥，所以也无法解析加密数据。</p>
+<h3 id="中间人攻击">中间人攻击</h3>
+<p>非对称加密解决了加密密钥私有的问题，但是如何保证客户端接收到公钥就是服务端分发的公钥呢，也许数据早已被第三方截获，然后第三方再生成一个新的公钥钥给客户端。这样，客户端加密后数据也能被第三方解析出来（因为公钥是第三方生成的）。然后第三方修改通信数据后，在利用真正的公钥与服务端进行通信。这样就会导致客户端和服务端之间有一个“中间人”。</p>
+<p>所以，只要保证自己的公钥能够被安全地发放给客户端，就能保证通信的安全性。</p>
+<h3 id="找一个可信的第三方">找一个可信的第三方</h3>
+<p>服务端把自己的公钥托管给可信的第三方，第三方会保存服务端的公钥并生成数字证书。客户端利用第三方认证机构的公钥对颁发的证书进行验证，验证证书中公钥的有效性。而如何保证第三方认证结构的公钥的有效性呢？方案很简单，内置在浏览器中。浏览器厂商会将信任的第三方认证机构的公钥预先植入在浏览器中。这样的话，就能保证整个过程通信过程都是安全有效的。</p>
+<h3 id="ev-ssl证书">EV SSL证书</h3>
+<p>证书除了可以验证公钥的有效性，还可以用来验证对应的服务的企业组织的真实性（是否真实存在，是否合法等）。这样的证书就称为Extended Validation SSL Certificate。</p>
+<h3 id="https-带来性能开销">HTTPS 带来性能开销</h3>
+<p>使用HTTPS进行通信，不可避免地要产生额外的性能开销。这主要是两个方面</p>
+<ul>
+<li>加密/解密带来的 CPU/内存之类的计算性能开销；</li>
+<li>HTTPS会产生更多的通信过程，带来额外的网络开销；</li>
+</ul>
+<h3 id="并不是所有的通信都应该使用https">并不是所有的通信都应该使用HTTPS</h3>
+<p>在当前环境下，HTTPS除了会产生额外的性能开销，还存在证书费用问题。从项目工程的角度出发，为节省资源，我们可以只在特定节点和过程采用HTTPS（比如账户登录，支付等）。而内容分发等不存在认证的过程，可以采用HTTP。</p>
+<h2 id="确认用户身份的认证">确认用户身份的认证</h2>
+<p>何为认证？ 核对“只有登录者本人才知道的信息”或者“只有登录者本人才会有的信息”。</p>
+<p>一般情况下，有下面几种类型的 信息可用于认证：</p>
+<ol>
+<li>密码：用户本人才知道的字符串；</li>
+<li>动态令牌：仅限用户本人持有的设备生成的一次性密码；</li>
+<li>数字证书：仅限用户本人（终端）持有的数字签名；</li>
+<li>生物认证：指纹、虹膜和面部特征等用户本人的生物信息；</li>
+<li>IC卡等：仅限用户本人持有的信息；</li>
+</ol>
+<p>HTTP中的认证方式：</p>
+<ol>
+<li>BASIC认证</li>
+<li>DIGEST认证</li>
+<li>SSL客户端认证</li>
+<li>基于表单认证</li>
+</ol>  </div> </article> </main> <footer class="text-sm leading-[1.75] mt-4" data-astro-cid-sz7xmlte> <div data-astro-cid-sz7xmlte> <span data-astro-cid-sz7xmlte> <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" class="text-slate-400 text-xs" data-astro-cid-sz7xmlte>署名-非商业性使用 4.0 国际许可协议<br data-astro-cid-sz7xmlte>
+转载请保留原文链接及作者</a> </span> </div> </footer>  </body></html>

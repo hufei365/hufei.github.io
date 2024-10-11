@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><!-- <link rel="shortcut icon"  href="/favicon.svg" /> --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="icon" href="/favicon.ico"><link rel="manifest" href="/site.webmanifest"><meta name="generator" content="Astro v4.6.1"><!-- Font preloads --><link rel="preload" href="/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/JetBrainsMono-Bold.woff2" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/JetBrainsMono-Light.woff2" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://hufeispace.com/blog/0042_javascript%E4%B8%AD%E7%9A%84-illegal-invocation-%E5%BC%82%E5%B8%B8/"><!-- Primary Meta Tags --><title>JavaScript中的 &#39;Illegal invocation&#39; 异常</title><meta name="title" content="JavaScript中的 'Illegal invocation' 异常"><meta name="description" content=""><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://hufeispace.com/blog/0042_javascript%E4%B8%AD%E7%9A%84-illegal-invocation-%E5%BC%82%E5%B8%B8/"><meta property="og:title" content="JavaScript中的 'Illegal invocation' 异常"><meta property="og:description" content=""><meta property="og:image" content="https://hufeispace.com/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hufeispace.com/blog/0042_javascript%E4%B8%AD%E7%9A%84-illegal-invocation-%E5%BC%82%E5%B8%B8/"><meta property="twitter:title" content="JavaScript中的 'Illegal invocation' 异常"><meta property="twitter:description" content=""><meta property="twitter:image" content="https://hufeispace.com/blog-placeholder-1.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);--bgColor-transparent: #00000000;--bgColor-neutral-muted: #636e7b66}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Regular.woff2) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Light.woff2) format("woff");font-weight:200;font-style:normal;font-display:swap}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Bold.woff2) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:JetBrainsMono,Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB;margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word;color:rgb(var(--gray-dark));line-height:1.5}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:2em 1em}h1,h2,h3,h4,h5,h6{margin:0 0 .5rem;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a{font-weight:700;text-decoration:none}a:hover{color:var(--accent)}p{margin-bottom:1em}.prose p{margin-bottom:2em}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;border-radius:8px}code{padding:.2em .4em;margin:0;font-size:85%;white-space:break-spaces;border-radius:6px;background-color:rgb(var(--gray-light));font-family:JetBrainsMono}pre{padding:.7em;border-radius:8px}pre>code{all:unset}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}@media (max-width: 720px){body{font-size:12px}main{padding:1em}}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{margin:0 auto;max-width:980px;display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}footer[data-astro-cid-sz7xmlte]{grid-area:footer;text-align:center;display:flex;align-items:center;justify-content:center;padding:1.5em}footer[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{font-weight:200;font-size:12px;color:#c8c8c8}footer[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:not(.unset){background-image:none}.gradient-link[data-astro-cid-sz7xmlte]{position:relative;box-decoration-break:clone;text-decoration:none}.gradient-link[data-astro-cid-sz7xmlte]:hover:after{transform:translateZ(0) scale(1)}.gradient-link[data-astro-cid-sz7xmlte]:after{left:0;right:0;bottom:-2px;content:"";height:2px;position:absolute;transform:translateZ(0) scaleX(0);transform-origin:left center;transition:all .15s ease-in-out}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:960px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>HuFei&#39;s Site</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> HOME </a>  <a href="/blog" class="active" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> BLOG </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/hufei365" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>HuFei's GitHub</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img src="https://images.unsplash.com/photo-1727199204795-9607950eff99?&w=720&h=360&fit=crop" alt="" data-astro-cid-bvzihdzo> </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2024-05-20T00:00:00.000Z"> 2024年5月20日 </time>  </div> <h1 data-astro-cid-bvzihdzo>JavaScript中的 &#39;Illegal invocation&#39; 异常</h1> <hr data-astro-cid-bvzihdzo> </div>  <h2 id="illegal-invocation-何时会出现">“Illegal invocation” 何时会出现？</h2>
+<p>当调用一个函数时，如果其<code>this</code>关键字没有指向它最初指向的对象，即函数的“上下文”丢失时，就会抛出这个错误。</p>
+<h3 id="示例问题">示例问题</h3>
+<p>在代理后的HTML元素上调用原来所具有的放法就会跑出该异常。例如：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> proxyBody</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Proxy</span><span style="color:#E1E4E8">(document.body, {});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">proxyBody.</span><span style="color:#B392F0">getClientRects</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">// Uncaught TypeError: Illegal invocation</span></span>
+<span class="line"></span></code></pre>
+<p>另外，除了 <code>Proxy</code>包装后对对象，在解构对象时，也会出现类似对情况。例如， 在调用<code>AbortController</code>解构后的<code>abort</code>方法时，也会出现“Illegal invocation”错误：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> abortController</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> AbortController</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">abort</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> abortController;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">abort</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">//=> TypeError: Illegal invocation</span></span>
+<span class="line"></span></code></pre>
+<p>另一个案例：尝试为<code>document.querySelector</code>和<code>document.querySelectorAll</code>实现类似<code>jQuery</code>的简写：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> $</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.querySelector;</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> $$</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.querySelectorAll;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">$</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"#foo"</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">//=> TypeError: Illegal invocation</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">$$</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">".bar"</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">//=> TypeError: Illegal invocation</span></span>
+<span class="line"></span></code></pre>
+<p>（PS：其实大多数现代浏览器都在控制台Console中内置了<code>$</code>和<code>$$</code>方法。）</p>
+<h2 id="错误描述">错误描述</h2>
+<p>“invocation” 是调用函数的意思，这与‘call’函数相同。invocation === call。</p>
+<p>当<strong>调用一个函数时，如果其<code>this</code>关键字没有指向它最初指向的对象</strong>，就会抛出“Illegal invocation”错误。换句话说，就是函数的原始“上下文”丢失了。</p>
+<h3 id="手动演示-illegal-invocation-异常的检查机制">手动演示 “Illegal invocation” 异常的检查机制</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> foo</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">  bar</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">function</span><span style="color:#E1E4E8"> () {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Calling foo.bar; `this` refers to"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#F97583"> !==</span><span style="color:#E1E4E8"> foo) {</span></span>
+<span class="line"><span style="color:#F97583">      throw</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> TypeError</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Illegal invocation 🛑"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Successfully called foo.bar ✅"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">foo.</span><span style="color:#B392F0">bar</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">//=> Calling foo.bar; `this` refers to foo</span></span>
+<span class="line"><span style="color:#6A737D">//=> Successfully called foo.bar ✅</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">bar</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> foo;</span></span>
+<span class="line"><span style="color:#B392F0">bar</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">//=> Calling foo.bar; `this` refers to window</span></span>
+<span class="line"><span style="color:#6A737D">//=> TypeError: Illegal invocation 🛑</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> bar2</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> foo.bar;</span></span>
+<span class="line"><span style="color:#B392F0">bar2</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">//=> Calling foo.bar; `this` refers to window</span></span>
+<span class="line"><span style="color:#6A737D">//=> TypeError: Illegal invocation 🛑</span></span>
+<span class="line"></span></code></pre>
+<p>注释：</p>
+<ul>
+<li>在实际代码中，应该使用更好的错误消息。“Illegal invocation”这个说法不够清晰。</li>
+<li>在严格模式下，错误情况下的<code>this</code>将是<code>undefined</code>，不会是<code>window</code>。</li>
+</ul>
+<h2 id="为什么this关键字会改变">为什么<code>this</code>关键字会改变？</h2>
+<p>因为<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">JavaScript中的<code>this</code>关键字</a>是令人困惑的！</p>
+<p>关键在于方法调用和函数调用之间的区别。</p>
+<h3 id="方法调用">方法调用</h3>
+<p>方法是一个作为对象属性存储的函数。当使用”<strong>.</strong>”表示法或方括号”<strong>[]</strong>“表示法调用（即调用）方法时，<code>this</code>关键字绑定到对象上：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> foo</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">  bar</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> method</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "bar"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 方法调用：</span></span>
+<span class="line"><span style="color:#E1E4E8">foo.</span><span style="color:#B392F0">bar</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">//=> foo</span></span>
+<span class="line"><span style="color:#E1E4E8">foo[</span><span style="color:#9ECBFF">"bar"</span><span style="color:#E1E4E8">](); </span><span style="color:#6A737D">//=> foo</span></span>
+<span class="line"><span style="color:#E1E4E8">foo[method](); </span><span style="color:#6A737D">//=> foo</span></span>
+<span class="line"></span></code></pre>
+<h3 id="函数调用">函数调用</h3>
+<p>当调用一个不是对象属性的函数时，<code>this</code>关键字是：</p>
+<ul>
+<li>在<a href="https://developer.mozilla.org/en-US/docs/Glossary/Sloppy_mode">宽松模式</a>下绑定到全局对象（window）。</li>
+<li>在<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode">严格模式</a>下为<code>undefined</code>。</li>
+</ul>
+<p>在任何模式下，原始上下文都会丢失，因为<code>this</code>关键字没有指向它最初指向的对象：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">bar</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> foo;</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> bar2</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> foo.bar;</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> bar3</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> foo[</span><span style="color:#9ECBFF">"bar"</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 函数调用：</span></span>
+<span class="line"><span style="color:#B392F0">bar</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">//=> window（在宽松模式下）/ undefined（在严格模式下）</span></span>
+<span class="line"><span style="color:#B392F0">bar2</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">//=> window（在宽松模式下）/ undefined（在严格模式下）</span></span>
+<span class="line"><span style="color:#B392F0">bar3</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">//=> window（在宽松模式下）/ undefined（在严格模式下）</span></span>
+<span class="line"></span></code></pre>
+<p>至于为什么会丢失上下文——<a href="https://www.oreilly.com/library/view/javascript-the-good/9780596517748/">Douglas Crockford的书《JavaScript: The Good Parts》</a>：</p>
+<blockquote>
+<p>当一个函数不是某个对象的属性时，那么它就是作为一个函数被调用的：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> sum </span><span style="color:#F97583">=</span><span style="color:#B392F0"> add</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">// sum是7</span></span>
+<span class="line"></span></code></pre>
+<p>当一个函数以这种模式被调用时，<code>this</code>绑定到全局对象<code>window</code>。
+但，<strong>这是语言设计中的一个错误。</strong></p>
+</blockquote>
+<h3 id="箭头函数">箭头函数</h3>
+<blockquote>
+<p>如果语言被合理设计，当内部函数被调用时，<code>this</code>仍然绑定到函数定义位置的<code>this</code>变量。</p>
+<p>这个错误的后果是方法不能使用内部函数来帮助它完成工作，因为内部函数不共享方法对对象的访问，它的<code>this</code>绑定到了错误的值。</p>
+<p>幸运的是，有一个简单的解决方法。如果方法定义了一个变量并将其赋值为<code>this</code>，
+内部函数将通过该变量访问<code>this</code>。按照惯例，那个变量的名称是<code>that</code>：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> myObject </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  value: </span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 给myObject增加一个double方法</span></span>
+<span class="line"><span style="color:#E1E4E8">myObject.</span><span style="color:#B392F0">double</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> () {</span></span>
+<span class="line"><span style="color:#F97583">  var</span><span style="color:#E1E4E8"> that </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D">// 解决方案</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  var</span><span style="color:#B392F0"> helper</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> () {</span></span>
+<span class="line"><span style="color:#E1E4E8">    that.value </span><span style="color:#F97583">=</span><span style="color:#B392F0"> add</span><span style="color:#E1E4E8">(that.value, that.value);</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">  helper</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// 作为函数调用helper</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">myObject.</span><span style="color:#B392F0">double</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// 作为方法调用double</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(myObject.value); </span><span style="color:#6A737D">//=> 6</span></span>
+<span class="line"></span></code></pre>
+<p>现在你可以改用箭头函数：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#E1E4E8">myObject.</span><span style="color:#B392F0">double</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> () {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#B392F0"> helper</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">    this</span><span style="color:#E1E4E8">.value </span><span style="color:#F97583">=</span><span style="color:#B392F0"> add</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.value, </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.value);</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">  helper</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// 作为函数调用helper</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">myObject.</span><span style="color:#B392F0">double</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// 作为方法调用double</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(myObject.value); </span><span style="color:#6A737D">//=> 6</span></span>
+<span class="line"></span></code></pre>
+</blockquote>
+<p>箭头函数增加了围绕<code>this</code>关键字的复杂性。</p>
+<p>无论如何，JavaScript中的<code>this</code>关键字令人困惑。</p>
+<h2 id="三种修复错误的方法">三种修复错误的方法</h2>
+<p>这是原始的有问题的示例代码：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> proxyBody</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Proxy</span><span style="color:#E1E4E8">(document.body, {});</span></span>
+<span class="line"><span style="color:#E1E4E8">proxyBody.</span><span style="color:#B392F0">getClientRects</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> abortController</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> AbortController</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">abort</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> abortController;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> $</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.querySelector;</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> $$</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.querySelectorAll;</span></span>
+<span class="line"></span></code></pre>
+<p>问题的要点在于调用<code>getClientRects</code>、<code>abort</code>、<code>$</code>或<code>$$</code>是函数调用，而不是方法调用，因为函数执行上下文会丢失。</p>
+<h2 id="创建一个调用方法的函数">创建一个调用方法的函数</h2>
+<p>正如我们上面学到的，使用方法调用（与函数调用相对），<code>this</code>关键字绑定到对象上。
+因此，创建一个调用<code>abortController.abort</code>方法的abort函数：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> abortController</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> AbortController</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> abort</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> abortController.</span><span style="color:#B392F0">abort</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">abort</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// OK!</span></span>
+<span class="line"></span></code></pre>
+<p>调用<code>abort</code>是一个函数调用，但是<code>abort</code>反过来使用方法调用<code>abortController.abort</code>，因此上下文没有丢失。 对于<code>$</code>和<code>$$</code>也是一样的：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> $</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">selectors</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">querySelector</span><span style="color:#E1E4E8">(selectors);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> $$</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">selectors</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">querySelectorAll</span><span style="color:#E1E4E8">(selectors);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">$</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"#foo"</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">// OK!</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">$$</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">".bar"</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">// OK!</span></span>
+<span class="line"></span></code></pre>
+<p>（顺便说一下：注意函数参数是复数形式：selectors而不是selector。那是因为<code>document.querySelector</code>和<code>document.querySelectorAll</code>接受逗号分隔的CSS选择器列表。）</p>
+<p>但是，这种方式不适用于 <code>Proxy</code> 对象，因为它是在内部更改了方法调用的 <code>this</code> 指向。</p>
+<h3 id="使用bind更改this关键字">使用bind()更改<code>this</code>关键字</h3>
+<p>一个更强大的解决方法是使用<code>Function.prototype.bind()</code>将<code>this</code>关键字设置为指向正确的对象：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> proxyBody</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Proxy</span><span style="color:#E1E4E8">(document.body, {});</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> getClientRects</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> proxyBody.getClientRects.</span><span style="color:#B392F0">bind</span><span style="color:#E1E4E8">(document.body);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> abortController</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> AbortController</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> abort</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> abortController.abort.</span><span style="color:#B392F0">bind</span><span style="color:#E1E4E8">(abortController);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> $</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.querySelector.</span><span style="color:#B392F0">bind</span><span style="color:#E1E4E8">(document);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> $$</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.querySelectorAll.</span><span style="color:#B392F0">bind</span><span style="color:#E1E4E8">(document);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">getClientRects</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// OK!</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">abort</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// OK!</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">$</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"#foo"</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">// OK!</span></span>
+<span class="line"><span style="color:#B392F0">$$</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">".bar"</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">// OK!</span></span>
+<span class="line"></span></code></pre>
+<p><code>Function.prototype.bind()</code> 会生成一个指向新<code>this</code>d的函数，除此之外，更多情况下一般是使用<code>Function.prototype.apply()</code>和<code>Function.prototype.call()</code></p>
+<h3 id="导出整个对象">导出整个对象</h3>
+<p>在<code>AbortController</code>的情况下，最初是解构出 <code>abort</code>方法，因为只想导出这一个方法，而不是整个<code>AbortController</code>。</p>
+<p>但如果不介意导出整个<code>AbortController</code>，直接调用其<code>abort</code>方法也是可以的（因为这将是一个方法调用）：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> abortController</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> AbortController</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 在另一个文件中：</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { abortController } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "..."</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">abortController.</span><span style="color:#B392F0">abort</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// OK!</span></span>
+<span class="line"></span></code></pre>
+<p>但这个解决方案不适用于<code>Proxy</code>、<code>$</code>和<code>$$</code>的情况。</p>
+<h2 id="来源更多资源">来源/更多资源</h2>
+<p>Stack Overflow 上关于“Illegal invocation”的解释：</p>
+<ul>
+<li><a href="https://stackoverflow.com/q/9677985/1079869">“Chrome中的Uncaught TypeError: Illegal invocation”</a></li>
+<li><a href="https://stackoverflow.com/q/10743596/1079869">为什么某些JavaScript函数调用被称为“Illegal invocation”？</a></li>
+<li><a href="https://stackoverflow.com/q/8904782/1079869">JavaScript中的Uncaught TypeError: Illegal invocation</a></li>
+</ul>  </div> </article> </main> <footer class="text-sm leading-[1.75] mt-4" data-astro-cid-sz7xmlte> <div data-astro-cid-sz7xmlte> <span data-astro-cid-sz7xmlte> <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" class="text-slate-400 text-xs" data-astro-cid-sz7xmlte>署名-非商业性使用 4.0 国际许可协议<br data-astro-cid-sz7xmlte>
+转载请保留原文链接及作者</a> </span> </div> </footer>  </body></html>

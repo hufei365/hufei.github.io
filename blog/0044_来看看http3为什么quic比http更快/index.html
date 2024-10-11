@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><!-- <link rel="shortcut icon"  href="/favicon.svg" /> --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="icon" href="/favicon.ico"><link rel="manifest" href="/site.webmanifest"><meta name="generator" content="Astro v4.6.1"><!-- Font preloads --><link rel="preload" href="/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/JetBrainsMono-Bold.woff2" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/JetBrainsMono-Light.woff2" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://hufeispace.com/blog/0044_%E6%9D%A5%E7%9C%8B%E7%9C%8Bhttp3%E4%B8%BA%E4%BB%80%E4%B9%88quic%E6%AF%94http%E6%9B%B4%E5%BF%AB/"><!-- Primary Meta Tags --><title>来看看HTTP3——为什么QUIC比HTTP更快</title><meta name="title" content="来看看HTTP3——为什么QUIC比HTTP更快"><meta name="description" content=""><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://hufeispace.com/blog/0044_%E6%9D%A5%E7%9C%8B%E7%9C%8Bhttp3%E4%B8%BA%E4%BB%80%E4%B9%88quic%E6%AF%94http%E6%9B%B4%E5%BF%AB/"><meta property="og:title" content="来看看HTTP3——为什么QUIC比HTTP更快"><meta property="og:description" content=""><meta property="og:image" content="https://hufeispace.com/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hufeispace.com/blog/0044_%E6%9D%A5%E7%9C%8B%E7%9C%8Bhttp3%E4%B8%BA%E4%BB%80%E4%B9%88quic%E6%AF%94http%E6%9B%B4%E5%BF%AB/"><meta property="twitter:title" content="来看看HTTP3——为什么QUIC比HTTP更快"><meta property="twitter:description" content=""><meta property="twitter:image" content="https://hufeispace.com/blog-placeholder-1.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);--bgColor-transparent: #00000000;--bgColor-neutral-muted: #636e7b66}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Regular.woff2) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Light.woff2) format("woff");font-weight:200;font-style:normal;font-display:swap}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Bold.woff2) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:JetBrainsMono,Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB;margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word;color:rgb(var(--gray-dark));line-height:1.5}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:2em 1em}h1,h2,h3,h4,h5,h6{margin:0 0 .5rem;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a{font-weight:700;text-decoration:none}a:hover{color:var(--accent)}p{margin-bottom:1em}.prose p{margin-bottom:2em}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;border-radius:8px}code{padding:.2em .4em;margin:0;font-size:85%;white-space:break-spaces;border-radius:6px;background-color:rgb(var(--gray-light));font-family:JetBrainsMono}pre{padding:.7em;border-radius:8px}pre>code{all:unset}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}@media (max-width: 720px){body{font-size:12px}main{padding:1em}}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{margin:0 auto;max-width:980px;display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}footer[data-astro-cid-sz7xmlte]{grid-area:footer;text-align:center;display:flex;align-items:center;justify-content:center;padding:1.5em}footer[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{font-weight:200;font-size:12px;color:#c8c8c8}footer[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:not(.unset){background-image:none}.gradient-link[data-astro-cid-sz7xmlte]{position:relative;box-decoration-break:clone;text-decoration:none}.gradient-link[data-astro-cid-sz7xmlte]:hover:after{transform:translateZ(0) scale(1)}.gradient-link[data-astro-cid-sz7xmlte]:after{left:0;right:0;bottom:-2px;content:"";height:2px;position:absolute;transform:translateZ(0) scaleX(0);transform-origin:left center;transition:all .15s ease-in-out}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:960px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>HuFei&#39;s Site</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> HOME </a>  <a href="/blog" class="active" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> BLOG </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/hufei365" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>HuFei's GitHub</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img src="https://images.unsplash.com/photo-1720802616209-c174c23f6565?&w=720&h=360&fit=crop" alt="" data-astro-cid-bvzihdzo> </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2024-06-15T00:00:00.000Z"> 2024年6月15日 </time>  </div> <h1 data-astro-cid-bvzihdzo>来看看HTTP3——为什么QUIC比HTTP更快</h1> <hr data-astro-cid-bvzihdzo> </div>  <h2 id="介绍">介绍</h2>
+<p>在过去的三十年里，HTTP（超文本传输协议）一直是互联网的支柱。我们能够浏览网页、下载文件、流媒体电影等，都是因为HTTP。该协议多年来不断发展，并见证了重大改进。</p>
+<p>HTTP协议是一种应用层协议，工作在TCP（传输控制协议）之上。TCP协议存在若干限制，导致网络应用响应速度较慢。</p>
+<p>为了克服TCP的缺点，Google 开发了一种革命性的传输协议，称为QUIC。QUIC几年前被标准化，并加入了IETF（互联网工程任务组）。</p>
+<p>在过去的几年里，QUIC的采用率呈指数级增长。大多数科技公司如谷歌、Facebook、Pinterest等，已经开始采用使用QUIC作为传输层的HTTP/3.0。这些公司在使用HTTP/3.0和QUIC后，网站性能显著提升。</p>
+<h2 id="tcp和udp是如何工作的">TCP和UDP是如何工作的？</h2>
+<p>TCP（传输控制协议）和UDP（用户数据报协议）是传输层协议。这些协议用于处理互联网数据包在电子设备之间的流动。接下来，让我们看下两个协议究竟是如何工作的。</p>
+<h3 id="tcp">TCP</h3>
+<p>TCP是一种基于连接的协议。客户端与服务器建立连接后再发送数据。TCP连接会通过一种被称为“三次握手”的机制建立。下面的图展示了三次握手的过程：
+<a href="https://postimg.cc/ykh46hvC"><img src="https://i.postimg.cc/MKNWDdBH/quic01.png" alt="quic01.png"></a>
+这个过程包括三个步骤：</p>
+<ol>
+<li>SYN - 客户端向服务器发送一个SYN包。</li>
+<li>ACK - 服务器接收到SYN包后，通过ACK包向客户端发送确认回执。</li>
+<li>SYN-ACK - 客户端接收到服务器的ACK包后，最终通过SYN-ACK向服务器发送确认。</li>
+</ol>
+<p>TCP是一种有状态且可靠的协议。它保证所有数据包从一个设备传递到另一个设备。此外，它允许客户端和服务器使用相同的连接进行通信。</p>
+<h3 id="udp">UDP</h3>
+<p>UDP是一种无连接协议。与TCP不同，客户端和服务器之间没有三次握手。客户端将数据包发送到服务器后，不会等待服务器的确认。
+UDP不保证数据包的100%传递。数据包可能会丢失，无法到达另一端设备。UDP不像TCP那样可靠。
+由于没有初始握手，UDP比TCP快得多。出于性能考虑，UDP主要用于音乐/视频等流媒体数据应用。
+这里有一个流行的网络笑话，讽刺了TCP/UDP：
+<a href="https://postimg.cc/ZWrTG5ZP"><img src="https://i.postimg.cc/0y4bJzB4/quic02.jpg" alt="quic02.jpg"></a>
+到目前为止，我们已经了解了TCP和UDP协议是如何工作的。现在让我们探索一下HTTP协议，它是一种应用层协议。</p>
+<h2 id="http的发展">HTTP的发展</h2>
+<p>第一个版本的HTTP是由Tim Berners-Lee在1989年于CERN开发的。自那时以来，该协议进行了多次优化和性能改进。大多数现代设备使用HTTP 1.1/HTTP 2.0和HTTP 3.0。让我们回顾一下HTTP的发展历史，并了解协议经历的主要变化。</p>
+<h3 id="http10">HTTP/1.0</h3>
+<p>在最初的HTTP/0.9版本之后，HTTP/1.0开始支持header、body、文本文件等。客户端每次使用HTTP从服务器获取数据时，都必须创建一个TCP连接。这导致了大量资源浪费在建立连接上。</p>
+<h3 id="http11">HTTP/1.1</h3>
+<p>该版本的协议增加了在客户端和服务器之间复用现有TCP连接以获取新数据的能力。这是通过HTTP头部的<code>keep-alive</code>实现的。</p>
+<p>如果客户端想获取10个Javascript文件，它会与服务器建立一个连接。然后，它会复用同一个连接来获取这10个文件，而不是为每个文件创建一个新连接。</p>
+<p>这减少了资源浪费并提高了性能，因为不需要创建冗余连接。然而，一个主要的缺点是所谓的队头阻塞（Head of the line blocking）问题。</p>
+<p>下图展示了队头阻塞问题。
+<a href="https://postimg.cc/CB4rTJwc"><img src="https://i.postimg.cc/HxqqMPR1/quic03.png" alt="quic03.png"></a></p>
+<p>让我们通过一个例子来理解这个概念。如上图所示，你有三个文件——图像、文本和视频。视频文件的大小较大，传输时间较长。由于视频文件需要更多时间传输，它会阻止图像和文本文件的发送。</p>
+<h3 id="http20">HTTP/2.0</h3>
+<p>HTTP 2.0通过多路复用解决了队头阻塞问题。借助多路复用，可以在同一个TCP连接上发送多个文件。
+<a href="https://postimg.cc/ZWyfKJTB"><img src="https://i.postimg.cc/mgmKjrJw/quic04.png" alt="quic04.png"></a>
+这带来了性能提升，并在应用层解决了队头阻塞问题。然而，在TCP层，如果发生数据包丢失，则必须等待数据包重传。</p>
+<p>在数据包丢失的情况下，多路复用解决方案没有如预期那样工作。事实上，如果数据包丢失率超过5%，HTTP 1.1的表现比HTTP 2.0反而更好。队头阻塞问题从应用层转移到了传输层。</p>
+<p>下图展示了单个数据包丢失如何导致多个流延迟：
+<a href="https://postimg.cc/5YtLymw7"><img src="https://i.postimg.cc/3RXBLSWT/quic05.png" alt="quic05.png"></a>
+当一个数据包丢失时，TCP会将后续数据包存储在其缓冲区中，直到确认收到丢失的数据包。然后，TCP使用重传来获取丢失的数据包。HTTP无法看到TCP重传的过程。因此，在这种情况下，不同的流会看到传输延迟。</p>
+<h2 id="quic是什么">QUIC是什么？</h2>
+<p>在前几节中，我们看到TCP有一些固有的限制，如三次握手和队头阻塞。这些限制可以通过增强TCP或用新协议替代TCP来解决。</p>
+<p>虽然增强TCP相对简单，但TCP存在于与操作系统紧密耦合的最低层。简单来说，TCP的代码存在于内核层，而不是用户空间。考虑到设备数量庞大，在内核空间实施更改需要相当长的时间才能覆盖所有用户。</p>
+<p>因此，谷歌推出了一种新的协议——QUIC，作为TCP的替代品。与TCP一样，QUIC也是一种传输层协议。然而，它存在于用户层面，而不是内核层面。这使得它比TCP更容易升级和增强。</p>
+<p>QUIC基于UDP工作。它通过使用UDP克服了TCP的限制。它只是基于UDP的应用层协议或包装器。该包装器添加了TCP的特性，如拥塞控制、数据包重传、多路复用等。它在内部使用UDP，并在其上添加了TCP的最佳特性。</p>
+<p>下图展示了QUIC如何适应网络栈：
+<a href="https://postimg.cc/vgDxbZsC"><img src="https://i.postimg.cc/tTN3dsmR/quic06.png" alt="quic06.png"></a>
+既然我们已经了解了QUIC的基础知识，接下来让我们深入探讨该协议的工作原理。</p>
+<h2 id="quic是如何工作的">QUIC是如何工作的？</h2>
+<h3 id="quic握手">QUIC握手</h3>
+<p>QUIC基于UDP工作，不需要经过三次握手过程。三次握手的过程增加了额外的开销和延迟。因此，QUIC通过减少连接延迟提高了性能。</p>
+<p>在TCP的情况下，还有一个用于TLS的额外握手，这会增加延迟。QUIC将TLS握手和QUIC握手结合在一次会话中，从而减少握手次数，提高了性能。</p>
+<h3 id="可靠性">可靠性</h3>
+<p>你可能会问：“由于QUIC基于UDP，数据包会丢失吗？”答案是否定的。QUIC在UDP之上增加了可靠性。它实现了数据包重传机制，以防未收到必要的数据包。例如：如果服务器没有收到客户端的第5个数据包，协议将检测到这一点，服务器将要求客户端重新发送该数据包。</p>
+<h3 id="多路复用">多路复用</h3>
+<p>与TCP类似，QUIC也实现了多路复用。客户端可以使用单个通道同时传输多个文件。QUIC为每个流（被传输的文件）创建一个UUID。它使用UUID来标识流。然后，多个流通过单个通道发送。</p>
+<p>下图展示了QUIC中多路复用的工作原理：
+<a href="https://postimg.cc/K3Bz8Ksp"><img src="https://i.postimg.cc/D0Yb5LQh/quic07.png" alt="quic07.png"></a>
+QUIC还通过其多路复用解决了TCP面临的队头阻塞问题。如果一个流出现数据包丢失，只有该流会受到影响。QUIC中的流是独立的，不会相互影响。</p>
+<h3 id="安全性">安全性</h3>
+<p>此外，QUIC还支持TLS 1.3（传输层安全）。这保证了数据的安全性和保密性。TLS加密了QUIC协议的大部分内容，如数据包编号和连接关闭信号。</p>
+<h2 id="为什么选择quic">为什么选择QUIC？</h2>
+<ul>
+<li>
+<p><strong>减少延迟</strong> - QUIC通过将TLS握手与连接建立结合起来，最小化了延迟。这也被称为0-RTT（零往返时间）。它可以更快地建立连接，从而提升Web应用程序的性能。</p>
+</li>
+<li>
+<p><strong>多路复用</strong> - 通过多路复用，QUIC可以在单个通道上发送多个数据流。这对下载多个文件（如图片、JavaScript、CSS等）的客户端应用程序非常有帮助。</p>
+</li>
+<li>
+<p><strong>连接迁移</strong> - 使用QUIC，你可以无缝地从一个网络接口切换到另一个（如从WiFi切换到移动数据）。这对移动设备非常重要，提升了用户体验。</p>
+</li>
+<li>
+<p><strong>改进的安全性</strong> - QUIC基于TLS 1.3，提供了更好的安全性。此外，它还加密了协议的大部分内容，而不像TCP与TLS，只加密HTTP负载。与TCP相比，它对安全攻击更具抵抗力。</p>
+</li>
+<li>
+<p><strong>广泛支持</strong> - 自推出以来，QUIC的采用率一直在上升。这进一步增强了它的有效性。</p>
+</li>
+</ul>
+<h2 id="http3和quic">HTTP/3和QUIC</h2>
+<p>HTTP/3是超文本传输协议（HTTP）的最新版本。它内部使用QUIC而不是TCP，旨在为现代网络提供更高效和安全的基础。HTTP/3具备QUIC提供的所有优势。</p>
+<p>HTTP/3由IETF标准化。今天，互联网流量的很大一部分依赖于HTTP/3。下图显示了HTTP/3的采用率：
+<a href="https://postimg.cc/9D8WVtQF"><img src="https://i.postimg.cc/cJZ6RFqY/quic0.png" alt="quic0.png"></a>
+从上图可以看出，采用率已经飙升至30%，并逐渐超过HTTP/1.1。按照目前的增长率，HTTP/3将在未来几年逐渐超过HTTP/2。</p>
+<h2 id="结论">结论</h2>
+<p>自HTTP诞生三十多年来，互联网已经走过了漫长的道路。HTTP的演变使得在线体验更加高效和响应迅速。随着现代应用程序需求的增长，我们意识到底层协议（如TCP）的固有限制。</p>
+<p>谷歌开发了具有变革性的协议QUIC。它利用UDP解决了TCP的所有缺点。降低延迟、多路复用、增强安全性和连接迁移是QUIC的一些显著特性。QUIC带来的创新解决了如队头阻塞等问题。</p>
+<p>像谷歌和Facebook这样的科技巨头通过在HTTP/3中采用QUIC，性能得到了显著提升。随着采用率的上升和支持的增加，HTTP/3将成为互联网通信的标准。在未来几年，互联网将演变并过渡到HTTP/3，以实现更高的效率、可靠性和性能。</p>  </div> </article> </main> <footer class="text-sm leading-[1.75] mt-4" data-astro-cid-sz7xmlte> <div data-astro-cid-sz7xmlte> <span data-astro-cid-sz7xmlte> <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" class="text-slate-400 text-xs" data-astro-cid-sz7xmlte>署名-非商业性使用 4.0 国际许可协议<br data-astro-cid-sz7xmlte>
+转载请保留原文链接及作者</a> </span> </div> </footer>  </body></html>

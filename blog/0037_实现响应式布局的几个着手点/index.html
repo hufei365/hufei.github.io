@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><!-- <link rel="shortcut icon"  href="/favicon.svg" /> --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="icon" href="/favicon.ico"><link rel="manifest" href="/site.webmanifest"><meta name="generator" content="Astro v4.6.1"><!-- Font preloads --><link rel="preload" href="/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/JetBrainsMono-Bold.woff2" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/JetBrainsMono-Light.woff2" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://hufeispace.com/blog/0037_%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E7%9A%84%E5%87%A0%E4%B8%AA%E7%9D%80%E6%89%8B%E7%82%B9/"><!-- Primary Meta Tags --><title>实现响应式布局的几个着手点</title><meta name="title" content="实现响应式布局的几个着手点"><meta name="description" content="响应式设计适应不同设备屏幕尺寸，通过使用vw、vh单位、max-width和min-width属性、Flexbox、CSS Grid、媒体查询和响应式图像属性实现布局调整。JavaScript增强交互性和自定义响应行为，共同创造出适应性强、用户友好的网站设计。"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://hufeispace.com/blog/0037_%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E7%9A%84%E5%87%A0%E4%B8%AA%E7%9D%80%E6%89%8B%E7%82%B9/"><meta property="og:title" content="实现响应式布局的几个着手点"><meta property="og:description" content="响应式设计适应不同设备屏幕尺寸，通过使用vw、vh单位、max-width和min-width属性、Flexbox、CSS Grid、媒体查询和响应式图像属性实现布局调整。JavaScript增强交互性和自定义响应行为，共同创造出适应性强、用户友好的网站设计。"><meta property="og:image" content="https://hufeispace.com/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hufeispace.com/blog/0037_%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E7%9A%84%E5%87%A0%E4%B8%AA%E7%9D%80%E6%89%8B%E7%82%B9/"><meta property="twitter:title" content="实现响应式布局的几个着手点"><meta property="twitter:description" content="响应式设计适应不同设备屏幕尺寸，通过使用vw、vh单位、max-width和min-width属性、Flexbox、CSS Grid、媒体查询和响应式图像属性实现布局调整。JavaScript增强交互性和自定义响应行为，共同创造出适应性强、用户友好的网站设计。"><meta property="twitter:image" content="https://hufeispace.com/blog-placeholder-1.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);--bgColor-transparent: #00000000;--bgColor-neutral-muted: #636e7b66}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Regular.woff2) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Light.woff2) format("woff");font-weight:200;font-style:normal;font-display:swap}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Bold.woff2) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:JetBrainsMono,Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB;margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word;color:rgb(var(--gray-dark));line-height:1.5}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:2em 1em}h1,h2,h3,h4,h5,h6{margin:0 0 .5rem;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a{font-weight:700;text-decoration:none}a:hover{color:var(--accent)}p{margin-bottom:1em}.prose p{margin-bottom:2em}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;border-radius:8px}code{padding:.2em .4em;margin:0;font-size:85%;white-space:break-spaces;border-radius:6px;background-color:rgb(var(--gray-light));font-family:JetBrainsMono}pre{padding:.7em;border-radius:8px}pre>code{all:unset}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}@media (max-width: 720px){body{font-size:12px}main{padding:1em}}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{margin:0 auto;max-width:980px;display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}footer[data-astro-cid-sz7xmlte]{grid-area:footer;text-align:center;display:flex;align-items:center;justify-content:center;padding:1.5em}footer[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{font-weight:200;font-size:12px;color:#c8c8c8}footer[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:not(.unset){background-image:none}.gradient-link[data-astro-cid-sz7xmlte]{position:relative;box-decoration-break:clone;text-decoration:none}.gradient-link[data-astro-cid-sz7xmlte]:hover:after{transform:translateZ(0) scale(1)}.gradient-link[data-astro-cid-sz7xmlte]:after{left:0;right:0;bottom:-2px;content:"";height:2px;position:absolute;transform:translateZ(0) scaleX(0);transform-origin:left center;transition:all .15s ease-in-out}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:960px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>HuFei&#39;s Site</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> HOME </a>  <a href="/blog" class="active" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> BLOG </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/hufei365" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>HuFei's GitHub</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img src="https://images.unsplash.com/photo-1712073028274-ad36f3543751?&w=720&h=360&fit=crop" alt="" data-astro-cid-bvzihdzo> </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2024-04-17T00:00:00.000Z"> 2024年4月17日 </time>  </div> <h1 data-astro-cid-bvzihdzo>实现响应式布局的几个着手点</h1> <hr data-astro-cid-bvzihdzo> </div>  <h1 id="2024年回头看响应式布局">2024年，回头看响应式布局</h1>
+<p>现如今，人们通过各种设备访问互联网—无论是手机、笔记本电脑、台式机、平板电脑还是 电视、投影仪等。静态布局的网站早已不再适用，因为它们无法让用户在更换设备时仍能获得舒服的浏览体验。</p>
+<p>然而，在Web开发领域，响应式设计的概念往往给初学者带来陡峭的学习曲线。即使在掌握了很多高级概念之后，许多人仍然难以完全掌握响应式设计的原则。</p>
+<p>即使是成熟的网站，在响应速度方面也会出现问题。例如：
+<img width="400" alt="截屏2024-04-17 10 42 52" src="https://github.com/hufei365/notebook/assets/25574040/46bf9f70-a413-4f07-b3fd-2a2443af9d12"></p>
+<h3 id="那什么是响应式设计呢">那什么是响应式设计呢</h3>
+<p>响应式设计是一种网页设计理念，根据不同屏幕的尺寸和分辨率自动调整设计。在这种理念下设计的网站，无论用户是在宽大的台式机显示器上还是在小巧的手机屏幕上浏览网页，都能获得流畅的体验。</p>
+<p>例如，一个由几列组成的大型网站页面，在移动设备上会被分隔成垂直堆叠的几个区块，方便访客阅读文字和查看图形。
+<strong>PC端</strong>：
+<img width="560" alt="截屏2024-04-17 10 43 58" src="https://github.com/hufei365/notebook/assets/25574040/a188659c-fae0-4c2f-b1b5-1310dc57ca78"></p>
+<p><strong>移动端</strong>：
+<img width="560" alt="截屏2024-04-17 10 45 01" src="https://github.com/hufei365/notebook/assets/25574040/c80352a5-5d3f-4982-bad5-dc91baf38fdd"></p>
+<p>其实可以从以下七个方面着手：</p>
+<ul>
+<li>尺寸单位
+<ul>
+<li>相对于屏幕屏幕可以使用 <code>vw</code> 和 <code>vh</code></li>
+<li>相对于其他元素可以使用百分比</li>
+</ul>
+</li>
+<li><code>max-width</code> 和 <code>min-width</code> 属性</li>
+<li>Flexbox</li>
+<li>CSS Grid</li>
+<li>媒体查询(Media Queries)</li>
+<li>响应式图像属性</li>
+<li>使用 JavaScript</li>
+</ul>
+<h3 id="尺寸单位">尺寸单位</h3>
+<p>大多数开发者都专注于创建一个非常适合屏幕的设计。因此，他们没有意识到用精确的单位（通常是像素<code>px</code>）指定元素大小、<code>padding</code>、<code>margin</code> 等所带来的弊端。这些元素永远不会随着屏幕尺寸的变化而改变自身大小。但是假如使用<strong>百分比</strong> 或 <strong>viewport单位</strong><code>vw</code> 和 <code>vh</code>等不那么绝对的单位是实现灵活布局的关键。</p>
+<h4 id="百分比">百分比</h4>
+<p>初学者必须谨慎使用百分比，因为首先需要理解父子关系的概念，以及当给一个子子元素设定百分比时，它是相对于其父父元素/容器大小的百分比，而不是整个屏幕的百分比。</p>
+<p>这里的另一点是，所有看似 “没有父元素 “的外部元素实际上都有，那就是<code>&#x3C;body></code>元素。主体的大小如下：</p>
+<ul>
+<li>宽度—屏幕的宽度</li>
+<li>高度—其内部内容的高度（如果 <code>body</code> 中没有任何内容，则高度为 0）</li>
+</ul>
+<h4 id="viewport-宽度高度vw--vh">Viewport 宽度&#x26;高度（vw &#x26; vh）</h4>
+<p>当您希望一个元素的大小相对于屏幕进行确定，而不是与其直接容器的大小无关时，那么可以使用<code>vw</code>和<code>vh</code>。
+下面就是一个例子。</p>
+<p>假设您的网站有一个<code>&#x3C;header></code>部分和一个<code>&#x3C;main></code>部分，您想特别确定标题部分的高度，而让主部分占据屏幕其余部分的高度。
+实现这一目标的方法如下：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#85E89D">header</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">    height</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">300</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">main</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">    height</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">calc</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">100</span><span style="color:#F97583">vh</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> 300</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p><code>1vh</code>的意思是视窗高度（屏幕高度）的 1% 。因此，<code>100vh</code> 表示屏幕高度的 100%，而 <code>calc(100vh - 300px)</code> 表示 “屏幕高度的 100%减去 300px”。 这就确保了主部分将占据标题之后屏幕高度的剩余部分。</p>
+<p>也可以使用 <code>flex</code> 来实现这种效果，这个稍后再谈。</p>
+<h4 id="那么还需使用-px-吗">那么还需使用 px 吗？</h4>
+<p>有了这些其他选项和我将在下文中详细介绍的选项，并不意味着 <code>px</code> 单位在如今的 CSS 中就没有用武之地了。在很多情况下，你仍然希望某些东西具有特定的尺寸，而这种尺寸不会随着屏幕的变化而变化。</p>
+<p>用户界面设计中的许多元素可能都希望有一个永远不会改变的特定尺寸。例如，按钮通常就是这种需求。</p>
+<h3 id="max-width-和-min-width-属性">max-width 和 min-width 属性</h3>
+<p>当你希望元素的大小可以增大或缩小，但只到某一点时，这两种属性就会变得非常有用。
+一种常见的情况是用户界面顶部的搜索栏。在移动设备上，搜索栏可能会占据屏幕宽度的大部分。虽然笔记本电脑的搜索栏要比手机的大，但一旦设备变大，你就不会希望搜索栏保持几乎整个屏幕的宽度。
+看看 Airbnb 的输入栏是如何随着屏幕的增大而变化的（我指的是它的宽度）。</p>
+<p><strong>移动端</strong>：
+<img src="https://github.com/hufei365/notebook/assets/25574040/2acab89d-62f8-4579-9432-38bb4d9a1f4d" alt="image">
+<strong>平板设备端</strong>：
+<img src="https://github.com/hufei365/notebook/assets/25574040/2acab89d-62f8-4579-9432-38bb4d9a1f4d" alt="image"></p>
+<p><strong>笔记本设备</strong>：
+<img src="https://github.com/hufei365/notebook/assets/25574040/96a61933-9db1-4fb9-9f33-9df01d66621b" alt="image"></p>
+<p>这些图片有点难看，但在手机上，搜索栏占据了屏幕的大部分宽度，但就 <code>px</code> 而言仍然很小）。在平板电脑和小型笔记本电脑上，搜索栏会变大。但到了一定程度，随着屏幕尺寸的进一步增大，搜索栏就不会再继续变长了。</p>
+<h3 id="flexbox">Flexbox</h3>
+<p>使用 flex 时，只要在父元素设定 <code>display: flex;</code>，它就会变成一个 “flex 容器”，而它的所有直系子元素都会变成 “flex items”。你可以在 flex 容器上设置几个与 flex 相关的属性，以描述 “flex items” 应该如何排列。此外，你还可以对“flex items” 本身设置一些属性，以将它们的样式与其他柔性项区分开来。
+初学者通常不明白，Flex 关系严格来说是父子关系，而不是父孙关系。而不是父子、子孙等关系。你可以拥有本身也是柔性容器的柔性项。这意味着一个元素的显示方式为：flex;，而它的一个子元素的显示方式也为：flex;。
+以下是两种最常见的使用 flex 的情况：</p>
+<ul>
+<li>Flex 可以在相邻或相顶的元素之间创建位置/空间关系。举例来说，如果一行中有几个项目，只需使用一到两个简单的 CSS 属性，就可以在这一行中将它们均匀地分开。</li>
+<li>利用 flex，你可以轻松改变同级元素的定位方向。所谓方向，是指水平（行）或垂直（列），反之亦然。例如，将屏幕顶部导航栏中的链接垂直排列在移动版“汉堡🍔”菜单下。</li>
+</ul>
+<h3 id="css-grid">CSS Grid</h3>
+<p>Flex 有一个缺点，那就是当你试图同时控制两个方向（x 轴和 y 轴）上的元素时。Flex 主要是为沿同一轴（X 轴或 Y 轴）对齐的元素定义属性。要做到这一点，最常见的情况是制作项目网格。</p>
+<p>在确保它们大小相同时，可能会遇到麻烦。请参见下图中的示例：
+<img src="https://github.com/hufei365/notebook/assets/25574040/6948a9a0-a250-4a94-8e8b-d7300147834e" alt="image"></p>
+<p>有了 CSS Grid，只需应用一两个简单的 CSS 属性，问题就迎刃而解了。请看下面代码：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#B392F0">#card-container</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">    padding</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">20</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    display</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">grid</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    grid-template-columns</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">repeat</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">auto-fill</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">minmax</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">200</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#F97583">fr</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#79B8FF">    gap</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">20</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    justify-content</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">center</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>有些人实际上选择使用 CSS Grid 多页面进行布局处理。其实，flex基本可以满足大部分的业务场景。但是，在一些特定场景，使用 CSS Grid 可以让代码变得更加“优雅”。另外，我们也可以在Flex Item中使用 CSS Grid；或者在CSS Grid中使用 flex，这有何不可呢？</p>
+<h3 id="媒体查询">媒体查询</h3>
+<p>在几乎所有的设计中，当屏幕达到一定尺寸时，你都需要让事物发生更大的变化。小屏幕有利于垂直滚动。对于较宽的电脑屏幕，则可以在水平方向容纳更多元素。</p>
+<p>使用媒体查询，你可以定义所谓的 “断点”————在这些点上，某些样式将被覆盖，以适应不同的设备大小。
+可以先创建移动或桌面用户界面，然后再创建一个断点，在断点上定义新的样式，覆盖现有的样式，以适应你最初没有设计的平台。</p>
+<p>让我们以移动设备为例，某些元素应按列排列，但在较大的设备上，这些元素应按行排列。</p>
+<p>假设我们选择了 “移动优先设计”，即首先设计移动 UI，然后再考虑响应性，以实现大型设备的设计。如今，这种选择被认为比首先为笔记本电脑/台式机设计更好，因为人们花在手机上的时间比花在电脑上的时间更多，公司更愿意让更多用户满意。</p>
+<p>那么，告诉您的应用程序在平板电脑宽度和更大的情况下改变外观的方法基本上就是—通过媒体查询断点—说：“在此像素宽度和更高的情况下，现在将这些项目的组织改为一行”。</p>
+<p>如下图所示，这种更改可能只是将 <code>flex</code> 容器的 <code>flex-direction</code> 属性从列改为行：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#B392F0">#flex-container</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">    display</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">flex</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    flex-direction</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">column</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">screen and (</span><span style="color:#85E89D">min-width</span><span style="color:#E1E4E8">: 768px) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    #</span><span style="color:#79B8FF">flex-container</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">        flex-direction</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">row</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>这段代码意味着id为“flex-container”的元素对于宽度小于<code>768px</code>的屏幕将具有<code>flex-direction: column;</code>，但对于宽度为<code>768px</code>及以上的屏幕，该元素将具有<code>flex-direction: row;</code>。</p>
+<p>每种设备都有相对标准的像素宽度，因此你可以查找像素宽度，在此设置断点，用以控制从手机到平板电脑、平板电脑到笔记本电脑等不同大小设备的过渡效果。</p>
+<h3 id="响应式的图片属性">响应式的图片属性</h3>
+<p>通常情况下，网站中的图片大小由上述属性组合而成，无需使用其他 CSS。</p>
+<p>不过，有时图片的属性并不能随屏幕缩放。在这种情况下，其实有两个属性可以提供一些帮助。</p>
+<p>其中一个是<code>aspect-ratio</code>。通过该属性，你可以为图片定义一个首选的宽高比，这样图片就能在不同尺寸的屏幕上始终保持相同的高宽比。</p>
+<p>另一个是<code>object-fit</code>，可以为它设定以下这些值：</p>
+<ul>
+<li><code>fill</code>：被替换的内容正好填充元素的内容框。整个对象将完全填充此框。如果对象的宽高比与内容框不相匹配，那么该对象将被拉伸以适应内容框、</li>
+<li><code>cover</code>：被替换的内容在保持其宽高比的同时填充元素的整个内容框。如果对象的宽高比与内容框不相匹配，该对象将被剪裁以适应内容框；</li>
+<li><code>contain</code>：被替换的内容将被缩放，以在填充元素的内容框时保持其宽高比。整个对象在填充盒子的同时保留其长宽比，因此如果宽高比与框的宽高比不匹配，该对象将被添加“黑边”；</li>
+<li><code>none</code>：被替换的内容将保持其原有的尺寸；</li>
+<li><code>scale-down</code>：内容的尺寸与 <code>none</code> 或 <code>contain</code> 中的一个相同，取决于它们两个之间谁得到的对象尺寸会更小一些；</li>
+</ul>
+<blockquote>
+<p><strong>黑边</strong>：为屏幕中显示的内容除了正常影像外，两侧或四周多出来的未显示区域。因该区域为黑色，故称之为黑边。黑边的产生是由于原始影像与屏幕的尺寸规格不同所造成的。</p>
+</blockquote>
+<h3 id="对于更复杂的响应行为请使用javascript">对于更复杂的响应行为，请使用JavaScript</h3>
+<p>JS 在响应式设计中起着至关重要的作用，它可以根据用户交互或设备规格自定义行为，从而实现仅靠 CSS 无法处理的更复杂的变更。</p>
+<p>例如可以对更多事件类型（如按钮点击、滚动、拖放等）做出反应，而不仅仅是屏幕尺寸的变化。
+也可以利用 JS编写一些逻辑代码，根据想要的任何条件动态调整元素的大小。例如，可以根据用户的设备、行为、偏好或位置来调整内容。</p>
+<p>其实 JS 是页面的主要代码；如果 HTML 和 CSS 无法轻松实现某些功能，通常就需要使用 JS 来解决。</p>
+<h2 id="结论">结论</h2>
+<p>实现响应式设计是一个取舍的过程，需要将精巧的 CSS 和策略性的 JavaScript 相融合。通过理解和应用上述七个关键概念，开发人员可以创建出不仅具有视觉吸引力，而且可以适应所有必要设备的网站。</p>
+<p>掌握响应式设计的过程就是不断学习和实践的过程；而且随着每个项目的进行，这一过程会变得更加 easy 。</p>
+<p>PS：希望这篇文章能让你不再对响应式设计感到迷惑和畏惧。</p>  </div> </article> </main> <footer class="text-sm leading-[1.75] mt-4" data-astro-cid-sz7xmlte> <div data-astro-cid-sz7xmlte> <span data-astro-cid-sz7xmlte> <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" class="text-slate-400 text-xs" data-astro-cid-sz7xmlte>署名-非商业性使用 4.0 国际许可协议<br data-astro-cid-sz7xmlte>
+转载请保留原文链接及作者</a> </span> </div> </footer>  </body></html>

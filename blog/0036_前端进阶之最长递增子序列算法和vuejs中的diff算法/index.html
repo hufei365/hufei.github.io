@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><!-- <link rel="shortcut icon"  href="/favicon.svg" /> --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="icon" href="/favicon.ico"><link rel="manifest" href="/site.webmanifest"><meta name="generator" content="Astro v4.6.1"><!-- Font preloads --><link rel="preload" href="/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/JetBrainsMono-Bold.woff2" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/JetBrainsMono-Light.woff2" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://hufeispace.com/blog/0036_%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E4%B9%8B%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%AE%97%E6%B3%95%E5%92%8Cvuejs%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95/"><!-- Primary Meta Tags --><title>前端进阶之最长递增子序列算法和vue.js中的Diff算法</title><meta name="title" content="前端进阶之最长递增子序列算法和vue.js中的Diff算法"><meta name="description" content=""><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://hufeispace.com/blog/0036_%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E4%B9%8B%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%AE%97%E6%B3%95%E5%92%8Cvuejs%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95/"><meta property="og:title" content="前端进阶之最长递增子序列算法和vue.js中的Diff算法"><meta property="og:description" content=""><meta property="og:image" content="https://hufeispace.com/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hufeispace.com/blog/0036_%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6%E4%B9%8B%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%AE%97%E6%B3%95%E5%92%8Cvuejs%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95/"><meta property="twitter:title" content="前端进阶之最长递增子序列算法和vue.js中的Diff算法"><meta property="twitter:description" content=""><meta property="twitter:image" content="https://hufeispace.com/blog-placeholder-1.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);--bgColor-transparent: #00000000;--bgColor-neutral-muted: #636e7b66}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Regular.woff2) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Light.woff2) format("woff");font-weight:200;font-style:normal;font-display:swap}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Bold.woff2) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:JetBrainsMono,Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB;margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word;color:rgb(var(--gray-dark));line-height:1.5}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:2em 1em}h1,h2,h3,h4,h5,h6{margin:0 0 .5rem;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a{font-weight:700;text-decoration:none}a:hover{color:var(--accent)}p{margin-bottom:1em}.prose p{margin-bottom:2em}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;border-radius:8px}code{padding:.2em .4em;margin:0;font-size:85%;white-space:break-spaces;border-radius:6px;background-color:rgb(var(--gray-light));font-family:JetBrainsMono}pre{padding:.7em;border-radius:8px}pre>code{all:unset}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}@media (max-width: 720px){body{font-size:12px}main{padding:1em}}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{margin:0 auto;max-width:980px;display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}footer[data-astro-cid-sz7xmlte]{grid-area:footer;text-align:center;display:flex;align-items:center;justify-content:center;padding:1.5em}footer[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{font-weight:200;font-size:12px;color:#c8c8c8}footer[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:not(.unset){background-image:none}.gradient-link[data-astro-cid-sz7xmlte]{position:relative;box-decoration-break:clone;text-decoration:none}.gradient-link[data-astro-cid-sz7xmlte]:hover:after{transform:translateZ(0) scale(1)}.gradient-link[data-astro-cid-sz7xmlte]:after{left:0;right:0;bottom:-2px;content:"";height:2px;position:absolute;transform:translateZ(0) scaleX(0);transform-origin:left center;transition:all .15s ease-in-out}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:960px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>HuFei&#39;s Site</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> HOME </a>  <a href="/blog" class="active" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> BLOG </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/hufei365" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>HuFei's GitHub</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img src="https://images.unsplash.com/photo-1711449100676-999e21a11427?&w=720&h=360&fit=crop" alt="" data-astro-cid-bvzihdzo> </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2024-04-14T00:00:00.000Z"> 2024年4月14日 </time>  </div> <h1 data-astro-cid-bvzihdzo>前端进阶之最长递增子序列算法和vue.js中的Diff算法</h1> <hr data-astro-cid-bvzihdzo> </div>  <p>前端进阶之最长递增子序列算法和vue.js中的Diff算法</p>
+<h2 id="最长递增子序列">最长递增子序列</h2>
+<h3 id="什么是子序列">什么是子序列</h3>
+<p><strong>子序列</strong>的概念派生自数组，通过删除（或不删除）数组中的元素而不改变其余元素的顺序，得到的数组就是原数组的子序列。
+例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。</p>
+<p><a href="https://leetcode.cn/problems/longest-increasing-subsequence/description/">[Leetcode] 300. 最长递增子序列</a></p>
+<p>最长递增子序列问题是一个经典的算法问题，通过动态规划可以很好地理解和解决这个问题。但是在处理大数据集时，更好的方式是使用<strong>二分查找法</strong>将时间复杂度优化到 <code>O(nlogn)</code>。</p>
+<h2 id="vuejs的diff算法">vue.js的Diff算法</h2>
+<p>在Vue.js中，Diff算法是虚拟DOM算法的核心部分，它负责比较新旧两个虚拟DOM树的差异，并计算出最小的更新操作来应用到真实的DOM上，从而达到渲染性能提高的最终目标。</p>
+<p><strong>DOM有哪几种操作：</strong></p>
+<ol>
+<li>挂载；</li>
+<li>卸载；</li>
+<li>修改（文本节点的变更）；</li>
+</ol>
+<p>移动DOM总比删除&#x26;创建DOM更高效，在获取最大移动次数的前提下，剩下的就是需要添加（新的VDom)和删除（旧的VDom）的dom元素。</p>
+<ul>
+<li>判断是否有节点需要移动，以及应该如何移动;</li>
+<li>找出那些需要被添加或移除的节点</li>
+</ul>
+<h2 id="vue-diff算法的一些前提">Vue Diff算法的一些前提</h2>
+<ul>
+<li>比较只会在同层级进行, 不会跨层级比较；</li>
+<li>在比较同层级的多个子节点时，Vue.js会从两端（头部和尾部）开始进行比较，这样可以快速处理那些仅在头部或尾部发生变化的情况；</li>
+<li>假如当前节点VNodeType或key不同，Vue.js会认为这是两个完全不同的节点，会进行替换操作。如果节点相同，Vue.js会检查节点的属性和子节点，并递归地应用Diff算法。</li>
+</ul>
+<h2 id="vue中用到的一些diff方式">vue中用到的一些Diff方式</h2>
+<ol>
+<li>简单Diff；</li>
+<li>双端Diff；</li>
+<li>快速Diff；</li>
+</ol>
+<h3 id="简单diff">简单Diff</h3>
+<p>遍历新旧两组子节点中数量较少的那一组，并逐个调用<code>patch</code>函数进行打补丁，然后比较新旧两组子节点的数量，如果新的一组子节点数量更多，说明有新子节点需要挂载；否则说明在旧的一组子节点中，有节点需要卸载。</p>
+<p>另外，可以通过给节点增加属性<code>key</code>作为身份标识符，以此来确定新旧节点的对应关系，从而找出可复用的节点。</p>
+<p>然后，拿新的一组子节点中的节点去旧的一组子节点中寻找可复用的节点。如果找到了，则记录该节点的位置索引。我们把这个位置索引称为最大索引。在整个更新过程中，如果一个节点的索引值小于最大索引，则说明该节点对应的真实 DOM 元素需要移动。</p>
+<h3 id="双端diff">双端Diff</h3>
+<ol>
+<li>对于新旧两组子节点，首先分别对头部和尾部进行对比，找出未移动的节点。</li>
+<li>在上一步完成后，在对比完成后的基础上，进行交叉对比，即旧头和新尾，旧尾和新头进行对比，进一步找出可复用的节点。</li>
+<li>接下来，在剩余未对比的节点中，找出可复用的节点。先是创建一个Key -> Index 的哈希表，用来记录旧节点的索引顺序。然后通过遍历新的一组节点，根据key找出可复用的节点。</li>
+<li>完成上述三步后，删除未复用的节点，创建新增的节点，并对复用的节点根据新的顺序进行移动操作。</li>
+</ol>
+<p>双端Diff算法是Vue.js 2用于比较新旧两个子节点的方式。它的核心逻辑是在新旧两组子节点的四个端点之间分别进行比较，并试图找到可复用的节点。相比简单Diff算法，双端Diff算法的优势在于，对于同样的更新场景，执行的DOM移动操作次数更少。</p>
+<h3 id="快速diff">快速Diff</h3>
+<p>这是vue3采用的Diff算法。</p>
+<p>通过key确定当前节点是否可复用，假如key相等，则只针对当前节点下的子节点<code>children</code>进行diff。</p>
+<h4 id="预处理操作">预处理操作</h4>
+<blockquote>
+<p>「去除相同前置和后置元素」 ，此优化由 <strong>Neil Fraser</strong> 提出，可以比较容易实现而且带来带来比较明显的提升；</p>
+</blockquote>
+<p>先处理掉相同的前置节点和后置节点，假如用字符串作为例子🌰去描述的话，应该是是这样的：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">// 预处理之前的数据</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> oldStr </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "I'm OK"</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> newStr </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "I am not OK"</span></span>
+<span class="line"><span style="color:#6A737D">// 预处理完成后的数据</span></span>
+<span class="line"><span style="color:#E1E4E8">oldStr </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "'m"</span></span>
+<span class="line"><span style="color:#E1E4E8">newStr </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> " am not"</span></span>
+<span class="line"></span></code></pre>
+<p>原字符串中相同的前置部分的<code>I</code> 和 后置部分的<code> OK</code>被处理掉，只保留内容不同的部分。然后再把旧的子字符串（<code>'m</code>）删掉，新的子字符串（<code> am not</code>）添加进去即可。</p>
+<p><em><strong>但是，对你一定会说但是。</strong></em></p>
+<p>这种情况是比较理想的一种情况，假如没有任何相同的前置和后置节点，且存在乱序的可复用DOM节点，应该如何才能最大限度的减少DOM的操作次数呢？这时候就可以用到<strong>最长递增子序列</strong>算法了。</p>
+<h3 id="为什么最长递增子序列能保证dom操作次数最少">为什么最长递增子序列能保证DOM操作次数最少？</h3>
+<p><strong>子序列</strong>的特点就是元素在原数组的中相对位置保持一致，即假如元素<code>x</code>在原数组中处于元素<code>y</code>的后面，那么在子序列中也一定会处在元素<code>y</code>的后面。
+现在我们把数组元素换成DOM元素的话，子序列就能保证新旧DOM中的元素位置关系不会变。
+<strong>最长</strong>能保证最多的DOM元素位置关系没有变更，从而确保需要DOM变动的次数最少。</p>
+<h2 id="patchflag--一个小插曲">PatchFlag —— 一个小插曲</h2>
+<blockquote>
+<p>Vue 3借助PatchFlag实现了<strong>靶向更新</strong></p>
+</blockquote>
+<p>在Vue 2中，每次更新都需要进行全量对比，而Vue 3通过引入静态标记来减少非动态内容的对比消耗。这种方法只对比带有标记的部分，从而提高了更新的效率。具体实现是在<code>compile</code>阶段将获取的<code>PatchFlag</code>信息存储到VNode上。当在进行Diff时，针对不同类型的<code>PatchFlag</code>，进行不同的处理处理，以达到降低Diff成本的目的。假如没有标记type信息，则按照传统流程进行full diff。</p>
+<p>例如，如果一个节点只有class属性可能变化，那么在patch过程中只需要检查class属性，而不是进行全属性比较。</p>
+<p>静态标记使用<strong>位运算符</strong>进行组合和检查。例如，可以通过<code>|</code>运算符来组合多个标记，使用<code>&#x26;</code>运算符来检查某个标记是否存在。</p>
+<h3 id="patchflag-有哪些类型">PatchFlag 有哪些类型</h3>
+<ul>
+<li>TEXT：动态文本节点</li>
+<li>CLASS：动态class绑定</li>
+<li>STYLE：动态style</li>
+<li>PROPS：动态属性，不包括类名和样式</li>
+<li>FULL_PROPS：动态key，当key变化时需要完整的diff算法比较</li>
+<li>HYDRATE_EVENTS：带有事件监听器的节点</li>
+<li>STABLE_FRAGMENT：子节点顺序不变的Fragment</li>
+<li>KEYED_FRAGMENT：带有key属性的Fragment</li>
+<li>UNKEYED_FRAGMENT：子节点没有key的Fragment</li>
+<li>NEED_PATCH：只需要non-props修补的元素</li>
+<li>DYNAMIC_SLOTS：动态的slot</li>
+<li>DEV_ROOT_FRAGMENT：仅因为用户在模板根级别放置注释而创建的片段（开发时使用的标志）</li>
+<li>HOISTED：已提升的静态vnode，更新时跳过整个子树</li>
+<li>BAIL：指示diff算法退出优化模式</li>
+</ul>  </div> </article> </main> <footer class="text-sm leading-[1.75] mt-4" data-astro-cid-sz7xmlte> <div data-astro-cid-sz7xmlte> <span data-astro-cid-sz7xmlte> <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" class="text-slate-400 text-xs" data-astro-cid-sz7xmlte>署名-非商业性使用 4.0 国际许可协议<br data-astro-cid-sz7xmlte>
+转载请保留原文链接及作者</a> </span> </div> </footer>  </body></html>

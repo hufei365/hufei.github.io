@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="HuFei's Site" href="https://hufei.github.io/rss.xml"><meta name="generator" content="Astro v6.1.5"><style>@font-face{font-family:Atkinson-c7f4c4e8b285552f;src:url("/blog/_astro/fonts/106a7e6e8a12c2e6.woff") format("woff");font-display:swap;font-weight:400;font-style:normal;}@font-face{font-family:Atkinson-c7f4c4e8b285552f;src:url("/blog/_astro/fonts/d5f79d6a8e91244a.woff") format("woff");font-display:swap;font-weight:700;font-style:normal;}@font-face{font-family:"Atkinson-c7f4c4e8b285552f fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.3717%;ascent-override:80.1033%;descent-override:25.2587%;line-gap-override:0%;}@font-face{font-family:"Atkinson-c7f4c4e8b285552f fallback: Arial";src:local("Arial");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.3717%;ascent-override:80.1033%;descent-override:25.2587%;line-gap-override:0%;}:root{--font-atkinson:Atkinson-c7f4c4e8b285552f,"Atkinson-c7f4c4e8b285552f fallback: Arial",sans-serif;}</style><link rel="preload" href="/blog/_astro/fonts/106a7e6e8a12c2e6.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/blog/_astro/fonts/d5f79d6a8e91244a.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://hufei.github.io/blog/blog/0049_%E7%BF%BB%E8%AF%91%E5%9C%A8%E8%B0%B7%E6%AD%8C14%E5%B9%B4%E5%AD%A6%E5%88%B0%E7%9A%8421%E8%AF%BE/"><!-- Primary Meta Tags --><title>【翻译】在谷歌14年学到的21课</title><meta name="title" content="【翻译】在谷歌14年学到的21课"><meta name="description" content><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://hufei.github.io/blog/blog/0049_%E7%BF%BB%E8%AF%91%E5%9C%A8%E8%B0%B7%E6%AD%8C14%E5%B9%B4%E5%AD%A6%E5%88%B0%E7%9A%8421%E8%AF%BE/"><meta property="og:title" content="【翻译】在谷歌14年学到的21课"><meta property="og:description" content><meta property="og:image" content="https://hufei.github.io/blog/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hufei.github.io/blog/blog/0049_%E7%BF%BB%E8%AF%91%E5%9C%A8%E8%B0%B7%E6%AD%8C14%E5%B9%B4%E5%AD%A6%E5%88%B0%E7%9A%8421%E8%AF%BE/"><meta property="twitter:title" content="【翻译】在谷歌14年学到的21课"><meta property="twitter:description" content><meta property="twitter:image" content="https://hufei.github.io/blog/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Theme initialization for dark mode support --><script>
+	// Initialize theme before page renders to prevent flash
+	(function() {
+		const storedTheme = localStorage.getItem('theme');
+		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+		document.documentElement.setAttribute('data-theme', theme);
+	})();
+</script><link rel="stylesheet" href="/blog/_astro/Header.BQCgicWo.css">
+<style>nav[data-astro-cid-qaanghzh]{margin-bottom:2rem}.breadcrumb[data-astro-cid-qaanghzh]{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0;font-size:.875rem;color:rgb(var(--gray))}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]{display:flex;align-items:center}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]:not(:last-child):after{content:"/";margin:0 .5rem;color:rgb(var(--gray))}.breadcrumb[data-astro-cid-qaanghzh] a[data-astro-cid-qaanghzh]{color:var(--accent);text-decoration:none;transition:opacity .2s ease}.breadcrumb[data-astro-cid-qaanghzh] a[data-astro-cid-qaanghzh]:hover{opacity:.8;text-decoration:underline}.breadcrumb[data-astro-cid-qaanghzh] span[data-astro-cid-qaanghzh][aria-current=page]{color:rgb(var(--gray-dark));font-weight:500}@media(max-width:768px){.breadcrumb[data-astro-cid-qaanghzh]{font-size:.8rem}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]:not(:last-child):after{margin:0 .375rem}}.tag-list[data-astro-cid-lga65v7i]{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin:.5rem 0}.tag-label[data-astro-cid-lga65v7i]{font-size:.875rem;font-weight:600;color:rgb(var(--gray));margin-right:.25rem}.tags[data-astro-cid-lga65v7i]{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}.tag[data-astro-cid-lga65v7i]{margin:0}.tag-link[data-astro-cid-lga65v7i]{display:inline-block;padding:.25rem .75rem;background:rgb(var(--gray-light));color:rgb(var(--gray-dark));text-decoration:none;border-radius:9999px;font-size:.875rem;font-weight:500;transition:all .2s ease;border:1px solid transparent}.tag-link[data-astro-cid-lga65v7i]:hover{background:var(--accent);color:#fff;transform:translateY(-1px);box-shadow:0 2px 8px #00000026}.tag-link[data-astro-cid-lga65v7i]:focus{outline:2px solid var(--accent);outline-offset:2px}.tag-more[data-astro-cid-lga65v7i]{display:inline-block;padding:.25rem .75rem;background:rgba(var(--gray),10%);color:rgb(var(--gray));border-radius:9999px;font-size:.875rem;font-style:italic}[data-theme=dark] .tag-link[data-astro-cid-lga65v7i]{background:rgb(var(--gray-light));color:rgb(var(--gray-dark))}[data-theme=dark] .tag-link[data-astro-cid-lga65v7i]:hover{background:var(--accent);color:var(--accent-dark);box-shadow:0 2px 8px #0000004d}@media(max-width:768px){.tag-list[data-astro-cid-lga65v7i],.tags[data-astro-cid-lga65v7i]{gap:.375rem}.tag-link[data-astro-cid-lga65v7i]{padding:.2rem .6rem;font-size:.8rem}}main[data-astro-cid-bvzihdzo]{width:calc(100% - 32px);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 32px);margin:auto;padding:1em;color:var(--text-color);font-size:17px;line-height:1.7}.prose[data-astro-cid-bvzihdzo] p[data-astro-cid-bvzihdzo]{margin-bottom:1.5em}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em;font-size:2.5rem}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:var(--footer-text)}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}.date[data-astro-cid-bvzihdzo] svg[data-astro-cid-bvzihdzo]{vertical-align:text-top;margin-right:.1rem;color:var(--accent)}@media(max-width:768px){.prose[data-astro-cid-bvzihdzo]{max-width:calc(100% - 24px);font-size:16px}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{font-size:2rem}}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <a href="#main" class="skip-link" data-astro-cid-3ef6ksr2>Skip to main content</a> <nav data-astro-cid-3ef6ksr2> <div class="site-title" data-astro-cid-3ef6ksr2><a href="https://hufei.github.io" target="_blank" data-astro-cid-3ef6ksr2>HuFei&#39;s Site</a></div> <div class="nav-container" data-astro-cid-3ef6ksr2> <div class="internal-links" id="nav-menu" data-astro-cid-3ef6ksr2> <a href="https://hufei.github.io" target="_blank" class="nav-link" data-astro-cid-3ef6ksr2>HOME</a> <a href="/" class="nav-link active" data-astro-cid-3ef6ksr2>BLOG</a> <div class="mobile-theme-toggle" data-astro-cid-3ef6ksr2> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" data-astro-cid-x3pjskd3> <svg width="1em" height="1em" data-astro-cid-x3pjskd3="true" class="sun-icon" data-icon="mdi:weather-sunny">   <symbol id="ai:mdi:weather-sunny" viewBox="0 0 24 24"><path fill="currentColor" d="M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0-7l2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10l1.76-3.77a7.13 7.13 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10l-4.14.36c.59-.51 1.12-1.14 1.54-1.86c.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44c.82 0 1.63-.17 2.37-.44z"/></symbol><use href="#ai:mdi:weather-sunny"></use>  </svg> <svg width="1em" height="1em" data-astro-cid-x3pjskd3="true" class="moon-icon" data-icon="mdi:weather-night">   <symbol id="ai:mdi:weather-night" viewBox="0 0 24 24"><path fill="currentColor" d="m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63 1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06 3zm3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7 1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76 1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31 10.98c3.02 3.01 7.84 3.12 10.98.31"/></symbol><use href="#ai:mdi:weather-night"></use>  </svg> </button> <script>
+	// Theme toggle function - initialization is handled in BaseHead.astro
+	window.toggleTheme = function() {
+		const html = document.documentElement;
+		const currentTheme = html.getAttribute('data-theme');
+		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+		
+		html.setAttribute('data-theme', newTheme);
+		localStorage.setItem('theme', newTheme);
+		
+		// Update aria-label for accessibility
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+	};
+
+	// Set initial aria-labels when page loads
+	document.addEventListener('DOMContentLoaded', function() {
+		const currentTheme = document.documentElement.getAttribute('data-theme');
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+
+		// Listen for system theme changes (only if user hasn't set a preference)
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+			if (!localStorage.getItem('theme')) {
+				const newTheme = e.matches ? 'dark' : 'light';
+				document.documentElement.setAttribute('data-theme', newTheme);
+				
+				// Update aria-labels
+				toggleButtons.forEach(button => {
+					button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+				});
+			}
+		});
+	});
+</script> </div> </div> <div class="desktop-theme-toggle" data-astro-cid-3ef6ksr2> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" data-astro-cid-x3pjskd3> <svg width="1em" height="1em" viewBox="0 0 24 24" data-astro-cid-x3pjskd3="true" class="sun-icon" data-icon="mdi:weather-sunny">   <use href="#ai:mdi:weather-sunny"></use>  </svg> <svg width="1em" height="1em" viewBox="0 0 24 24" data-astro-cid-x3pjskd3="true" class="moon-icon" data-icon="mdi:weather-night">   <use href="#ai:mdi:weather-night"></use>  </svg> </button> <script>
+	// Theme toggle function - initialization is handled in BaseHead.astro
+	window.toggleTheme = function() {
+		const html = document.documentElement;
+		const currentTheme = html.getAttribute('data-theme');
+		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+		
+		html.setAttribute('data-theme', newTheme);
+		localStorage.setItem('theme', newTheme);
+		
+		// Update aria-label for accessibility
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+	};
+
+	// Set initial aria-labels when page loads
+	document.addEventListener('DOMContentLoaded', function() {
+		const currentTheme = document.documentElement.getAttribute('data-theme');
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+
+		// Listen for system theme changes (only if user hasn't set a preference)
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+			if (!localStorage.getItem('theme')) {
+				const newTheme = e.matches ? 'dark' : 'light';
+				document.documentElement.setAttribute('data-theme', newTheme);
+				
+				// Update aria-labels
+				toggleButtons.forEach(button => {
+					button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+				});
+			}
+		});
+	});
+</script> </div> </div> <button class="hamburger" id="hamburger-menu" aria-label="Open navigation menu" aria-controls="nav-menu" aria-expanded="false" data-astro-cid-3ef6ksr2> <span data-astro-cid-3ef6ksr2></span> <span data-astro-cid-3ef6ksr2></span> <span data-astro-cid-3ef6ksr2></span> </button> </nav> </header> <script>
+	(function () {
+		const hamburger = document.getElementById('hamburger-menu');
+		const navMenu = document.getElementById('nav-menu');
+		if (!hamburger || !navMenu) return;
+
+		function openMenu() {
+			hamburger.classList.add('open');
+			hamburger.setAttribute('aria-expanded', 'true');
+			navMenu.classList.add('open');
+		}
+
+		function closeMenu() {
+			hamburger.classList.remove('open');
+			hamburger.setAttribute('aria-expanded', 'false');
+			navMenu.classList.remove('open');
+		}
+
+		function toggleMenu() {
+			if (navMenu.classList.contains('open')) closeMenu(); else openMenu();
+		}
+
+		hamburger.addEventListener('click', (e) => {
+			e.stopPropagation();
+			toggleMenu();
+		});
+
+		// Close when a navigation link is clicked
+		navMenu.addEventListener('click', (e) => {
+			const target = e.target;
+			if (target && (target.tagName === 'A' || target.closest('a'))) {
+				closeMenu();
+			}
+		});
+
+		// Close on outside click
+		document.addEventListener('click', (e) => {
+			const target = e.target;
+			if (!navMenu.contains(target) && !hamburger.contains(target)) {
+				closeMenu();
+			}
+		});
+
+		// Close on Escape key
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape') closeMenu();
+		});
+	})();
+</script> <main id="main" data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img src="https://images.unsplash.com/photo-1774238357104-dbe2b5ad0209?&#38;w=720&#38;h=360&#38;fit=crop" alt data-astro-cid-bvzihdzo="true" loading="lazy" decoding="async" width="1020" height="510"> </div> <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-qaanghzh> <ol class="breadcrumb" data-astro-cid-qaanghzh> <li data-astro-cid-qaanghzh> <a href="https://hufei.github.io" data-astro-cid-qaanghzh>Home</a> </li><li data-astro-cid-qaanghzh> <a href="/" data-astro-cid-qaanghzh>Blog</a> </li><li data-astro-cid-qaanghzh> <span aria-current="page" data-astro-cid-qaanghzh>【翻译】在谷歌14年学到的21课</span> </li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" data-astro-cid-bvzihdzo="true" data-icon="mdi:calendar">   <symbol id="ai:mdi:calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></symbol><use href="#ai:mdi:calendar"></use>  </svg> <time datetime="2026-01-24T00:00:00.000Z"> Jan 23, 2026 </time>  </div> <h1 data-astro-cid-bvzihdzo>【翻译】在谷歌14年学到的21课</h1> </div>  <p>这是我最近读到的一篇文章，读完之后颇有触动。它并非句句都适用于我当下的处境，但其中不少观点，恰恰指向了一些<strong>对我们至关重要、却常常被忽视的盲区</strong>。一旦真正付诸实践，往往能带来事半功倍的效果。</p>
+<p>还有一些观点，其实我们已经在无意识中做过，只是从未将它们清晰地总结出来。这篇文章的价值之一，正是在于它帮助我把这些零散的经验提炼成可被反思、被复用的认知。</p>
+<p>值得一提的是，文章并不纠缠于某个具体细节或技术路线，而是提供了一种更高层次的视角——<strong>关于如何判断什么是“正确的事”，以及该如何去做</strong>。从这个意义上说，它讨论的已经不只是方法，而更接近一种工程实践背后的哲学。</p>
+<p>原文链接：<a href="https://addyosmani.com/blog/21-lessons/">https://addyosmani.com/blog/21-lessons/</a></p>
+<p>大约 14 年前我加入 Google 时，以为这份工作的核心是写出优秀的代码。这个想法并不算错，但也只对了一半。随着时间推移，我越来越清楚地意识到：真正发展得好的工程师，未必是最强的程序员，而是那些搞懂了<strong>代码之外的一切</strong>的人——人、政治、共识、以及不确定性本身。</p>
+<p>这些经验，都是我希望自己能更早知道的。有些本可以让我少走几个月的弯路；有些则花了好几年才真正想明白。它们无一关乎具体技术——技术更迭得太快，不值得执着；它们关乎的是那些反复出现的模式，一次又一次地，在不同项目、不同团队中重演。</p>
+<p>我之所以分享这些，是因为我曾从同样愿意分享的工程师身上受益匪浅。就把这当作我一次<strong>把火炬传下去</strong>的尝试吧。</p>
+<h2 id="1-最优秀的工程师专注于解决用户问题">1. 最优秀的工程师专注于解决用户问题</h2>
+<p>爱上一项技术、然后到处寻找它的用武之地，是一件极具诱惑力的事。我做过，每个人都做过。但真正创造最大价值的工程师，是反过来工作的：他们先深度理解用户的问题，再让解决方案从理解中自然浮现。</p>
+<p>所谓“以用户为中心”，意味着花时间看支持工单、与用户交谈、观察用户如何挣扎，一层层追问“为什么”，直到触及问题的基岩。真正理解问题的工程师，往往会发现，优雅的解决方案比任何人预想的都要简单。</p>
+<p>而从“方案”出发的工程师，通常会在为方案寻找合理性的过程中不断堆叠复杂性。</p>
+<h2 id="2-自己是对的很廉价和大家一起走到对的答案才是真正的工作">2. “自己是对的”很廉价，和大家一起走到“对的答案”才是真正的工作</h2>
+<p>你可以赢下每一场技术争论，却输掉整个项目。我见过不少才华横溢的工程师，因为总是房间里最聪明的那个人，而积累了无声的怨气。代价会在之后显现为“莫名其妙的执行问题”和“奇怪的阻力”。</p>
+<p>真正的能力不在于“是对的”，而在于：进入讨论是为了对齐问题、为他人留出空间，并且始终对自己的确定性保持怀疑。</p>
+<p><strong>强烈的观点，弱持有</strong>——不是因为你没有信念，而是因为在不确定性下做出的决策，不该被焊死在身份认同上。</p>
+<h2 id="3-行动导向至上先发布再完善你可以修改一页烂稿但无法修改一张白纸">3. 行动导向至上，先发布再完善——你可以修改一页烂稿，但无法修改一张白纸</h2>
+<p>对完美的追求极具瘫痪性。我见过工程师花几周时间争论一个从未构建过系统的“理想架构”。完美方案几乎不会凭空思考出来——它来自与现实的碰撞。在这一点上，AI 在很多方面也能帮上忙。</p>
+<p>先做出来，再做对，然后再做好。把丑陋的原型摆到用户面前。写下混乱的第一版设计文档。交付那个让你略感羞愧的 MVP。你从一周真实反馈中学到的东西，远胜一个月的理论争论。</p>
+<p>动量带来清晰；分析瘫痪只会带来空无。</p>
+<h2 id="4-清晰度代表资深度聪明反而是额外负担">4. 清晰度代表资深度，聪明反而是额外负担</h2>
+<p>写“聪明代码”的冲动，几乎是工程师的通病。它让人感觉自己很专业。</p>
+<p>但软件工程，是当时间和“其他程序员”被引入之后发生的事情。在这种环境下，清晰不是风格偏好，而是降低运营风险的手段。</p>
+<p>你的代码，本质上是一份写给陌生人的策略备忘录——他们可能在凌晨两点的故障现场维护它。请优化他们的理解成本，而不是你的优雅感。<br>
+我最敬重的资深工程师，几乎每一次都会用清晰换掉聪明。</p>
+<h2 id="5-新颖性是一笔贷款你会用宕机招聘和认知负担来偿还">5. 新颖性是一笔贷款，你会用宕机、招聘和认知负担来偿还</h2>
+<p>要像一个预算有限的组织那样对待技术选型，把“创新代币”当成稀缺资源。每引入一项实质性的非标准技术，就消耗一枚。你负担不起太多。</p>
+<p>结论不是“永远不要创新”，而是：<strong>只在你被明确付费去创新的地方创新</strong>。其他一切，都应该默认选择“无聊”的方案，因为无聊意味着失效模式是已知的。</p>
+<p>所谓“最适合当前任务的工具”，往往其实是“在多种任务中最不糟糕的工具”——因为真正的隐性税负，是维护一整个技术动物园。</p>
+<h2 id="6-代码不会替你发声人会">6. 代码不会替你发声——人会</h2>
+<p>在职业早期，我曾相信好工作会自己说话。我错了。代码安静地躺在仓库里。你的领导会不会在会议上提到你，才是关键；同事会不会推荐你参与项目，决定权并不在代码。</p>
+<p>在大型组织中，很多决策发生在你未被邀请的会议里，基于你没写过的摘要，由只有五分钟、却负责十二个优先级任务的人做出。如果在你不在场时，没有人能清楚地说出你的影响力，那么你的影响力事实上是“可有可无的”。</p>
+<p>这并不只是自我推销，而是让价值链对所有人（包括你自己）变得可见。</p>
+<h2 id="7-最好的代码是你从来不需要写的代码">7. 最好的代码，是你从来不需要写的代码</h2>
+<p>工程文化崇尚创造。几乎没人因为“删代码”而升职，尽管删除往往比新增更能改善系统。<strong>你没写的每一行代码，都是你永远不需要调试、维护或解释的代码。</strong></p>
+<p>在动手之前，把这个问题问到极致：“如果我们什么都不做，会怎样？”有时答案是“不会有什么坏事”，而这就是你的解决方案。</p>
+<p>问题不在于工程师不会写代码，或不会用 AI 写代码，而在于：我们太擅长写了，以至于忘了问一句——到底该不该写。</p>
+<h2 id="8-当规模足够大时连你写的-bug-都有用户">8. 当规模足够大时，连你写的 bug 都有用户</h2>
+<p>一旦用户数量足够多，任何可观察到的行为都会变成依赖——不管你承诺过什么。总有人在抓取你的 API、自动化你的怪癖、缓存你的 bug。</p>
+<p>这会带来一个影响职业生涯的认知：你不能把兼容性工作当成“维护”，把新功能当成“真正的工作”。兼容性本身就是产品。</p>
+<p>把弃用（deprecation）设计成迁移：给时间、给工具、给同理心。多数所谓的“API 设计”，其实是在做“API 退休”。</p>
+<h2 id="9-大多数缓慢的团队本质上是方向未对齐的团队">9. 大多数“缓慢”的团队，本质上是方向未对齐的团队</h2>
+<p>当一个项目一拖再拖时，人们的本能反应是指责执行层面：大家不够努力、技术选型错误、工程师数量不够。但通常这些都不是根本问题。</p>
+<p>在大型公司里，团队是并发的基本单位，但随着团队数量增加，协作成本会呈几何级增长。所谓的“慢”，更多时候其实是对齐失败——人们在做错误的事情，或者用彼此不兼容的方式在做“正确”的事情。</p>
+<p>资深工程师花更多时间在明确需求、接口和优先级上，而不是“把代码写得更快”，因为真正的瓶颈就在这里。</p>
+<h3 id="10-专注你能控制的忽略你无法控制的">10. 专注你能控制的，忽略你无法控制的</h3>
+<p>在大公司中，有无数变量不在你的掌控之内：组织调整、管理决策、市场变化、产品转向。沉溺其中，只会带来焦虑，却没有行动空间。</p>
+<p>那些既清醒又高效的工程师，会把注意力聚焦在自己的影响范围内。你无法控制是否发生重组，但你可以控制工作的质量、自己的应对方式，以及你从中学到什么。面对不确定性时，把问题拆解开，找出你此刻能采取的具体行动。</p>
+<p>这不是消极接受，而是战略性聚焦。花在无法改变之事上的精力，本质上是在偷走你能改变之事的能量。</p>
+<h3 id="11-抽象并不会消除复杂性它只是把复杂性推迟到你值班的那一天">11. 抽象并不会消除复杂性，它只是把复杂性推迟到你值班的那一天</h3>
+<p>每一层抽象，都是一次赌注：赌你不需要理解它下面发生了什么。有时你会赢。但总会有考虑不周，而一旦发生，你就必须知道自己到底面对的问题是什么。</p>
+<p>资深工程师会在技术栈不断升高的同时，持续学习“更底层”的东西。这不是怀旧，而是对某个凌晨三点、抽象失效、只剩你和系统对峙那一刻的敬畏。善用你的技术栈—— 但要对它底层的失效模式保持一个可运行的心智模型。</p>
+<h3 id="12-写作会迫使思路变得清楚学习一件事最快的方法是尝试把它教给别人">12. 写作会迫使思路变得清楚——学习一件事最快的方法，是尝试把它教给别人</h3>
+<p>当我向他人解释一个概念时——无论是文档、分享、代码评审评论，还是仅仅和 AI 聊天——我都会发现自己理解中的空白。让别人“看懂”的过程，也会让自己真正“看懂”。</p>
+<p>这并不是说你可以通过教书学会做外科手术，但在软件工程领域，这个前提在很大程度上是成立的。</p>
+<p>这不仅仅是分享知识的慷慨行为，更是一种自私但高效的学习技巧。如果你觉得自己懂了，试着用最简单的方式解释它。你卡壳的地方，正是你理解最浅的地方。</p>
+<p>输出，其实是在调试你自己的心智模型。</p>
+<h2 id="13-让其他工作成为可能的工作价值无可替代却往往看不见">13. 让其他工作成为可能的工作，价值无可替代——却往往看不见</h2>
+<p>“胶水型工作”——文档、入职引导、跨团队协作、流程改进——至关重要。但如果你是无意识地承担它们，很容易让技术成长停滞，甚至走向倦怠。</p>
+<p>陷阱在于：你把它当作“乐于助人”，而不是一种有边界、有目标、可见的影响力。</p>
+<p>给它设定时间边界，轮换承担。把它转化为可复用的产物：文档、模板、自动化工具。并且，让它以“成果”的形式被看见，而不是被当成你的性格特点。</p>
+<p>“无价”又“不可见”，对职业发展来说是一个危险的组合。</p>
+<h3 id="14-如果你在每一次争论中都赢了你很可能正在积累沉默的阻力">14. 如果你在每一次争论中都赢了，你很可能正在积累“沉默的阻力”</h3>
+<p>我已经学会对自己的笃定保持警惕。当我“赢”得过于轻松时，往往意味着哪里出了问题。<br>
+人们不再反驳你，并不是因为被你说服了，而是因为他们放弃了争论——真正的分歧，会在执行阶段体现出来，而不是在会议上。</p>
+<p>真正的对齐需要时间。<br>
+你必须真的理解他人的视角，吸收反馈，有时甚至要当众改变自己的想法。</p>
+<p>短期里“我是对的”的满足感，远不如长期与愿意合作的人一起把事情做成来得重要。</p>
+<h3 id="15-当一个指标变成目标它就不再是指标了">15. 当一个指标变成目标，它就不再是指标了</h3>
+<p>你暴露给管理层的每一个指标，最终都会被“优化”。<br>
+这并非出于恶意，而是因为人类天然会朝着被衡量的方向努力。</p>
+<p>如果你统计代码行数，你就会得到更多代码行；<br>
+如果你追求速度，你就会得到被夸大的估算。</p>
+<p>成熟的做法是：<br>
+对每一个指标请求，都给出一对指标—— 一个衡量速度，一个衡量质量或风险。<br>
+然后坚持看趋势，而不是迷信阈值。<br>
+指标的目的在于洞察，而不是监控。</p>
+<h3 id="16-承认不知道比假装知道更能创造安全感">16. 承认“不知道”，比假装知道更能创造安全感</h3>
+<p>资深工程师说“我不知道”，不是在示弱，而是在<strong>赋权</strong>。<br>
+当领导者承认不确定性时，整个环境会变得安全——其他人才敢于提出同样的问题。<br>
+反过来，是一种人人假装明白、问题被掩盖直到爆发的文化。</p>
+<p>我见过最资深的人从不承认困惑的团队，也亲眼见过后果：<br>
+问题无人提问，假设无人挑战，初级工程师保持沉默，因为他们以为“只有自己不懂”。</p>
+<p>以好奇心示范，你得到的，才是一支真正会学习的团队。</p>
+<h2 id="17-你的人际网络会比你做过的任何一份工作都更长久">17. 你的人际网络，会比你做过的任何一份工作都更长久</h2>
+<p>在职业早期，我把精力几乎全部放在工作本身，忽视了建立人际关系。现在回看，这是一个错误。<br>
+那些在公司内外持续投入关系的同事，几十年来都在收获回报。</p>
+<p>他们更早听到机会，更快搭建合作桥梁，被推荐去重要岗位，<br>
+甚至和多年建立信任的人一起创业。</p>
+<p>你的工作不是永久的，但你的人际网络是。<br>
+对待它要保持好奇与慷慨，而不是功利性的算计。</p>
+<p>当你需要向前走的时候，往往正是<strong>关系</strong>为你打开了那扇门。</p>
+<hr>
+<h2 id="18-大多数性能提升来自删掉工作而不是增加聪明度">18. 大多数性能提升，来自“删掉工作”，而不是增加聪明度</h2>
+<p>当系统变慢时，我们的第一反应往往是“加东西”：<br>
+加缓存、加并行、用更聪明的算法。<br>
+有时这是对的。</p>
+<p>但我见过更多真正有效的性能提升，来自一个更根本的问题：<br>
+<strong>“我们现在算的这些东西，有哪些其实根本不需要？”</strong></p>
+<p>删除不必要的工作，几乎总是比把必要的工作做得更快更有价值。<br>
+<strong>最快的代码，是从来不会运行的代码。</strong></p>
+<p>在你开始优化之前，先问问：这件事是否本就不该存在？</p>
+<hr>
+<h3 id="19-流程存在的目的是降低不确定性而不是制造文档痕迹">19. 流程存在的目的，是降低不确定性，而不是制造文档痕迹</h3>
+<p>流程存在的意义，是降低不确定性，而不是制造文档痕迹。</p>
+<p>好的流程，会让协作更顺畅，让失败的代价更低；<br>
+糟糕的流程，则是一种官僚表演——它的目的不是帮助事情成功，而是在出问题时用来追责。</p>
+<p>如果你说不清一个流程是如何降低风险、或提升清晰度的，那它很可能只是额外负担。</p>
+<p>而一旦人们花在“记录工作”的时间，超过了真正“做工作”的时间，系统就已经出了严重问题。</p>
+<hr>
+<h2 id="20-总有一天时间会比金钱更值钱请据此行事">20. 总有一天，时间会比金钱更值钱——请据此行事</h2>
+<p>在职业生涯的早期，你用时间换取收入，这是合理的。但到了某个阶段，这个计算会发生反转。你会逐渐意识到：时间才是不可再生的资源。</p>
+<p>我见过不少资深工程师，为了追逐下一个晋升级别而透支自己，只为多争取几个百分点的薪酬。有人如愿以偿，但更多人在事后会问：这真的值得我付出的代价吗？</p>
+<p>答案不是“别努力工作”，而是：<strong>清楚你在交换什么，并且有意识地做出选择。</strong></p>
+<hr>
+<h2 id="21-没有捷径但有复利">21. 没有捷径，但有复利</h2>
+<p>真正的专业能力，来自<strong>刻意练习</strong>——不断把自己推到略高于当前水平的边界，反思、重复。</p>
+<p>年复一年，并不存在所谓的“速成版”。</p>
+<p>但令人振奋的是：当学习带来的是<strong>新的选择空间</strong>，而不仅仅是零散的知识点时，它就会产生复利效应。</p>
+<p>写作——不是为了迎合关注，而是为了澄清思路；构建可复用的基础能力；把踩过的坑、受过的伤，整理成可复用的方法论。</p>
+<p>把职业当作复利投资，而不是买彩票的工程师，往往会走得更远。</p>
+<hr>
+<h2 id="最后的话">最后的话</h2>
+<p>二十一条经验听起来虽然有些多，但它们最终都指向几个核心原则：</p>
+<ul>
+<li>对世界保持好奇</li>
+<li>对自己保持谦逊</li>
+</ul>
+<p>记住，一份工作归根结底终究是跟人有关——是那些你为之构建产品的用户以及与你并肩协作的同事。</p>
+<p>工程师的职业生涯足够长，长到你会犯很多错误，却依然走在前面。</p>
+<p>我最敬佩的工程师，并不是那些从不犯错的人，而是那些能从失败中学习、愿意分享所得，并持续创造价值的人。</p>
+<p>如果你正处在职业生涯的早期，请相信：时间会让这条路愈发丰厚；<br>
+如果你已经走了很远，希望其中有些思考，能与你产生共鸣。</p>   </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2026 HuFei. All rights reserved.
+<div class="license" data-astro-cid-sz7xmlte> <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" data-astro-cid-sz7xmlte>
+署名-非商业性使用 4.0 国际许可协议<br data-astro-cid-sz7xmlte>
+转载请保留原文链接及作者
+</a> </div> </footer> </body></html>

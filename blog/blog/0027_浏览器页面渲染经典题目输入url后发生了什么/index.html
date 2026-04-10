@@ -1,0 +1,205 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="HuFei's Site" href="https://hufei.github.io/rss.xml"><meta name="generator" content="Astro v6.1.5"><style>@font-face{font-family:Atkinson-c7f4c4e8b285552f;src:url("/blog/_astro/fonts/106a7e6e8a12c2e6.woff") format("woff");font-display:swap;font-weight:400;font-style:normal;}@font-face{font-family:Atkinson-c7f4c4e8b285552f;src:url("/blog/_astro/fonts/d5f79d6a8e91244a.woff") format("woff");font-display:swap;font-weight:700;font-style:normal;}@font-face{font-family:"Atkinson-c7f4c4e8b285552f fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.3717%;ascent-override:80.1033%;descent-override:25.2587%;line-gap-override:0%;}@font-face{font-family:"Atkinson-c7f4c4e8b285552f fallback: Arial";src:local("Arial");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.3717%;ascent-override:80.1033%;descent-override:25.2587%;line-gap-override:0%;}:root{--font-atkinson:Atkinson-c7f4c4e8b285552f,"Atkinson-c7f4c4e8b285552f fallback: Arial",sans-serif;}</style><link rel="preload" href="/blog/_astro/fonts/106a7e6e8a12c2e6.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/blog/_astro/fonts/d5f79d6a8e91244a.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://hufei.github.io/blog/blog/0027_%E6%B5%8F%E8%A7%88%E5%99%A8%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E7%BB%8F%E5%85%B8%E9%A2%98%E7%9B%AE%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/"><!-- Primary Meta Tags --><title>浏览器页面渲染——经典题目：输入URL后发生了什么？</title><meta name="title" content="浏览器页面渲染——经典题目：输入URL后发生了什么？"><meta name="description" content="浏览器根据域名（Domain）向DNS服务器查询该domain对应的IP地址；"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://hufei.github.io/blog/blog/0027_%E6%B5%8F%E8%A7%88%E5%99%A8%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E7%BB%8F%E5%85%B8%E9%A2%98%E7%9B%AE%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/"><meta property="og:title" content="浏览器页面渲染——经典题目：输入URL后发生了什么？"><meta property="og:description" content="浏览器根据域名（Domain）向DNS服务器查询该domain对应的IP地址；"><meta property="og:image" content="https://hufei.github.io/blog/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hufei.github.io/blog/blog/0027_%E6%B5%8F%E8%A7%88%E5%99%A8%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E7%BB%8F%E5%85%B8%E9%A2%98%E7%9B%AE%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/"><meta property="twitter:title" content="浏览器页面渲染——经典题目：输入URL后发生了什么？"><meta property="twitter:description" content="浏览器根据域名（Domain）向DNS服务器查询该domain对应的IP地址；"><meta property="twitter:image" content="https://hufei.github.io/blog/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Theme initialization for dark mode support --><script>
+	// Initialize theme before page renders to prevent flash
+	(function() {
+		const storedTheme = localStorage.getItem('theme');
+		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+		document.documentElement.setAttribute('data-theme', theme);
+	})();
+</script><link rel="stylesheet" href="/blog/_astro/Header.BQCgicWo.css">
+<style>nav[data-astro-cid-qaanghzh]{margin-bottom:2rem}.breadcrumb[data-astro-cid-qaanghzh]{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0;font-size:.875rem;color:rgb(var(--gray))}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]{display:flex;align-items:center}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]:not(:last-child):after{content:"/";margin:0 .5rem;color:rgb(var(--gray))}.breadcrumb[data-astro-cid-qaanghzh] a[data-astro-cid-qaanghzh]{color:var(--accent);text-decoration:none;transition:opacity .2s ease}.breadcrumb[data-astro-cid-qaanghzh] a[data-astro-cid-qaanghzh]:hover{opacity:.8;text-decoration:underline}.breadcrumb[data-astro-cid-qaanghzh] span[data-astro-cid-qaanghzh][aria-current=page]{color:rgb(var(--gray-dark));font-weight:500}@media(max-width:768px){.breadcrumb[data-astro-cid-qaanghzh]{font-size:.8rem}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]:not(:last-child):after{margin:0 .375rem}}.tag-list[data-astro-cid-lga65v7i]{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin:.5rem 0}.tag-label[data-astro-cid-lga65v7i]{font-size:.875rem;font-weight:600;color:rgb(var(--gray));margin-right:.25rem}.tags[data-astro-cid-lga65v7i]{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}.tag[data-astro-cid-lga65v7i]{margin:0}.tag-link[data-astro-cid-lga65v7i]{display:inline-block;padding:.25rem .75rem;background:rgb(var(--gray-light));color:rgb(var(--gray-dark));text-decoration:none;border-radius:9999px;font-size:.875rem;font-weight:500;transition:all .2s ease;border:1px solid transparent}.tag-link[data-astro-cid-lga65v7i]:hover{background:var(--accent);color:#fff;transform:translateY(-1px);box-shadow:0 2px 8px #00000026}.tag-link[data-astro-cid-lga65v7i]:focus{outline:2px solid var(--accent);outline-offset:2px}.tag-more[data-astro-cid-lga65v7i]{display:inline-block;padding:.25rem .75rem;background:rgba(var(--gray),10%);color:rgb(var(--gray));border-radius:9999px;font-size:.875rem;font-style:italic}[data-theme=dark] .tag-link[data-astro-cid-lga65v7i]{background:rgb(var(--gray-light));color:rgb(var(--gray-dark))}[data-theme=dark] .tag-link[data-astro-cid-lga65v7i]:hover{background:var(--accent);color:var(--accent-dark);box-shadow:0 2px 8px #0000004d}@media(max-width:768px){.tag-list[data-astro-cid-lga65v7i],.tags[data-astro-cid-lga65v7i]{gap:.375rem}.tag-link[data-astro-cid-lga65v7i]{padding:.2rem .6rem;font-size:.8rem}}main[data-astro-cid-bvzihdzo]{width:calc(100% - 32px);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 32px);margin:auto;padding:1em;color:var(--text-color);font-size:17px;line-height:1.7}.prose[data-astro-cid-bvzihdzo] p[data-astro-cid-bvzihdzo]{margin-bottom:1.5em}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em;font-size:2.5rem}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:var(--footer-text)}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}.date[data-astro-cid-bvzihdzo] svg[data-astro-cid-bvzihdzo]{vertical-align:text-top;margin-right:.1rem;color:var(--accent)}@media(max-width:768px){.prose[data-astro-cid-bvzihdzo]{max-width:calc(100% - 24px);font-size:16px}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{font-size:2rem}}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <a href="#main" class="skip-link" data-astro-cid-3ef6ksr2>Skip to main content</a> <nav data-astro-cid-3ef6ksr2> <div class="site-title" data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>HuFei&#39;s Site</a></div> <div class="nav-container" data-astro-cid-3ef6ksr2> <div class="internal-links" id="nav-menu" data-astro-cid-3ef6ksr2> <a href="/" class="nav-link" data-astro-cid-3ef6ksr2>HOME</a> <a href="/blog/" class="nav-link active" data-astro-cid-3ef6ksr2>BLOG</a> <div class="mobile-theme-toggle" data-astro-cid-3ef6ksr2> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" data-astro-cid-x3pjskd3> <svg width="1em" height="1em" data-astro-cid-x3pjskd3="true" class="sun-icon" data-icon="mdi:weather-sunny">   <symbol id="ai:mdi:weather-sunny" viewBox="0 0 24 24"><path fill="currentColor" d="M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0-7l2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10l1.76-3.77a7.13 7.13 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10l-4.14.36c.59-.51 1.12-1.14 1.54-1.86c.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44c.82 0 1.63-.17 2.37-.44z"/></symbol><use href="#ai:mdi:weather-sunny"></use>  </svg> <svg width="1em" height="1em" data-astro-cid-x3pjskd3="true" class="moon-icon" data-icon="mdi:weather-night">   <symbol id="ai:mdi:weather-night" viewBox="0 0 24 24"><path fill="currentColor" d="m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63 1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06 3zm3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7 1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76 1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31 10.98c3.02 3.01 7.84 3.12 10.98.31"/></symbol><use href="#ai:mdi:weather-night"></use>  </svg> </button> <script>
+	// Theme toggle function - initialization is handled in BaseHead.astro
+	window.toggleTheme = function() {
+		const html = document.documentElement;
+		const currentTheme = html.getAttribute('data-theme');
+		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+		
+		html.setAttribute('data-theme', newTheme);
+		localStorage.setItem('theme', newTheme);
+		
+		// Update aria-label for accessibility
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+	};
+
+	// Set initial aria-labels when page loads
+	document.addEventListener('DOMContentLoaded', function() {
+		const currentTheme = document.documentElement.getAttribute('data-theme');
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+
+		// Listen for system theme changes (only if user hasn't set a preference)
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+			if (!localStorage.getItem('theme')) {
+				const newTheme = e.matches ? 'dark' : 'light';
+				document.documentElement.setAttribute('data-theme', newTheme);
+				
+				// Update aria-labels
+				toggleButtons.forEach(button => {
+					button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+				});
+			}
+		});
+	});
+</script> </div> </div> <div class="desktop-theme-toggle" data-astro-cid-3ef6ksr2> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" data-astro-cid-x3pjskd3> <svg width="1em" height="1em" viewBox="0 0 24 24" data-astro-cid-x3pjskd3="true" class="sun-icon" data-icon="mdi:weather-sunny">   <use href="#ai:mdi:weather-sunny"></use>  </svg> <svg width="1em" height="1em" viewBox="0 0 24 24" data-astro-cid-x3pjskd3="true" class="moon-icon" data-icon="mdi:weather-night">   <use href="#ai:mdi:weather-night"></use>  </svg> </button> <script>
+	// Theme toggle function - initialization is handled in BaseHead.astro
+	window.toggleTheme = function() {
+		const html = document.documentElement;
+		const currentTheme = html.getAttribute('data-theme');
+		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+		
+		html.setAttribute('data-theme', newTheme);
+		localStorage.setItem('theme', newTheme);
+		
+		// Update aria-label for accessibility
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+	};
+
+	// Set initial aria-labels when page loads
+	document.addEventListener('DOMContentLoaded', function() {
+		const currentTheme = document.documentElement.getAttribute('data-theme');
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+
+		// Listen for system theme changes (only if user hasn't set a preference)
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+			if (!localStorage.getItem('theme')) {
+				const newTheme = e.matches ? 'dark' : 'light';
+				document.documentElement.setAttribute('data-theme', newTheme);
+				
+				// Update aria-labels
+				toggleButtons.forEach(button => {
+					button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+				});
+			}
+		});
+	});
+</script> </div> </div> <button class="hamburger" id="hamburger-menu" aria-label="Open navigation menu" aria-controls="nav-menu" aria-expanded="false" data-astro-cid-3ef6ksr2> <span data-astro-cid-3ef6ksr2></span> <span data-astro-cid-3ef6ksr2></span> <span data-astro-cid-3ef6ksr2></span> </button> </nav> </header> <script>
+	(function () {
+		const hamburger = document.getElementById('hamburger-menu');
+		const navMenu = document.getElementById('nav-menu');
+		if (!hamburger || !navMenu) return;
+
+		function openMenu() {
+			hamburger.classList.add('open');
+			hamburger.setAttribute('aria-expanded', 'true');
+			navMenu.classList.add('open');
+		}
+
+		function closeMenu() {
+			hamburger.classList.remove('open');
+			hamburger.setAttribute('aria-expanded', 'false');
+			navMenu.classList.remove('open');
+		}
+
+		function toggleMenu() {
+			if (navMenu.classList.contains('open')) closeMenu(); else openMenu();
+		}
+
+		hamburger.addEventListener('click', (e) => {
+			e.stopPropagation();
+			toggleMenu();
+		});
+
+		// Close when a navigation link is clicked
+		navMenu.addEventListener('click', (e) => {
+			const target = e.target;
+			if (target && (target.tagName === 'A' || target.closest('a'))) {
+				closeMenu();
+			}
+		});
+
+		// Close on outside click
+		document.addEventListener('click', (e) => {
+			const target = e.target;
+			if (!navMenu.contains(target) && !hamburger.contains(target)) {
+				closeMenu();
+			}
+		});
+
+		// Close on Escape key
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape') closeMenu();
+		});
+	})();
+</script> <main id="main" data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img src="https://images.unsplash.com/photo-1693314879015-d60966d4d178?&#38;w=720&#38;h=360&#38;fit=crop" alt data-astro-cid-bvzihdzo="true" loading="lazy" decoding="async" width="1020" height="510"> </div> <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-qaanghzh> <ol class="breadcrumb" data-astro-cid-qaanghzh> <li data-astro-cid-qaanghzh> <a href="/" data-astro-cid-qaanghzh>Home</a> </li><li data-astro-cid-qaanghzh> <a href="/blog/" data-astro-cid-qaanghzh>Blog</a> </li><li data-astro-cid-qaanghzh> <span aria-current="page" data-astro-cid-qaanghzh>浏览器页面渲染——经典题目：输入URL后发生了什么？</span> </li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" data-astro-cid-bvzihdzo="true" data-icon="mdi:calendar">   <symbol id="ai:mdi:calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></symbol><use href="#ai:mdi:calendar"></use>  </svg> <time datetime="2024-03-20T00:00:00.000Z"> Mar 19, 2024 </time>  </div> <h1 data-astro-cid-bvzihdzo>浏览器页面渲染——经典题目：输入URL后发生了什么？</h1> </div>  <h3 id="导航">导航</h3>
+<p>用户通过点击超链接、按钮或者浏览器地址栏部分的按钮，进行页面跳转，此时会出发浏览器地址栏页面地址的更新；</p>
+<h4 id="dns查询">DNS查询</h4>
+<p>浏览器根据域名（Domain）向DNS服务器查询该domain对应的IP地址；</p>
+<h4 id="tcp三次握手">TCP三次握手</h4>
+<p>在获取到IP地址找到对应的服务器后，建立网络连接，确切的说是TCP连接。这是一种可靠的网络连接协议。建立TCP连接需要经过三次握手。
+这三次握手可以这样描述：</p>
+<blockquote>
+<p>在一个伸手不见五指的黑夜里，有两个人C和S。他们之间需要通过声音（网络）建立一个可靠的联系通道。那么就要先进行确认。</p>
+<p>C先说：你能听到我说话吗？（SYN）
+S听到后，会说：我能听到你讲话，你能听到我讲话吗？（SYN- ACK）
+C听到后，就会说：我能听到。（ACK）</p>
+<p>至此，C和S双方才能确认彼此是可以听到对方说话的。</p>
+</blockquote>
+<p><img src="https://github.com/hufei365/notebook/assets/25574040/232da844-b816-4827-bf1f-0236af284302" alt="image"></p>
+<h4 id="tls协商假如是https协议类型">TLS协商（假如是HTTPS协议类型）</h4>
+<p>TLS 协商是在TCP三次握手的基础上增加双方身份认证和协商加密方式的过程。
+说个历史，TLS协商（握手）也叫“SSL握手”，SSL是为HTTP开发的安全协议。不过，SSL 目前已被 TLS 所取代。SSL 握手现在称为 TLS 握手，尽管“SSL”这个名称仍在广泛使用。
+延续上面TCP三次握手的例子</p>
+<blockquote>
+<p>当C和S的三次TCP握手完成后，</p>
+<p>C会对S发送一条“问候语”，里面包括C支持的TLS版本，加密算法以及被称为“客户端随机数”的随机字节；
+S在收到C发送来的消息后，会回复一条“问候语”；里面信息包括服务器的SSL证书、服务器选择的加密算法（从C发送来的加密方式里）以及“服务器随机数”
+C 在收到S发送来的信息后，会去证书验证机构那里验证S发来的证书的真伪性，以确定S的身份是否为冒充。如果验证通过，C会再发送一次随机字节“premaster secret”，这密钥是由公钥🔑加密🔐，且只能由私钥解密。那么公钥是哪里来的呢？答：从S发送给C的SSL证书中获取。
+S利用自己手里的私钥对C发来的“premaster secret”进行解密。在此期间，C和S双方会使用<strong>客户端随机数</strong>、<strong>服务器随机数</strong>和<strong>premaster secret</strong> 生成会话密钥，双方应得到相同的结果。
+C向S发送一条用会话密钥加密的“已完成”信息
+S 向C发送一条用会话密钥加密的“已完成”信息</p>
+<p>然后TLS协商完成，如果中间有证书验证不通过或者加密方式不支持等异常，此次会话连接过程都会被中断。
+在协商完成之后，后续的通信数据都是用会话密钥加密后传输的，由于只有S和C拥有会话密钥，所以即使在通信过程中，被别人窃取了数据，也无法进行解密。</p>
+</blockquote>
+<img width="1721" alt="截屏2024-03-20 21 07 07" src="https://github.com/hufei365/notebook/assets/25574040/b08a5d76-28ae-479e-90f4-2028b07e0eaf">
+<p>在HTTPS中，证书的作用就是交由一个比较权威的第三方对证书真伪进行校验，从而避免中间人攻击。什么是中间人攻击，就是在C和S之间出现了传话者，这个传话者在面对真实的S和C时，分别冒充另一方。因为在漆黑的夜晚，看不清对方的样貌，那如何才能知道对方是真的S和C呢？这时候就有了另外一个人，他会保存S的身份信息，然后C拿着证书去向他进行验证。验证为真则为真，否则为假。 那兴许有人就要问了，证书不可以伪造吗？答：不可以。因为进行认证的信息是事先存在本地客户端的。</p>
+<h4 id="数据response">数据Response</h4>
+<p>TCP慢启动，在开始传输数据时，服务端会逐步增加每次的数据发送量，已确定当前网络带宽最大可利用空间，从而进行最大效率的数据传输；否则，过小的单次数据传输量，会导致客户端发送较多的ACK响应，从而挤占网络带宽。</p>
+<h5 id="慢启动slow-start">慢启动（Slow Start）：</h5>
+<p>慢启动是TCP连接刚开始发送数据时的一种策略。它的目标是在网络负载较轻的情况下，迅速找到合适的网络传输速率。具体流程如下：</p>
+<ol>
+<li>TCP连接刚建立时，发送方将拥塞窗口（congestion window）设置为一个较小的值；</li>
+<li>每当收到一个确认（ACK）时，拥塞窗口就会加倍，即指数增长；</li>
+<li>发送方继续以这种方式增大拥塞窗口，直到达到一个阈值，称为慢启动门限（slow start threshold）；</li>
+</ol>
+<p>慢启动的目的是避免在网络负载较重时引发拥塞。通过逐渐增加发送速率，慢启动可以让发送方逐步感知网络的可用带宽，从而避免发送过多的数据导致网络拥塞。</p>
+<h5 id="拥塞避免congestion-avoidance">拥塞避免（Congestion Avoidance）</h5>
+<p>拥塞避免是在慢启动阶段后和达到慢启动门限后的一种传输状态。它的目标是在网络拥塞的情况下，尽量减少数据包的丢失，从而避免进一步加剧网络拥塞。具体流程如下：</p>
+<ol>
+<li>一旦达到慢启动门限，发送方将进入拥塞避免状态；</li>
+<li>拥塞避免状态下，发送方的拥塞窗口按线性增长，在每一个传输轮次中只增加一个拥塞窗口大小的数据；</li>
+<li>如果检测到数据包丢失，则表示网络可能已经发生了拥塞。此时，发送方会将慢启动门限设置为当前拥塞窗口的一半，并重新开始慢启动过程；</li>
+</ol>
+<p>拥塞避免通过逐渐增加发送速率，但速度较慢，以防止过多的数据包在网络中积聚，从而减少网络拥塞的可能性。</p>
+<p>慢启动和拥塞避免机制共同作用，可以使TCP连接根据网络的状况自适应地调整传输速率，避免网络拥塞并提高传输效率。</p>
+<h3 id="数据解析">数据解析</h3>
+<p>在获取到服务端返回到数据后，浏览器开始对获取的数据进行解析。这个过程中会包括以下几种操作</p>
+<ol>
+<li>构建DOM树；</li>
+<li>构建CSSOM树（样式树）；</li>
+<li>JS编译解析；</li>
+<li>预加载扫描器扫描预加载资源；</li>
+</ol>
+<h3 id="渲染">渲染</h3>
+<ol>
+<li>将DOM树与CSSOM树组合成渲染树</li>
+<li>布局</li>
+<li>绘制；</li>
+<li>合成</li>
+</ol>   </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2026 HuFei. All rights reserved.
+<div class="license" data-astro-cid-sz7xmlte> <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" data-astro-cid-sz7xmlte>
+署名-非商业性使用 4.0 国际许可协议<br data-astro-cid-sz7xmlte>
+转载请保留原文链接及作者
+</a> </div> </footer> </body></html>

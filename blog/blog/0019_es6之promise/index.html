@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="HuFei's Site" href="https://hufei.github.io/rss.xml"><meta name="generator" content="Astro v6.1.5"><style>@font-face{font-family:Atkinson-c7f4c4e8b285552f;src:url("/blog/_astro/fonts/106a7e6e8a12c2e6.woff") format("woff");font-display:swap;font-weight:400;font-style:normal;}@font-face{font-family:Atkinson-c7f4c4e8b285552f;src:url("/blog/_astro/fonts/d5f79d6a8e91244a.woff") format("woff");font-display:swap;font-weight:700;font-style:normal;}@font-face{font-family:"Atkinson-c7f4c4e8b285552f fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.3717%;ascent-override:80.1033%;descent-override:25.2587%;line-gap-override:0%;}@font-face{font-family:"Atkinson-c7f4c4e8b285552f fallback: Arial";src:local("Arial");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.3717%;ascent-override:80.1033%;descent-override:25.2587%;line-gap-override:0%;}:root{--font-atkinson:Atkinson-c7f4c4e8b285552f,"Atkinson-c7f4c4e8b285552f fallback: Arial",sans-serif;}</style><link rel="preload" href="/blog/_astro/fonts/106a7e6e8a12c2e6.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/blog/_astro/fonts/d5f79d6a8e91244a.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://hufei.github.io/blog/blog/0019_es6%E4%B9%8Bpromise/"><!-- Primary Meta Tags --><title>ES6之Promise</title><meta name="title" content="ES6之Promise"><meta name="description" content="Promise是JavaScript中为解决异步问题，结合社区已有规范，提出的一种异步编程解决方案。 在ES6中，Promise本身一个构造函数，原型链上有then、catch和finally等方法。自身的静态方法有all、race、reject和resolve等。 image [https://user-images.githubusercontent.com/25574040/59982651-4ae76080-9648-11e9-9de5-8bf183af7c76.png]"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://hufei.github.io/blog/blog/0019_es6%E4%B9%8Bpromise/"><meta property="og:title" content="ES6之Promise"><meta property="og:description" content="Promise是JavaScript中为解决异步问题，结合社区已有规范，提出的一种异步编程解决方案。 在ES6中，Promise本身一个构造函数，原型链上有then、catch和finally等方法。自身的静态方法有all、race、reject和resolve等。 image [https://user-images.githubusercontent.com/25574040/59982651-4ae76080-9648-11e9-9de5-8bf183af7c76.png]"><meta property="og:image" content="https://hufei.github.io/blog/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hufei.github.io/blog/blog/0019_es6%E4%B9%8Bpromise/"><meta property="twitter:title" content="ES6之Promise"><meta property="twitter:description" content="Promise是JavaScript中为解决异步问题，结合社区已有规范，提出的一种异步编程解决方案。 在ES6中，Promise本身一个构造函数，原型链上有then、catch和finally等方法。自身的静态方法有all、race、reject和resolve等。 image [https://user-images.githubusercontent.com/25574040/59982651-4ae76080-9648-11e9-9de5-8bf183af7c76.png]"><meta property="twitter:image" content="https://hufei.github.io/blog/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Theme initialization for dark mode support --><script>
+	// Initialize theme before page renders to prevent flash
+	(function() {
+		const storedTheme = localStorage.getItem('theme');
+		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+		document.documentElement.setAttribute('data-theme', theme);
+	})();
+</script><link rel="stylesheet" href="/blog/_astro/Header.BQCgicWo.css">
+<style>nav[data-astro-cid-qaanghzh]{margin-bottom:2rem}.breadcrumb[data-astro-cid-qaanghzh]{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0;font-size:.875rem;color:rgb(var(--gray))}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]{display:flex;align-items:center}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]:not(:last-child):after{content:"/";margin:0 .5rem;color:rgb(var(--gray))}.breadcrumb[data-astro-cid-qaanghzh] a[data-astro-cid-qaanghzh]{color:var(--accent);text-decoration:none;transition:opacity .2s ease}.breadcrumb[data-astro-cid-qaanghzh] a[data-astro-cid-qaanghzh]:hover{opacity:.8;text-decoration:underline}.breadcrumb[data-astro-cid-qaanghzh] span[data-astro-cid-qaanghzh][aria-current=page]{color:rgb(var(--gray-dark));font-weight:500}@media(max-width:768px){.breadcrumb[data-astro-cid-qaanghzh]{font-size:.8rem}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]:not(:last-child):after{margin:0 .375rem}}.tag-list[data-astro-cid-lga65v7i]{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin:.5rem 0}.tag-label[data-astro-cid-lga65v7i]{font-size:.875rem;font-weight:600;color:rgb(var(--gray));margin-right:.25rem}.tags[data-astro-cid-lga65v7i]{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}.tag[data-astro-cid-lga65v7i]{margin:0}.tag-link[data-astro-cid-lga65v7i]{display:inline-block;padding:.25rem .75rem;background:rgb(var(--gray-light));color:rgb(var(--gray-dark));text-decoration:none;border-radius:9999px;font-size:.875rem;font-weight:500;transition:all .2s ease;border:1px solid transparent}.tag-link[data-astro-cid-lga65v7i]:hover{background:var(--accent);color:#fff;transform:translateY(-1px);box-shadow:0 2px 8px #00000026}.tag-link[data-astro-cid-lga65v7i]:focus{outline:2px solid var(--accent);outline-offset:2px}.tag-more[data-astro-cid-lga65v7i]{display:inline-block;padding:.25rem .75rem;background:rgba(var(--gray),10%);color:rgb(var(--gray));border-radius:9999px;font-size:.875rem;font-style:italic}[data-theme=dark] .tag-link[data-astro-cid-lga65v7i]{background:rgb(var(--gray-light));color:rgb(var(--gray-dark))}[data-theme=dark] .tag-link[data-astro-cid-lga65v7i]:hover{background:var(--accent);color:var(--accent-dark);box-shadow:0 2px 8px #0000004d}@media(max-width:768px){.tag-list[data-astro-cid-lga65v7i],.tags[data-astro-cid-lga65v7i]{gap:.375rem}.tag-link[data-astro-cid-lga65v7i]{padding:.2rem .6rem;font-size:.8rem}}main[data-astro-cid-bvzihdzo]{width:calc(100% - 32px);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 32px);margin:auto;padding:1em;color:var(--text-color);font-size:17px;line-height:1.7}.prose[data-astro-cid-bvzihdzo] p[data-astro-cid-bvzihdzo]{margin-bottom:1.5em}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em;font-size:2.5rem}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:var(--footer-text)}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}.date[data-astro-cid-bvzihdzo] svg[data-astro-cid-bvzihdzo]{vertical-align:text-top;margin-right:.1rem;color:var(--accent)}@media(max-width:768px){.prose[data-astro-cid-bvzihdzo]{max-width:calc(100% - 24px);font-size:16px}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{font-size:2rem}}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <a href="#main" class="skip-link" data-astro-cid-3ef6ksr2>Skip to main content</a> <nav data-astro-cid-3ef6ksr2> <div class="site-title" data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>HuFei&#39;s Site</a></div> <div class="nav-container" data-astro-cid-3ef6ksr2> <div class="internal-links" id="nav-menu" data-astro-cid-3ef6ksr2> <a href="/" class="nav-link" data-astro-cid-3ef6ksr2>HOME</a> <a href="/blog/" class="nav-link active" data-astro-cid-3ef6ksr2>BLOG</a> <div class="mobile-theme-toggle" data-astro-cid-3ef6ksr2> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" data-astro-cid-x3pjskd3> <svg width="1em" height="1em" data-astro-cid-x3pjskd3="true" class="sun-icon" data-icon="mdi:weather-sunny">   <symbol id="ai:mdi:weather-sunny" viewBox="0 0 24 24"><path fill="currentColor" d="M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0-7l2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10l1.76-3.77a7.13 7.13 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10l-4.14.36c.59-.51 1.12-1.14 1.54-1.86c.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44c.82 0 1.63-.17 2.37-.44z"/></symbol><use href="#ai:mdi:weather-sunny"></use>  </svg> <svg width="1em" height="1em" data-astro-cid-x3pjskd3="true" class="moon-icon" data-icon="mdi:weather-night">   <symbol id="ai:mdi:weather-night" viewBox="0 0 24 24"><path fill="currentColor" d="m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63 1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06 3zm3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7 1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76 1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31 10.98c3.02 3.01 7.84 3.12 10.98.31"/></symbol><use href="#ai:mdi:weather-night"></use>  </svg> </button> <script>
+	// Theme toggle function - initialization is handled in BaseHead.astro
+	window.toggleTheme = function() {
+		const html = document.documentElement;
+		const currentTheme = html.getAttribute('data-theme');
+		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+		
+		html.setAttribute('data-theme', newTheme);
+		localStorage.setItem('theme', newTheme);
+		
+		// Update aria-label for accessibility
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+	};
+
+	// Set initial aria-labels when page loads
+	document.addEventListener('DOMContentLoaded', function() {
+		const currentTheme = document.documentElement.getAttribute('data-theme');
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+
+		// Listen for system theme changes (only if user hasn't set a preference)
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+			if (!localStorage.getItem('theme')) {
+				const newTheme = e.matches ? 'dark' : 'light';
+				document.documentElement.setAttribute('data-theme', newTheme);
+				
+				// Update aria-labels
+				toggleButtons.forEach(button => {
+					button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+				});
+			}
+		});
+	});
+</script> </div> </div> <div class="desktop-theme-toggle" data-astro-cid-3ef6ksr2> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" data-astro-cid-x3pjskd3> <svg width="1em" height="1em" viewBox="0 0 24 24" data-astro-cid-x3pjskd3="true" class="sun-icon" data-icon="mdi:weather-sunny">   <use href="#ai:mdi:weather-sunny"></use>  </svg> <svg width="1em" height="1em" viewBox="0 0 24 24" data-astro-cid-x3pjskd3="true" class="moon-icon" data-icon="mdi:weather-night">   <use href="#ai:mdi:weather-night"></use>  </svg> </button> <script>
+	// Theme toggle function - initialization is handled in BaseHead.astro
+	window.toggleTheme = function() {
+		const html = document.documentElement;
+		const currentTheme = html.getAttribute('data-theme');
+		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+		
+		html.setAttribute('data-theme', newTheme);
+		localStorage.setItem('theme', newTheme);
+		
+		// Update aria-label for accessibility
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+	};
+
+	// Set initial aria-labels when page loads
+	document.addEventListener('DOMContentLoaded', function() {
+		const currentTheme = document.documentElement.getAttribute('data-theme');
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+
+		// Listen for system theme changes (only if user hasn't set a preference)
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+			if (!localStorage.getItem('theme')) {
+				const newTheme = e.matches ? 'dark' : 'light';
+				document.documentElement.setAttribute('data-theme', newTheme);
+				
+				// Update aria-labels
+				toggleButtons.forEach(button => {
+					button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+				});
+			}
+		});
+	});
+</script> </div> </div> <button class="hamburger" id="hamburger-menu" aria-label="Open navigation menu" aria-controls="nav-menu" aria-expanded="false" data-astro-cid-3ef6ksr2> <span data-astro-cid-3ef6ksr2></span> <span data-astro-cid-3ef6ksr2></span> <span data-astro-cid-3ef6ksr2></span> </button> </nav> </header> <script>
+	(function () {
+		const hamburger = document.getElementById('hamburger-menu');
+		const navMenu = document.getElementById('nav-menu');
+		if (!hamburger || !navMenu) return;
+
+		function openMenu() {
+			hamburger.classList.add('open');
+			hamburger.setAttribute('aria-expanded', 'true');
+			navMenu.classList.add('open');
+		}
+
+		function closeMenu() {
+			hamburger.classList.remove('open');
+			hamburger.setAttribute('aria-expanded', 'false');
+			navMenu.classList.remove('open');
+		}
+
+		function toggleMenu() {
+			if (navMenu.classList.contains('open')) closeMenu(); else openMenu();
+		}
+
+		hamburger.addEventListener('click', (e) => {
+			e.stopPropagation();
+			toggleMenu();
+		});
+
+		// Close when a navigation link is clicked
+		navMenu.addEventListener('click', (e) => {
+			const target = e.target;
+			if (target && (target.tagName === 'A' || target.closest('a'))) {
+				closeMenu();
+			}
+		});
+
+		// Close on outside click
+		document.addEventListener('click', (e) => {
+			const target = e.target;
+			if (!navMenu.contains(target) && !hamburger.contains(target)) {
+				closeMenu();
+			}
+		});
+
+		// Close on Escape key
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape') closeMenu();
+		});
+	})();
+</script> <main id="main" data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img src="https://images.unsplash.com/photo-1768006273852-07a34dede095?&#38;w=720&#38;h=360&#38;fit=crop" alt data-astro-cid-bvzihdzo="true" loading="lazy" decoding="async" width="1020" height="510"> </div> <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-qaanghzh> <ol class="breadcrumb" data-astro-cid-qaanghzh> <li data-astro-cid-qaanghzh> <a href="/" data-astro-cid-qaanghzh>Home</a> </li><li data-astro-cid-qaanghzh> <a href="/blog/" data-astro-cid-qaanghzh>Blog</a> </li><li data-astro-cid-qaanghzh> <span aria-current="page" data-astro-cid-qaanghzh>ES6之Promise</span> </li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" data-astro-cid-bvzihdzo="true" data-icon="mdi:calendar">   <symbol id="ai:mdi:calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></symbol><use href="#ai:mdi:calendar"></use>  </svg> <time datetime="2019-06-23T00:00:00.000Z"> Jun 22, 2019 </time>  </div> <h1 data-astro-cid-bvzihdzo>ES6之Promise</h1> </div>  <h2 id="什么是promise">什么是Promise</h2>
+<p>Promise是JavaScript中为解决异步问题，结合社区已有规范，提出的一种异步编程解决方案。
+在ES6中，Promise本身一个构造函数，原型链上有then、catch和finally等方法。自身的静态方法有all、race、reject和resolve等。
+<img src="https://user-images.githubusercontent.com/25574040/59982651-4ae76080-9648-11e9-9de5-8bf183af7c76.png" alt="image"></p>
+<h2 id="promise的三个状态">Promise的三个状态</h2>
+<p><em>请求态pending</em>、<em>完成态fulfilled</em>、<em>拒绝态rejected</em>。</p>
+<p>一个需要记住的点：</p>
+<blockquote>
+<p>Promise的状态只可以由 <code>pending ——> fulfilled</code>或 <code>pending——> rejected</code>，一旦Promise状态发生改变，也就是说一旦Promise的状态变为fulfilled或者rejected，那么它的转态便不可再变。</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/25574040/59982649-4622ac80-9648-11e9-88af-a10f9e1464e7.png" alt="image"></p>
+<h2 id="手写一个promise">手写一个Promise</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#E1E4E8">(</span><span style="color:#F97583">function</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">    function</span><span style="color:#B392F0"> P</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">fn</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        var</span><span style="color:#E1E4E8"> self </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.fullfilleds </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [];</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.faileds </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        function</span><span style="color:#B392F0"> resolve</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">            self.fullfilled </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">            let</span><span style="color:#E1E4E8"> args </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> Array</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">prototype</span><span style="color:#E1E4E8">.slice.</span><span style="color:#B392F0">call</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">arguments</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">            self.result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> args;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> (self.fullfilleds.</span><span style="color:#79B8FF">length</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">					// 执行then方法注册的函数，真正的操作是将callbacks队列中的回调一一执行</span></span>
+<span class="line"><span style="color:#E1E4E8">                self.fullfilleds.</span><span style="color:#B392F0">forEach</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">fn</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">                    fn.</span><span style="color:#B392F0">apply</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">, args);</span></span>
+<span class="line"><span style="color:#E1E4E8">                })</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        function</span><span style="color:#B392F0"> reject</span><span style="color:#E1E4E8">() {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        fn.</span><span style="color:#B392F0">call</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">, resolve, reject);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">    P</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">prototype</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">then</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">fullfilled</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">failed</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.fullfilled) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            fullfilled.</span><span style="color:#B392F0">apply</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.result)</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.failed) {</span></span>
+<span class="line"><span style="color:#B392F0">            failed</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.failed);</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.fullfilleds.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">(fullfilled);</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.faileds.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">(failed);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> p</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> P</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">resolve</span><span style="color:#E1E4E8">,</span><span style="color:#FFAB70">reject</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">        resolve</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'sync'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    p.</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">d</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(d);</span></span>
+<span class="line"><span style="color:#E1E4E8">    });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    setTimeout</span><span style="color:#E1E4E8">(()</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">        p.</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">d</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(d </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        })</span></span>
+<span class="line"><span style="color:#E1E4E8">    }, </span><span style="color:#79B8FF">2000</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">)()</span></span></code></pre>
+<h2 id="promise的链式调用">Promise的链式调用</h2>
+<h3 id="回调地狱">回调地狱</h3>
+<p>使用回调解决异步编程的方案是一种比较简单直接方式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// demo 1</span></span>
+<span class="line"><span style="color:#B392F0">setTimeout</span><span style="color:#E1E4E8">( ()</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">	console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"1秒钟后输出"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}, </span><span style="color:#79B8FF">1000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#6A737D">// demo 2</span></span>
+<span class="line"><span style="color:#E1E4E8">Ajax.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'xxx'</span><span style="color:#E1E4E8">, {}, </span><span style="color:#F97583">function</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">data</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#6A737D">	// DO something</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<p>这种方案单层的回调还算可以，但如果回调里面又出现新的回调，产生嵌套。
+像这种</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#E1E4E8">Ajax.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'xxx'</span><span style="color:#E1E4E8">, {}, </span><span style="color:#F97583">function</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#E1E4E8">	Ajax.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'xxx'</span><span style="color:#E1E4E8">, {}, </span><span style="color:#F97583">function</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#E1E4E8">		Ajax.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'xxx'</span><span style="color:#E1E4E8">, {}, </span><span style="color:#F97583">function</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#6A737D">			// do something</span></span>
+<span class="line"><span style="color:#E1E4E8">		})</span></span>
+<span class="line"><span style="color:#E1E4E8">	});</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span></code></pre>
+<p>Promise的链式调用则不存在此问题，在可以控制顺序 的前提下，可以比较直观地编写异步代码。</p>
+<h3 id="异常捕获">异常捕获</h3>
+<p>在回调函数的方案中，由于回调函数执行栈与原函数分开，导致无法捕获异常。这一点在Promise中，借助rejected，可以将错误捕获。</p>
+<h3 id="调用者主权">调用者主权</h3>
+<p>不同于回调函数，Promise借助then方法可以控制程序的执行。如果通过回调函数，调用者是不知道异步程序结束然后调用回调的。异步程序结束后，回回调函数被异步程序自己在后台默默调用，调用者失去了程序的控制权。但Promise中的then方法不存在此问题，因为then方法的调用者还是主程序本身。</p>
+<h2 id="promise跟asyncawait的关系">Promise跟async/await的关系</h2>
+<p>简单地说，<code>async/await</code>是Promise的语法糖。因为async函数返回值是Promise类型，await 后面的语句吐出 的是一个Promise传给then方法的数据。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">(</span><span style="color:#F97583">async</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> f</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=</span><span style="color:#B392F0"> f</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">( a </span><span style="color:#F97583">instanceof</span><span style="color:#B392F0"> Promise</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">// true</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> b </span><span style="color:#F97583">=</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> a;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(b); </span><span style="color:#6A737D">// 1</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> c </span><span style="color:#F97583">=</span><span style="color:#F97583"> await</span><span style="color:#79B8FF"> Promise</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">resolve</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(c); </span><span style="color:#6A737D">// 2</span></span>
+<span class="line"><span style="color:#E1E4E8">})()</span></span></code></pre>
+<p><img src="https://user-images.githubusercontent.com/25574040/59982646-3d31db00-9648-11e9-95c0-75515ea4177e.png" alt="image"></p>
+<h3 id="asyncawait仅仅只是promise的语法糖吗">async/await仅仅只是Promise的语法糖吗</h3>
+<p>相对于Promise，在处理 then 的调用链时，async/await的写法能够更清晰准确的写出代码 并且也能优雅地解决回调地狱问题。这更符合人类的线性思维方式。</p>
+<p><a href="http://www.ituring.com.cn/article/66566">【翻译】Promises/A+规范-图灵社区</a>
+<a href="https://github.com/tildeio/rsvp.js">GitHub - tildeio/rsvp.js: A lightweight library that provides tools for organizing asynchronous code</a></p>   </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2026 HuFei. All rights reserved.
+<div class="license" data-astro-cid-sz7xmlte> <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" data-astro-cid-sz7xmlte>
+署名-非商业性使用 4.0 国际许可协议<br data-astro-cid-sz7xmlte>
+转载请保留原文链接及作者
+</a> </div> </footer> </body></html>

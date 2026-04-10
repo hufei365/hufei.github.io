@@ -1,6 +1,138 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><!-- <link rel="shortcut icon"  href="/favicon.svg" /> --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="icon" href="/favicon.ico"><link rel="manifest" href="/site.webmanifest"><meta name="generator" content="Astro v4.6.1"><!-- Font preloads --><link rel="preload" href="/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/JetBrainsMono-Bold.woff2" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/JetBrainsMono-Light.woff2" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://hufeispace.com/blog/0037_%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E7%9A%84%E5%87%A0%E4%B8%AA%E7%9D%80%E6%89%8B%E7%82%B9/"><!-- Primary Meta Tags --><title>实现响应式布局的几个着手点</title><meta name="title" content="实现响应式布局的几个着手点"><meta name="description" content=""><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://hufeispace.com/blog/0037_%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E7%9A%84%E5%87%A0%E4%B8%AA%E7%9D%80%E6%89%8B%E7%82%B9/"><meta property="og:title" content="实现响应式布局的几个着手点"><meta property="og:description" content=""><meta property="og:image" content="https://hufeispace.com/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hufeispace.com/blog/0037_%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E7%9A%84%E5%87%A0%E4%B8%AA%E7%9D%80%E6%89%8B%E7%82%B9/"><meta property="twitter:title" content="实现响应式布局的几个着手点"><meta property="twitter:description" content=""><meta property="twitter:image" content="https://hufeispace.com/blog-placeholder-1.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);--bgColor-transparent: #00000000;--bgColor-neutral-muted: #636e7b66}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Regular.woff2) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Light.woff2) format("woff");font-weight:200;font-style:normal;font-display:swap}@font-face{font-family:JetBrainsMono;src:url(/fonts/JetBrainsMono-Bold.woff2) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:JetBrainsMono,Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB;margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word;color:rgb(var(--gray-dark));line-height:1.5}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:2em 1em}h1,h2,h3,h4,h5,h6{margin:0 0 .5rem;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a{font-weight:700;text-decoration:none}a:hover{color:var(--accent)}p{margin-bottom:1em}.prose p{margin-bottom:2em}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;border-radius:8px}code{padding:.2em .4em;margin:0;font-size:85%;white-space:break-spaces;border-radius:6px;background-color:rgb(var(--gray-light));font-family:JetBrainsMono}pre{padding:.7em;border-radius:8px}pre>code{all:unset}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}@media (max-width: 720px){body{font-size:12px}main{padding:1em}}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{margin:0 auto;max-width:980px;display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}footer[data-astro-cid-sz7xmlte]{grid-area:footer;text-align:center;display:flex;align-items:center;justify-content:center;padding:1.5em}footer[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{font-weight:200;font-size:12px;color:#c8c8c8}footer[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:not(.unset){background-image:none}.gradient-link[data-astro-cid-sz7xmlte]{position:relative;box-decoration-break:clone;text-decoration:none}.gradient-link[data-astro-cid-sz7xmlte]:hover:after{transform:translateZ(0) scale(1)}.gradient-link[data-astro-cid-sz7xmlte]:after{left:0;right:0;bottom:-2px;content:"";height:2px;position:absolute;transform:translateZ(0) scaleX(0);transform-origin:left center;transition:all .15s ease-in-out}
-main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:960px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
-</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>HuFei&#39;s Site</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> HOME </a>  <a href="/blog" class="active" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> BLOG </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/hufei365" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>HuFei's GitHub</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img src="https://images.unsplash.com/photo-1727820880806-8da6deef7467?&w=720&h=360&fit=crop" alt="" data-astro-cid-bvzihdzo> </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2024-04-17T00:00:00.000Z"> 2024年4月17日 </time>  </div> <h1 data-astro-cid-bvzihdzo>实现响应式布局的几个着手点</h1> <hr data-astro-cid-bvzihdzo> </div>  <h1 id="2024年回头看响应式布局">2024年，回头看响应式布局</h1>
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="HuFei's Site" href="https://hufei.github.io/rss.xml"><meta name="generator" content="Astro v6.1.5"><style>@font-face{font-family:Atkinson-c7f4c4e8b285552f;src:url("/blog/_astro/fonts/106a7e6e8a12c2e6.woff") format("woff");font-display:swap;font-weight:400;font-style:normal;}@font-face{font-family:Atkinson-c7f4c4e8b285552f;src:url("/blog/_astro/fonts/d5f79d6a8e91244a.woff") format("woff");font-display:swap;font-weight:700;font-style:normal;}@font-face{font-family:"Atkinson-c7f4c4e8b285552f fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.3717%;ascent-override:80.1033%;descent-override:25.2587%;line-gap-override:0%;}@font-face{font-family:"Atkinson-c7f4c4e8b285552f fallback: Arial";src:local("Arial");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.3717%;ascent-override:80.1033%;descent-override:25.2587%;line-gap-override:0%;}:root{--font-atkinson:Atkinson-c7f4c4e8b285552f,"Atkinson-c7f4c4e8b285552f fallback: Arial",sans-serif;}</style><link rel="preload" href="/blog/_astro/fonts/106a7e6e8a12c2e6.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/blog/_astro/fonts/d5f79d6a8e91244a.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://hufei.github.io/blog/blog/0037_%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E7%9A%84%E5%87%A0%E4%B8%AA%E7%9D%80%E6%89%8B%E7%82%B9/"><!-- Primary Meta Tags --><title>实现响应式布局的几个着手点</title><meta name="title" content="实现响应式布局的几个着手点"><meta name="description" content><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://hufei.github.io/blog/blog/0037_%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E7%9A%84%E5%87%A0%E4%B8%AA%E7%9D%80%E6%89%8B%E7%82%B9/"><meta property="og:title" content="实现响应式布局的几个着手点"><meta property="og:description" content><meta property="og:image" content="https://hufei.github.io/blog/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hufei.github.io/blog/blog/0037_%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E7%9A%84%E5%87%A0%E4%B8%AA%E7%9D%80%E6%89%8B%E7%82%B9/"><meta property="twitter:title" content="实现响应式布局的几个着手点"><meta property="twitter:description" content><meta property="twitter:image" content="https://hufei.github.io/blog/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Theme initialization for dark mode support --><script>
+	// Initialize theme before page renders to prevent flash
+	(function() {
+		const storedTheme = localStorage.getItem('theme');
+		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+		document.documentElement.setAttribute('data-theme', theme);
+	})();
+</script><link rel="stylesheet" href="/blog/_astro/Header.BQCgicWo.css">
+<style>nav[data-astro-cid-qaanghzh]{margin-bottom:2rem}.breadcrumb[data-astro-cid-qaanghzh]{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0;font-size:.875rem;color:rgb(var(--gray))}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]{display:flex;align-items:center}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]:not(:last-child):after{content:"/";margin:0 .5rem;color:rgb(var(--gray))}.breadcrumb[data-astro-cid-qaanghzh] a[data-astro-cid-qaanghzh]{color:var(--accent);text-decoration:none;transition:opacity .2s ease}.breadcrumb[data-astro-cid-qaanghzh] a[data-astro-cid-qaanghzh]:hover{opacity:.8;text-decoration:underline}.breadcrumb[data-astro-cid-qaanghzh] span[data-astro-cid-qaanghzh][aria-current=page]{color:rgb(var(--gray-dark));font-weight:500}@media(max-width:768px){.breadcrumb[data-astro-cid-qaanghzh]{font-size:.8rem}.breadcrumb[data-astro-cid-qaanghzh] li[data-astro-cid-qaanghzh]:not(:last-child):after{margin:0 .375rem}}.tag-list[data-astro-cid-lga65v7i]{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin:.5rem 0}.tag-label[data-astro-cid-lga65v7i]{font-size:.875rem;font-weight:600;color:rgb(var(--gray));margin-right:.25rem}.tags[data-astro-cid-lga65v7i]{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}.tag[data-astro-cid-lga65v7i]{margin:0}.tag-link[data-astro-cid-lga65v7i]{display:inline-block;padding:.25rem .75rem;background:rgb(var(--gray-light));color:rgb(var(--gray-dark));text-decoration:none;border-radius:9999px;font-size:.875rem;font-weight:500;transition:all .2s ease;border:1px solid transparent}.tag-link[data-astro-cid-lga65v7i]:hover{background:var(--accent);color:#fff;transform:translateY(-1px);box-shadow:0 2px 8px #00000026}.tag-link[data-astro-cid-lga65v7i]:focus{outline:2px solid var(--accent);outline-offset:2px}.tag-more[data-astro-cid-lga65v7i]{display:inline-block;padding:.25rem .75rem;background:rgba(var(--gray),10%);color:rgb(var(--gray));border-radius:9999px;font-size:.875rem;font-style:italic}[data-theme=dark] .tag-link[data-astro-cid-lga65v7i]{background:rgb(var(--gray-light));color:rgb(var(--gray-dark))}[data-theme=dark] .tag-link[data-astro-cid-lga65v7i]:hover{background:var(--accent);color:var(--accent-dark);box-shadow:0 2px 8px #0000004d}@media(max-width:768px){.tag-list[data-astro-cid-lga65v7i],.tags[data-astro-cid-lga65v7i]{gap:.375rem}.tag-link[data-astro-cid-lga65v7i]{padding:.2rem .6rem;font-size:.8rem}}main[data-astro-cid-bvzihdzo]{width:calc(100% - 32px);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 32px);margin:auto;padding:1em;color:var(--text-color);font-size:17px;line-height:1.7}.prose[data-astro-cid-bvzihdzo] p[data-astro-cid-bvzihdzo]{margin-bottom:1.5em}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em;font-size:2.5rem}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:var(--footer-text)}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}.date[data-astro-cid-bvzihdzo] svg[data-astro-cid-bvzihdzo]{vertical-align:text-top;margin-right:.1rem;color:var(--accent)}@media(max-width:768px){.prose[data-astro-cid-bvzihdzo]{max-width:calc(100% - 24px);font-size:16px}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{font-size:2rem}}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <a href="#main" class="skip-link" data-astro-cid-3ef6ksr2>Skip to main content</a> <nav data-astro-cid-3ef6ksr2> <div class="site-title" data-astro-cid-3ef6ksr2><a href="https://hufei.github.io" target="_blank" data-astro-cid-3ef6ksr2>HuFei&#39;s Site</a></div> <div class="nav-container" data-astro-cid-3ef6ksr2> <div class="internal-links" id="nav-menu" data-astro-cid-3ef6ksr2> <a href="https://hufei.github.io" target="_blank" class="nav-link" data-astro-cid-3ef6ksr2>HOME</a> <a href="/" class="nav-link active" data-astro-cid-3ef6ksr2>BLOG</a> <div class="mobile-theme-toggle" data-astro-cid-3ef6ksr2> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" data-astro-cid-x3pjskd3> <svg width="1em" height="1em" data-astro-cid-x3pjskd3="true" class="sun-icon" data-icon="mdi:weather-sunny">   <symbol id="ai:mdi:weather-sunny" viewBox="0 0 24 24"><path fill="currentColor" d="M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0-7l2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10l1.76-3.77a7.13 7.13 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10l-4.14.36c.59-.51 1.12-1.14 1.54-1.86c.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44c.82 0 1.63-.17 2.37-.44z"/></symbol><use href="#ai:mdi:weather-sunny"></use>  </svg> <svg width="1em" height="1em" data-astro-cid-x3pjskd3="true" class="moon-icon" data-icon="mdi:weather-night">   <symbol id="ai:mdi:weather-night" viewBox="0 0 24 24"><path fill="currentColor" d="m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63 1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06 3zm3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7 1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76 1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31 10.98c3.02 3.01 7.84 3.12 10.98.31"/></symbol><use href="#ai:mdi:weather-night"></use>  </svg> </button> <script>
+	// Theme toggle function - initialization is handled in BaseHead.astro
+	window.toggleTheme = function() {
+		const html = document.documentElement;
+		const currentTheme = html.getAttribute('data-theme');
+		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+		
+		html.setAttribute('data-theme', newTheme);
+		localStorage.setItem('theme', newTheme);
+		
+		// Update aria-label for accessibility
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+	};
+
+	// Set initial aria-labels when page loads
+	document.addEventListener('DOMContentLoaded', function() {
+		const currentTheme = document.documentElement.getAttribute('data-theme');
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+
+		// Listen for system theme changes (only if user hasn't set a preference)
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+			if (!localStorage.getItem('theme')) {
+				const newTheme = e.matches ? 'dark' : 'light';
+				document.documentElement.setAttribute('data-theme', newTheme);
+				
+				// Update aria-labels
+				toggleButtons.forEach(button => {
+					button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+				});
+			}
+		});
+	});
+</script> </div> </div> <div class="desktop-theme-toggle" data-astro-cid-3ef6ksr2> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" data-astro-cid-x3pjskd3> <svg width="1em" height="1em" viewBox="0 0 24 24" data-astro-cid-x3pjskd3="true" class="sun-icon" data-icon="mdi:weather-sunny">   <use href="#ai:mdi:weather-sunny"></use>  </svg> <svg width="1em" height="1em" viewBox="0 0 24 24" data-astro-cid-x3pjskd3="true" class="moon-icon" data-icon="mdi:weather-night">   <use href="#ai:mdi:weather-night"></use>  </svg> </button> <script>
+	// Theme toggle function - initialization is handled in BaseHead.astro
+	window.toggleTheme = function() {
+		const html = document.documentElement;
+		const currentTheme = html.getAttribute('data-theme');
+		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+		
+		html.setAttribute('data-theme', newTheme);
+		localStorage.setItem('theme', newTheme);
+		
+		// Update aria-label for accessibility
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+	};
+
+	// Set initial aria-labels when page loads
+	document.addEventListener('DOMContentLoaded', function() {
+		const currentTheme = document.documentElement.getAttribute('data-theme');
+		const toggleButtons = document.querySelectorAll('.theme-toggle');
+		toggleButtons.forEach(button => {
+			button.setAttribute('aria-label', currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+
+		// Listen for system theme changes (only if user hasn't set a preference)
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+			if (!localStorage.getItem('theme')) {
+				const newTheme = e.matches ? 'dark' : 'light';
+				document.documentElement.setAttribute('data-theme', newTheme);
+				
+				// Update aria-labels
+				toggleButtons.forEach(button => {
+					button.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+				});
+			}
+		});
+	});
+</script> </div> </div> <button class="hamburger" id="hamburger-menu" aria-label="Open navigation menu" aria-controls="nav-menu" aria-expanded="false" data-astro-cid-3ef6ksr2> <span data-astro-cid-3ef6ksr2></span> <span data-astro-cid-3ef6ksr2></span> <span data-astro-cid-3ef6ksr2></span> </button> </nav> </header> <script>
+	(function () {
+		const hamburger = document.getElementById('hamburger-menu');
+		const navMenu = document.getElementById('nav-menu');
+		if (!hamburger || !navMenu) return;
+
+		function openMenu() {
+			hamburger.classList.add('open');
+			hamburger.setAttribute('aria-expanded', 'true');
+			navMenu.classList.add('open');
+		}
+
+		function closeMenu() {
+			hamburger.classList.remove('open');
+			hamburger.setAttribute('aria-expanded', 'false');
+			navMenu.classList.remove('open');
+		}
+
+		function toggleMenu() {
+			if (navMenu.classList.contains('open')) closeMenu(); else openMenu();
+		}
+
+		hamburger.addEventListener('click', (e) => {
+			e.stopPropagation();
+			toggleMenu();
+		});
+
+		// Close when a navigation link is clicked
+		navMenu.addEventListener('click', (e) => {
+			const target = e.target;
+			if (target && (target.tagName === 'A' || target.closest('a'))) {
+				closeMenu();
+			}
+		});
+
+		// Close on outside click
+		document.addEventListener('click', (e) => {
+			const target = e.target;
+			if (!navMenu.contains(target) && !hamburger.contains(target)) {
+				closeMenu();
+			}
+		});
+
+		// Close on Escape key
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape') closeMenu();
+		});
+	})();
+</script> <main id="main" data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img src="https://images.unsplash.com/photo-1775127433440-1161f353e14c?&#38;w=720&#38;h=360&#38;fit=crop" alt data-astro-cid-bvzihdzo="true" loading="lazy" decoding="async" width="1020" height="510"> </div> <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-qaanghzh> <ol class="breadcrumb" data-astro-cid-qaanghzh> <li data-astro-cid-qaanghzh> <a href="https://hufei.github.io" data-astro-cid-qaanghzh>Home</a> </li><li data-astro-cid-qaanghzh> <a href="/" data-astro-cid-qaanghzh>Blog</a> </li><li data-astro-cid-qaanghzh> <span aria-current="page" data-astro-cid-qaanghzh>实现响应式布局的几个着手点</span> </li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" data-astro-cid-bvzihdzo="true" data-icon="mdi:calendar">   <symbol id="ai:mdi:calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></symbol><use href="#ai:mdi:calendar"></use>  </svg> <time datetime="2024-04-16T00:00:00.000Z"> Apr 15, 2024 </time>  </div> <h1 data-astro-cid-bvzihdzo>实现响应式布局的几个着手点</h1> </div>  <h1 id="2024年回头看响应式布局">2024年，回头看响应式布局</h1>
 <p>现如今，人们通过各种设备访问互联网—无论是手机、笔记本电脑、台式机、平板电脑还是 电视、投影仪等。静态布局的网站早已不再适用，因为它们无法让用户在更换设备时仍能获得舒服的浏览体验。</p>
 <p>然而，在Web开发领域，响应式设计的概念往往给初学者带来陡峭的学习曲线。即使在掌握了很多高级概念之后，许多人仍然难以完全掌握响应式设计的原则。</p>
 <p>即使是成熟的网站，在响应速度方面也会出现问题。例如：
@@ -47,8 +179,7 @@ main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.he
 <span class="line"></span>
 <span class="line"><span style="color:#85E89D">main</span><span style="color:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#79B8FF">    height</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">calc</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">100</span><span style="color:#F97583">vh</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> 300</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">}</span></span>
-<span class="line"></span></code></pre>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
 <p><code>1vh</code>的意思是视窗高度（屏幕高度）的 1% 。因此，<code>100vh</code> 表示屏幕高度的 100%，而 <code>calc(100vh - 300px)</code> 表示 “屏幕高度的 100%减去 300px”。 这就确保了主部分将占据标题之后屏幕高度的剩余部分。</p>
 <p>也可以使用 <code>flex</code> 来实现这种效果，这个稍后再谈。</p>
 <h4 id="那么还需使用-px-吗">那么还需使用 px 吗？</h4>
@@ -84,8 +215,7 @@ main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.he
 <span class="line"><span style="color:#79B8FF">    grid-template-columns</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">repeat</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">auto-fill</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">minmax</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">200</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#F97583">fr</span><span style="color:#E1E4E8">));</span></span>
 <span class="line"><span style="color:#79B8FF">    gap</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">20</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#79B8FF">    justify-content</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">center</span><span style="color:#E1E4E8">;</span></span>
-<span class="line"><span style="color:#E1E4E8">}</span></span>
-<span class="line"></span></code></pre>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
 <p>有些人实际上选择使用 CSS Grid 多页面进行布局处理。其实，flex基本可以满足大部分的业务场景。但是，在一些特定场景，使用 CSS Grid 可以让代码变得更加“优雅”。另外，我们也可以在Flex Item中使用 CSS Grid；或者在CSS Grid中使用 flex，这有何不可呢？</p>
 <h3 id="媒体查询">媒体查询</h3>
 <p>在几乎所有的设计中，当屏幕达到一定尺寸时，你都需要让事物发生更大的变化。小屏幕有利于垂直滚动。对于较宽的电脑屏幕，则可以在水平方向容纳更多元素。</p>
@@ -103,8 +233,7 @@ main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.he
 <span class="line"><span style="color:#E1E4E8">    #</span><span style="color:#79B8FF">flex-container</span><span style="color:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#79B8FF">        flex-direction</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">row</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">}</span></span>
-<span class="line"></span></code></pre>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
 <p>这段代码意味着id为“flex-container”的元素对于宽度小于<code>768px</code>的屏幕将具有<code>flex-direction: column;</code>，但对于宽度为<code>768px</code>及以上的屏幕，该元素将具有<code>flex-direction: row;</code>。</p>
 <p>每种设备都有相对标准的像素宽度，因此你可以查找像素宽度，在此设置断点，用以控制从手机到平板电脑、平板电脑到笔记本电脑等不同大小设备的过渡效果。</p>
 <h3 id="响应式的图片属性">响应式的图片属性</h3>
@@ -130,5 +259,9 @@ main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.he
 <h2 id="结论">结论</h2>
 <p>实现响应式设计是一个取舍的过程，需要将精巧的 CSS 和策略性的 JavaScript 相融合。通过理解和应用上述七个关键概念，开发人员可以创建出不仅具有视觉吸引力，而且可以适应所有必要设备的网站。</p>
 <p>掌握响应式设计的过程就是不断学习和实践的过程；而且随着每个项目的进行，这一过程会变得更加 easy 。</p>
-<p>PS：希望这篇文章能让你不再对响应式设计感到迷惑和畏惧。</p>  </div> </article> </main> <footer class="text-sm leading-[1.75] mt-4" data-astro-cid-sz7xmlte> <div data-astro-cid-sz7xmlte> <span data-astro-cid-sz7xmlte> <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" class="text-slate-400 text-xs" data-astro-cid-sz7xmlte>署名-非商业性使用 4.0 国际许可协议<br data-astro-cid-sz7xmlte>
-转载请保留原文链接及作者</a> </span> </div> </footer>  </body></html>
+<p>PS：希望这篇文章能让你不再对响应式设计感到迷惑和畏惧。</p>   </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2026 HuFei. All rights reserved.
+<div class="license" data-astro-cid-sz7xmlte> <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" data-astro-cid-sz7xmlte>
+署名-非商业性使用 4.0 国际许可协议<br data-astro-cid-sz7xmlte>
+转载请保留原文链接及作者
+</a> </div> </footer> </body></html>

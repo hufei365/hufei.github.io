@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="HuFei's Site" href="https://hufei.github.io/rss.xml"><meta name="generator" content="Astro v6.1.5"><style>@font-face{font-family:Atkinson-c7f4c4e8b285552f;src:url("/blog/_astro/fonts/106a7e6e8a12c2e6.woff") format("woff");font-display:swap;font-weight:400;font-style:normal;}@font-face{font-family:Atkinson-c7f4c4e8b285552f;src:url("/blog/_astro/fonts/d5f79d6a8e91244a.woff") format("woff");font-display:swap;font-weight:700;font-style:normal;}@font-face{font-family:"Atkinson-c7f4c4e8b285552f fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.3717%;ascent-override:80.1033%;descent-override:25.2587%;line-gap-override:0%;}@font-face{font-family:"Atkinson-c7f4c4e8b285552f fallback: Arial";src:local("Arial");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.3717%;ascent-override:80.1033%;descent-override:25.2587%;line-gap-override:0%;}:root{--font-atkinson:Atkinson-c7f4c4e8b285552f,"Atkinson-c7f4c4e8b285552f fallback: Arial",sans-serif;}</style><link rel="preload" href="/blog/_astro/fonts/106a7e6e8a12c2e6.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/blog/_astro/fonts/d5f79d6a8e91244a.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://hufei.github.io/blog/blog/0023_%E6%89%8B%E5%86%99bind/"><!-- Primary Meta Tags --><title>手写bind</title><meta name="title" content="手写bind"><meta name="description" content="1.   Function.prototype.bind=function(ctx){  2.      let fn = this;  4.      if(!ctx){  5.          ctx = typeof window !== 'undefined' ? window : global;  8.      return"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://hufei.github.io/blog/blog/0023_%E6%89%8B%E5%86%99bind/"><meta property="og:title" content="手写bind"><meta property="og:description" content="1.   Function.prototype.bind=function(ctx){  2.      let fn = this;  4.      if(!ctx){  5.          ctx = typeof window !== 'undefined' ? window : global;  8.      return"><meta property="og:image" content="https://hufei.github.io/blog/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hufei.github.io/blog/blog/0023_%E6%89%8B%E5%86%99bind/"><meta property="twitter:title" content="手写bind"><meta property="twitter:description" content="1.   Function.prototype.bind=function(ctx){  2.      let fn = this;  4.      if(!ctx){  5.          ctx = typeof window !== 'undefined' ? window : global;  8.      return"><meta property="twitter:image" content="https://hufei.github.io/blog/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Theme initialization for dark mode support --><script>
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="HuFei's Site" href="https://hufei.github.io/rss.xml"><meta name="generator" content="Astro v6.1.5"><style>@font-face{font-family:Atkinson-c7f4c4e8b285552f;src:url("/blog/_astro/fonts/106a7e6e8a12c2e6.woff") format("woff");font-display:swap;font-weight:400;font-style:normal;}@font-face{font-family:Atkinson-c7f4c4e8b285552f;src:url("/blog/_astro/fonts/d5f79d6a8e91244a.woff") format("woff");font-display:swap;font-weight:700;font-style:normal;}@font-face{font-family:"Atkinson-c7f4c4e8b285552f fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.3717%;ascent-override:80.1033%;descent-override:25.2587%;line-gap-override:0%;}@font-face{font-family:"Atkinson-c7f4c4e8b285552f fallback: Arial";src:local("Arial");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.3717%;ascent-override:80.1033%;descent-override:25.2587%;line-gap-override:0%;}:root{--font-atkinson:Atkinson-c7f4c4e8b285552f,"Atkinson-c7f4c4e8b285552f fallback: Arial",sans-serif;}</style><link rel="preload" href="/blog/_astro/fonts/106a7e6e8a12c2e6.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/blog/_astro/fonts/d5f79d6a8e91244a.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://hufei.github.io/blog/blog/0043_transfer_size_vs_resource_size/"><!-- Primary Meta Tags --><title>Transfer Size vs. Resource Size</title><meta name="title" content="Transfer Size vs. Resource Size"><meta name="description" content="roman-logov-f5QWC1a3tOA-unsplash.jpg [https://s2.loli.net/2024/06/01/epUS1MO8bwNn9os.jpg] 原文：【Transfer Size vs. Resource Size】 [https://webperf.tips/tip/resource-size-vs-transfer-size/]"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://hufei.github.io/blog/blog/0043_transfer_size_vs_resource_size/"><meta property="og:title" content="Transfer Size vs. Resource Size"><meta property="og:description" content="roman-logov-f5QWC1a3tOA-unsplash.jpg [https://s2.loli.net/2024/06/01/epUS1MO8bwNn9os.jpg] 原文：【Transfer Size vs. Resource Size】 [https://webperf.tips/tip/resource-size-vs-transfer-size/]"><meta property="og:image" content="https://hufei.github.io/blog/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hufei.github.io/blog/blog/0043_transfer_size_vs_resource_size/"><meta property="twitter:title" content="Transfer Size vs. Resource Size"><meta property="twitter:description" content="roman-logov-f5QWC1a3tOA-unsplash.jpg [https://s2.loli.net/2024/06/01/epUS1MO8bwNn9os.jpg] 原文：【Transfer Size vs. Resource Size】 [https://webperf.tips/tip/resource-size-vs-transfer-size/]"><meta property="twitter:image" content="https://hufei.github.io/blog/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Theme initialization for dark mode support --><script>
 	// Initialize theme before page renders to prevent flash
 	(function() {
 		const storedTheme = localStorage.getItem('theme');
@@ -132,28 +132,74 @@
 			if (e.key === 'Escape') closeMenu();
 		});
 	})();
-</script> <main id="main" data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img src="https://images.unsplash.com/photo-1771095436222-e20a8737fcd1?&#38;w=720&#38;h=360&#38;fit=crop" alt data-astro-cid-bvzihdzo="true" loading="lazy" decoding="async" width="1020" height="510"> </div> <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-qaanghzh> <ol class="breadcrumb" data-astro-cid-qaanghzh> <li data-astro-cid-qaanghzh> <a href="https://hufei.github.io" data-astro-cid-qaanghzh>Home</a> </li><li data-astro-cid-qaanghzh> <a href="/" data-astro-cid-qaanghzh>Blog</a> </li><li data-astro-cid-qaanghzh> <span aria-current="page" data-astro-cid-qaanghzh>手写bind</span> </li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" data-astro-cid-bvzihdzo="true" data-icon="mdi:calendar">   <symbol id="ai:mdi:calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></symbol><use href="#ai:mdi:calendar"></use>  </svg> <time datetime="2019-06-26T00:00:00.000Z"> Jun 25, 2019 </time>  </div> <h1 data-astro-cid-bvzihdzo>手写bind</h1> </div>  <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#79B8FF"> Function</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">prototype</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">bind</span><span style="color:#F97583">=function</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">ctx</span><span style="color:#E1E4E8">){</span></span>
-<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> fn </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">;</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
-<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">ctx){</span></span>
-<span class="line"><span style="color:#E1E4E8">        ctx </span><span style="color:#F97583">=</span><span style="color:#F97583"> typeof</span><span style="color:#E1E4E8"> window </span><span style="color:#F97583">!==</span><span style="color:#9ECBFF"> 'undefined'</span><span style="color:#F97583"> ?</span><span style="color:#E1E4E8"> window </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> global;</span></span>
-<span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
-<span class="line"><span style="color:#F97583">    return</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">...</span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">){</span></span>
-<span class="line"><span style="color:#E1E4E8">        ctx.fn</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">fn;</span></span>
-<span class="line"><span style="color:#E1E4E8">        ctx.</span><span style="color:#B392F0">fn</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">...</span><span style="color:#E1E4E8">args)</span></span>
-<span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> f</span><span style="color:#E1E4E8">(){</span></span>
-<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.name);</span></span>
-<span class="line"><span style="color:#E1E4E8">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> o </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {name: </span><span style="color:#9ECBFF">'o'</span><span style="color:#E1E4E8">};</span></span>
-<span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> b </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {name: </span><span style="color:#9ECBFF">'b'</span><span style="color:#E1E4E8">};</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#E1E4E8">f.</span><span style="color:#B392F0">bind</span><span style="color:#E1E4E8">(o)();</span></span>
-<span class="line"><span style="color:#E1E4E8">f.</span><span style="color:#B392F0">bind</span><span style="color:#E1E4E8">(b)();</span></span></code></pre>   </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+</script> <main id="main" data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img src="https://images.unsplash.com/photo-1774306612487-112231fcde83?&#38;w=720&#38;h=360&#38;fit=crop" alt data-astro-cid-bvzihdzo="true" loading="lazy" decoding="async" width="1020" height="510"> </div> <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-qaanghzh> <ol class="breadcrumb" data-astro-cid-qaanghzh> <li data-astro-cid-qaanghzh> <a href="https://hufei.github.io" data-astro-cid-qaanghzh>Home</a> </li><li data-astro-cid-qaanghzh> <a href="/" data-astro-cid-qaanghzh>Blog</a> </li><li data-astro-cid-qaanghzh> <span aria-current="page" data-astro-cid-qaanghzh>Transfer Size vs. Resource Size</span> </li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" data-astro-cid-bvzihdzo="true" data-icon="mdi:calendar">   <symbol id="ai:mdi:calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></symbol><use href="#ai:mdi:calendar"></use>  </svg> <time datetime="2024-05-29T00:00:00.000Z"> May 28, 2024 </time>  </div> <h1 data-astro-cid-bvzihdzo>Transfer Size vs. Resource Size</h1> </div>  <p><img src="https://s2.loli.net/2024/06/01/epUS1MO8bwNn9os.jpg" alt="roman-logov-f5QWC1a3tOA-unsplash.jpg"></p>
+<p>原文：<a href="https://webperf.tips/tip/resource-size-vs-transfer-size/">【Transfer Size vs. Resource Size】</a></p>
+<h1 id="transfer-size-vs-resource-size">Transfer Size vs. Resource Size</h1>
+<p>Web应用程序传递给用户的资源（如图像、JavaScript文件、CSS文件等）的大小，直接影响着应用的性能表现。</p>
+<p>在这一过程中，有两个核心概念至关重要：<strong>传输大小（Transfer Size）<strong>和</strong>资源大小（Resource Size）</strong>。</p>
+<p>本文将探讨这两个概念对性能的具体影响。</p>
+<h3 id="传输大小transfer-size">传输大小（Transfer Size）</h3>
+<p>Web应用程序通常需要从远程服务器获取资源，并将它们加载到用户的浏览器中。</p>
+<p><strong>Transfer Size</strong>指的是通过网络传输所需的总字节数，有时也被称作<strong>bytes over the wire</strong>。这个数值包括了传输的有效数据以及请求和响应的头部信息。
+<img src="https://github.com/hufei365/notebook/assets/25574040/e16b6637-2db9-49e7-ab9e-5509c1cd1339" alt="image"></p>
+<p>一般来说，资源的传输大小越大，其通过网络传输所需的时间也就越长。</p>
+<h3 id="优化传输大小">优化传输大小</h3>
+<p>为了减少网络资源传输所需的时间，存在多种技术手段。</p>
+<h4 id="资源压缩">资源压缩</h4>
+<p>利用 gzip、brotli 等标准压缩算法，可以显著降低传输大小。</p>
+<p>这通常是通过服务器或构建过程，在资源传输给用户之前进行压缩实现的：
+<img src="https://github.com/hufei365/notebook/assets/25574040/68bc10f1-7f65-4ac3-98b6-cafcefa0c845" alt="image"></p>
+<p>例如，某个资源的传输大小为24 kB，这意味着24 kB的数据通过网络传输。</p>
+<p>资源一旦传输完成，用户的浏览器需要对其进行解压缩，以便进一步处理：
+<img src="https://github.com/hufei365/notebook/assets/25574040/12818f6d-6c6e-4144-86ae-8691669fe5bb" alt="image"></p>
+<p>通过在资源发送到网络前进行<strong>压缩</strong>，Web应用程序优化了向用户交付资源的流程。</p>
+<h4 id="资源缓存">资源缓存</h4>
+<p>大多数Web应用程序会利用浏览器缓存，将资源持久化存储在用户的设备上。</p>
+<p>当资源被缓存后，就无需再通过网络传输任何数据。
+<img src="https://github.com/hufei365/notebook/assets/25574040/612d8955-8eaa-47bf-9d39-727defef0727" alt="image"></p>
+<p>这也是缓存如此受欢迎的原因之一——毕竟，如果资源是从用户的浏览器缓存中加载的，它的网络传输大小为0字节！</p>
+<h3 id="资源大小">资源大小</h3>
+<p>与传输大小不同，资源大小完全独立于网络概念；它简单地表示构成资源的总字节数，无论是否应用了缓存或压缩手段。</p>
+<p>例如，一个JavaScript文件的资源大小为80 kB，但其传输大小可能仅为24 kB：
+<img src="https://github.com/hufei365/notebook/assets/25574040/58e1a4c6-46be-4cb2-a9f9-df3dab216db5" alt="image"></p>
+<h3 id="资源大小的成本">资源大小的成本</h3>
+<p>Web开发者普遍存在一个误解，认为如果资源经过优化交付或缓存，就不会对Web应用程序的性能造成影响。</p>
+<p>然而，事实远非如此！</p>
+<p>一旦资源传输到用户的浏览器（或从缓存中加载），我们就会看到它对用户CPU的影响。</p>
+<p>通常，资源的资源越大，在用户CPU上处理所需的时间就越长。</p>
+<blockquote>
+<p>注意：用户的CPU和硬件通常比开发者的至少差一个档次，低配置的硬件会进一步增加资源大小的成本。</p>
+</blockquote>
+<h4 id="示例javascript的成本">示例：JavaScript的成本</h4>
+<p>例如，如果我们将一个未压缩的80 kB JavaScript文件加载到用户的浏览器中，这意味着80 kB的文件需要在用户的设备上进行解析、编译和执行。这一成本与资源的传输速度无关，也与它是否从浏览器缓存中加载无关。
+<img src="https://github.com/hufei365/notebook/assets/25574040/6bf4d11b-16ca-46ce-8e9c-21cc6f03cfdd" alt="image"></p>
+<h4 id="示例图像的成本">示例：图像的成本</h4>
+<p>图像需要在用户的设备上解码后才能显示在屏幕上。这一成本与图像的传输速度或是否从浏览器缓存中加载无关：
+<img src="https://github.com/hufei365/notebook/assets/25574040/2362cdb7-3aad-42f7-bf3f-18b4c85cfd28" alt="image"></p>
+<h3 id="优化资源大小">优化资源大小</h3>
+<p>存在多种技术来优化资源大小，每个技术的目标都是从根本上减少资源的大小及其对用户CPU的影响。</p>
+<p>这些技术包括：</p>
+<ul>
+<li>JavaScript和CSS的压缩</li>
+<li>图像格式的优化</li>
+<li>JavaScript代码的拆分</li>
+<li>资源的延迟加载</li>
+</ul>
+<p>通过减少资源的大小，你可以直接最小化它对用户CPU的负载。</p>
+<p>例如，浏览器解析和编译一个10 kB的JavaScript文件，比解析和编译一个80 kB的文件所需的时间要少：
+<img src="https://github.com/hufei365/notebook/assets/25574040/92427a1c-3fab-4d86-825e-6b807d3b9907" alt="image"></p>
+<blockquote>
+<p>有了这些知识，当你将一个新的JavaScript库（或其他依赖项）导入到你的Web应用程序时，要格外小心！当一个库声称只消耗”N字节”时，确保这说的是压缩字节还是资源字节。</p>
+</blockquote>
+<h3 id="优化资源大小有助于传输大小">优化资源大小有助于传输大小</h3>
+<p>当你优化资源大小时，你也直接优化了传输大小！</p>
+<p>由于传输大小通常是资源压缩的结果，更小的资源会产生更小的压缩资源！</p>
+<p>例如，如果你将一个80 kB资源大小的JavaScript有效载荷优化和修剪到10 kB的资源大小，这对用户的CPU利用率是一个巨大的改进。它也对传输大小是一个巨大的改进。</p>
+<p>压缩一个10 kB的资源会产生大约4 kB的传输大小，这可以比压缩的80 kB资源在大约24 kB的传输大小下更快地通过网络传输！
+<img src="https://github.com/hufei365/notebook/assets/25574040/7936ca8c-5c3f-4780-85a7-a9dd85626dd8" alt="image"></p>
+<h3 id="测量资源和传输大小">测量资源和传输大小</h3>
+<p>为了本地测量资源和传输大小，可以使用 DevTools 中的 Network 标签。</p>
+<p>您还可以利用<code>performance</code>标签 来收集用户在运行该资源时的耗时大小。</p>   </div> </article> </main> <footer data-astro-cid-sz7xmlte>
 &copy; 2026 HuFei. All rights reserved.
 <div class="license" data-astro-cid-sz7xmlte> <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" data-astro-cid-sz7xmlte>
 署名-非商业性使用 4.0 国际许可协议<br data-astro-cid-sz7xmlte>

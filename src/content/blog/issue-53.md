@@ -21,7 +21,7 @@ ChatGPT、Claude、Midjourney、Cursor、编程智能体——这些一个个耳
 
 ### 1. 神经网络（Neural Networks）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/1ab949d5-6b03-4093-96b9-499d0d8c0d6e" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/nHy2/img_aHR0cHM6.png" />
 
 神经网络是每个 AI 模型的"大脑"。
 
@@ -41,7 +41,7 @@ GPT-4 拥有约 1.8 万亿个参数，Claude 3 Opus 拥有数千亿个参数—�
 
 ### 2. 分词（Tokenization）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/99a8840d-9715-44a6-9415-65c19e831afe" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/W5be/img_aHR0cHM6.png" />
 
 AI 读取文本之前，会先将其拆分成称为 **Token（词元）** 的基本单元。
 
@@ -63,7 +63,7 @@ Token 是可复用的基本构件。即便模型从未见过某个词，也能�
 
 ### 3. 嵌入（Embeddings）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/da593b4c-2fd3-42f2-b975-d53d9f239ef1" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/h0Xw/img_aHR0cHM6.png" />
 
 
 文本完成分词后，每个 Token 会被转换为一个数字——即**嵌入向量**，用于表征语义。
@@ -87,7 +87,7 @@ Token 是可复用的基本构件。即便模型从未见过某个词，也能�
 
 ### 4. 注意力机制（Attention）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/a87c4de0-3723-48e7-bd5c-94d087f6650d" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/h0Xw/img_aHR0cHM6.png" />
 
 
 `"Apple"` 这个词在不同语境下含义迥异：
@@ -113,7 +113,7 @@ Token 是可复用的基本构件。即便模型从未见过某个词，也能�
 
 ### 5. Transformer 架构（Transformers）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/12326748-8033-4af8-8eba-0a2c309407b2" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/W8tq/img_aHR0cHM6.png" />
 
 
 Transformer 是当今几乎所有 AI 模型的底层架构。
@@ -143,7 +143,7 @@ GPT、Claude、Gemini、Llama、Mistral——全部基于 Transformer。
 
 ### 6. 大语言模型（LLMs，Large Language Models）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/ee656457-5aee-4df2-bae1-244c65640eb2" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/Jtp9/img_aHR0cHM6.png" />
 
 
 大语言模型是在海量文本上训练的 Transformer 模型。
@@ -170,7 +170,7 @@ ChatGPT、Claude、Gemini——都是大语言模型。
 
 ### 7. 上下文窗口（Context Window）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/6c1e7268-acb3-4a29-934b-a1157adc2e54" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/7qpR/img_aHR0cHM6.png" />
 
 
 每个 AI 模型都有记忆容量上限，称为**上下文窗口**。
@@ -200,7 +200,7 @@ ChatGPT、Claude、Gemini——都是大语言模型。
 
 ### 8. 温度参数（Temperature）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/51152661-cc58-4e46-9e12-0f5636c44a6d" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/No6q/img_aHR0cHM6.png" />
 
 
 AI 生成文本时，并不总是选择最可能出现的下一个词。它有一个名为**温度**的调节旋钮：
@@ -221,7 +221,7 @@ AI 生成文本时，并不总是选择最可能出现的下一个词。它有�
 
 ### 9. 幻觉（Hallucination）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/774d1987-aba6-4979-8fcd-dd867e0a7305" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/np5S/img_aHR0cHM6.png" />
 
 AI 会满怀信心地撒谎。
 
@@ -246,7 +246,7 @@ AI 会满怀信心地撒谎。
 
 ### 10. 提示词工程（Prompt Engineering）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/6034ae2c-1e56-40b9-a84b-42a3119a8e0f" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/io7G/img_aHR0cHM6.png" />
 
 
 **你的提问方式决定一切。**
@@ -278,7 +278,7 @@ AI 会满怀信心地撒谎。
 
 ### 11. 迁移学习（Transfer Learning）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/7fd2c68c-10da-4632-885c-427ac480a8da" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/nFi3/img_aHR0cHM6.png" />
 
 从零开始训练代价极高：海量数据、巨大算力、数周时长。
 
@@ -302,7 +302,7 @@ AI 会满怀信心地撒谎。
 
 ### 12. 微调（Fine-Tuning）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/fcf9fb97-c786-4883-8a0c-003e17538cfa" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/Nc3j/img_aHR0cHM6.png" />
 
 迁移学习是理念，**微调**是实现手段。
 
@@ -325,7 +325,7 @@ AI 会满怀信心地撒谎。
 
 ### 13. 基于人类反馈的强化学习（RLHF，Reinforcement Learning from Human Feedback）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/a658b8e7-7c68-458b-8444-a21603f7e6c4" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/nc5M/img_aHR0cHM6.png" />
 
 
 微调让模型专业化，**RLHF** 让模型变得有益且安全。
@@ -352,7 +352,7 @@ AI 会满怀信心地撒谎。
 
 ### 14. 低秩适配（LoRA，Low-Rank Adaptation）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/3fd97593-fd2c-486e-9879-f893612622e1" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/5mnV/img_aHR0cHM6.png" />
 
 微调效果强大，但成本高昂——更新数十亿个参数需要多块 GPU 和完善的基础设施。
 
@@ -378,7 +378,7 @@ LoRA 是开源 AI 爆炸式增长的关键。
 
 ### 15. 量化（Quantization）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/21a88339-3a3e-4c88-8e38-a07e63625c18" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/vH2c/img_aHR0cHM6.png" />
 
 
 模型体积越来越大，运行所需的内存和算力也随之攀升。
@@ -405,7 +405,7 @@ LoRA 是开源 AI 爆炸式增长的关键。
 
 ### 16. 检索增强生成（RAG，Retrieval-Augmented Generation）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/8bd9b3c4-2803-4670-9758-4e3835ee711c" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/8mVi/img_aHR0cHM6.png" />
 
 
 大语言模型会产生幻觉，根源在于它只能凭记忆作答。
@@ -433,7 +433,7 @@ LoRA 是开源 AI 爆炸式增长的关键。
 
 ### 17. 向量数据库（Vector Databases）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/3607c267-bd30-44fc-a25c-dcb54b893773" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/a4nI/img_aHR0cHM6.png" />
 
 
 RAG 需要快速找到正确的文档。
@@ -460,7 +460,7 @@ RAG 需要快速找到正确的文档。
 
 ### 18. AI 智能体（AI Agents）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/b9ddef71-c077-4573-a65c-fb38bbe7ac61" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/7nYb/img_aHR0cHM6.png" />
 
 
 大语言模型负责**回复消息**，AI 智能体则能够**真正采取行动**。
@@ -499,7 +499,7 @@ AI 智能体将 AI 从一个聊天机器人，变成一位真正的工作伙伴�
 
 ### 19. 思维链（CoT，Chain of Thought）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/0f280edb-87cf-4b15-abc7-b3ff486d3ed7" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/4hYj/img_aHR0cHM6.png" />
 
 
 有时 AI 给出错误答案，并非因为它不够聪明，而是因为**它跳得太快**。
@@ -527,7 +527,7 @@ AI 智能体将 AI 从一个聊天机器人，变成一位真正的工作伙伴�
 
 ### 20. 扩散模型（Diffusion Models）
 
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/b13d5c6c-0d97-41d8-91c8-e1f6f6675e8e" />
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/fIk0/img_aHR0cHM6.png" />
 
 
 前面讨论的一切都关乎文本。**扩散模型**解释的是 AI 如何生成图像。

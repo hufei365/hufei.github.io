@@ -1,0 +1,581 @@
+<!DOCTYPE html><style>.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:0 2px 8px #0000001f}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 32px);margin:auto;padding:1em}.breadcrumb[data-astro-cid-bvzihdzo]{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0 0 1rem;font-size:.875rem;color:#6b7280}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]{display:flex;align-items:center}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]:not(:last-child):after{content:"/";margin:0 .5rem;color:#9ca3af}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]{color:#3b82f6;text-decoration:none}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]:hover{text-decoration:underline}.title[data-astro-cid-bvzihdzo]{margin-bottom:2rem}.date[data-astro-cid-bvzihdzo]{display:flex;align-items:center;gap:.4rem;font-size:.875rem;color:#6b7280;margin-bottom:.5rem}h1[data-astro-cid-bvzihdzo]{font-size:2rem;font-weight:700;line-height:1.3;margin:0}.content[data-astro-cid-bvzihdzo]{line-height:1.8}.content[data-astro-cid-bvzihdzo] img{max-width:100%;border-radius:8px}.content[data-astro-cid-bvzihdzo] pre{padding:1rem;border-radius:8px;overflow-x:auto;font-size:.875rem}.content[data-astro-cid-bvzihdzo] h2{margin-top:2rem;font-size:1.5rem}.content[data-astro-cid-bvzihdzo] h3{margin-top:1.5rem;font-size:1.25rem}.content[data-astro-cid-bvzihdzo] blockquote{border-left:3px solid #c3dafe;padding-left:1rem;color:#4b5563;margin:1rem 0}.content[data-astro-cid-bvzihdzo] hr{border:none;border-top:1px solid #e5e7eb;margin:2rem 0}
+</style><article data-astro-cid-bvzihdzo>  <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-bvzihdzo> <ol class="breadcrumb" data-astro-cid-bvzihdzo> <li data-astro-cid-bvzihdzo><a href="/" data-astro-cid-bvzihdzo>Home</a></li> <li data-astro-cid-bvzihdzo><a href="/blog/" data-astro-cid-bvzihdzo>Blog</a></li> <li data-astro-cid-bvzihdzo><span aria-current="page" data-astro-cid-bvzihdzo>20 个 AI 核心概念</span></li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" viewBox="0 0 24 24" data-astro-cid-bvzihdzo> <path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z" data-astro-cid-bvzihdzo></path> </svg> <time datetime="2026-05-27T13:05:07.000Z" data-astro-cid-bvzihdzo>May 27, 2026</time> </div> <h1 data-astro-cid-bvzihdzo>20 个 AI 核心概念</h1> </div> <div class="content" data-astro-cid-bvzihdzo>  <p>人人都在用 AI，但你的身边又有多少人真正理解它的运作原理。</p>
+<p>大家随口抛出“Transformer”、“嵌入”、“RAG”、“智能体”、“RLHF”这些词…………仿佛所有人都心知肚明。</p>
+<p>实际，一旦建立起正确的思维模型，AI 其实并没有那么复杂。</p>
+<p>ChatGPT、Claude、Midjourney、Cursor、编程智能体——这些一个个耳熟能详的词语，读完下面这 20 个概念，你就全明白了。</p>
+<p>不需要博士学位，也没有行话术语，只有简洁的解释与直观的示意。</p>
+<hr>
+<h2 id="第一部分ai-的底层原理一切构建于此的基础">第一部分：AI 的底层原理（一切构建于此的基础）</h2>
+<h3 id="1-神经网络neural-networks">1. 神经网络（Neural Networks）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/nHy2/img_aHR0cHM6.png">
+<p>神经网络是每个 AI 模型的”大脑”。</p>
+<p>神经网络是一条由层级构成的处理管道：</p>
+<blockquote>
+<p>数据进入输入层 → 经过隐藏层处理 → 以预测结果输出</p>
+</blockquote>
+<p>每条连接都有一个”权重”——一个微小的数值，控制一个神经元对下一个神经元的影响程度。</p>
+<p><strong>训练</strong> = 不断调整数十亿个权重，直到输出结果足够准确。</p>
+<p>思路简单，规模惊人。</p>
+<p>GPT-4 拥有约 1.8 万亿个参数，Claude 3 Opus 拥有数千亿个参数——全部源于同一个基本概念：具有可调连接的多层神经元。</p>
+<hr>
+<h3 id="2-分词tokenization">2. 分词（Tokenization）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/W5be/img_aHR0cHM6.png">
+<p>AI 读取文本之前，会先将其拆分成称为 <strong>Token（词元）</strong> 的基本单元。</p>
+<p>Token 并不总是完整的单词：</p>
+<ul>
+<li><code>"playing"</code> → <code>"play"</code> + <code>"ing"</code></li>
+<li><code>"ChatGPT"</code> → <code>"Chat"</code> + <code>"G"</code> + <code>"PT"</code></li>
+<li><code>"dog"</code> → <code>"dog"</code>（保持完整）</li>
+</ul>
+<p><strong>为什么不直接用完整单词？</strong></p>
+<p>语言本身是混乱的——新词、拼写错误、多语言混杂。若使用固定词汇表，规模将大得无法管理。</p>
+<p>Token 是可复用的基本构件。即便模型从未见过某个词，也能通过将其拆解为熟悉的片段来理解它。</p>
+<p>粗略换算：1 个 Token ≈ 0.75 个英文单词；1000 个 Token ≈ 750 个英文单词。</p>
+<hr>
+<h3 id="3-嵌入embeddings">3. 嵌入（Embeddings）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/h0Xw/img_aHR0cHM6.png">
+<p>文本完成分词后，每个 Token 会被转换为一个数字——即<strong>嵌入向量</strong>，用于表征语义。</p>
+<p>可以把它想象成词语的”谷歌地图”：</p>
+<ul>
+<li><code>"医生"</code> 和 <code>"护士"</code> 在向量空间中彼此相邻</li>
+<li><code>"医生"</code> 和 <code>"披萨"</code> 则相距甚远</li>
+<li><code>"国王"</code> - <code>"男性"</code> + <code>"女性"</code> ≈ <code>"女王"</code></li>
+</ul>
+<p>模型并不像人类那样”理解”词语，它理解的是<strong>距离</strong>与<strong>方向</strong>。</p>
+<p>这一机制支撑着：</p>
+<ul>
+<li>语义搜索</li>
+<li>推荐系统</li>
+<li>RAG 系统</li>
+</ul>
+<p>凡是能够”理解意图”的应用，底层都在使用嵌入。</p>
+<hr>
+<h3 id="4-注意力机制attention">4. 注意力机制（Attention）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/h0Xw/img_aHR0cHM6.png">
+<p><code>"Apple"</code> 这个词在不同语境下含义迥异：</p>
+<ul>
+<li><code>"I ate an Apple"</code> → 水果</li>
+<li><code>"I bought Apple stock"</code> → 公司</li>
+</ul>
+<p>仅凭嵌入无法区分这种差异，而<strong>注意力机制</strong>可以。</p>
+<p>注意力机制让句中每个词都能”观察”其他所有词，并判断什么信息更重要。</p>
+<p>在句子 <code>"She bought shares in Apple"</code> 中：</p>
+<ul>
+<li><code>"Apple"</code> 会对 <code>"shares"</code> 和 <code>"bought"</code> 给予高度关注</li>
+<li>模型由此推断：这里指的是公司，而非水果</li>
+</ul>
+<p><strong>引入注意力机制之前</strong>，模型从左到右逐字处理——缓慢且局限。</p>
+<p><strong>引入注意力机制之后</strong>，模型可以一次性审视整个句子。</p>
+<p>这一单一创新，开启了现代 AI 的大门。</p>
+<hr>
+<h3 id="5-transformer-架构transformers">5. Transformer 架构（Transformers）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/W8tq/img_aHR0cHM6.png">
+<p>Transformer 是当今几乎所有 AI 模型的底层架构。</p>
+<p>2017 年，一篇名为《Attention Is All You Need》（注意力就是一切）的论文首次提出了这一架构。</p>
+<p><strong>突破性创新</strong>：不再逐词处理文本，而是利用注意力机制对所有内容<strong>并行处理</strong>。</p>
+<p><strong>工作流程</strong>：</p>
+<blockquote>
+<p>文本 → Token → 嵌入 → 多层注意力层叠加 → 输出</p>
+</blockquote>
+<p>每一层逐步深化理解：</p>
+<ul>
+<li><strong>浅层</strong>：语法与基础结构</li>
+<li><strong>中间层</strong>：词语之间的关系</li>
+<li><strong>深层</strong>：复杂推理</li>
+</ul>
+<p>最终成果：训练速度大幅提升，输出质量显著改善。</p>
+<p>GPT、Claude、Gemini、Llama、Mistral——全部基于 Transformer。</p>
+<p>理解了这一架构，你就理解了现代 AI 的核心。</p>
+<hr>
+<h2 id="第二部分大语言模型的工作原理你与-ai-对话时究竟发生了什么">第二部分：大语言模型的工作原理（你与 AI 对话时，究竟发生了什么）</h2>
+<h3 id="6-大语言模型llmslarge-language-models">6. 大语言模型（LLMs，Large Language Models）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/Jtp9/img_aHR0cHM6.png">
+<p>大语言模型是在海量文本上训练的 Transformer 模型。</p>
+<p>训练数据来源广泛：书籍、网页、代码、维基百科、Reddit——合计数万亿个 Token。</p>
+<p>训练任务听起来简单得难以置信：</p>
+<blockquote>
+<p><strong>预测下一个 Token。</strong></p>
+</blockquote>
+<p>就这么简单。</p>
+<p>但当这一操作在数万亿个样本上反复执行时，奇迹便发生了。</p>
+<p>模型先学会语法，再掌握推理，进而学会编写代码、翻译语言、解答数学题。</p>
+<p>没有人专门教它这些——这一切都<strong>涌现</strong>于大规模的下一词预测任务。</p>
+<p>“大”代表什么：数千亿个参数，训练成本高达数百万美元。</p>
+<p>ChatGPT、Claude、Gemini——都是大语言模型。</p>
+<hr>
+<h3 id="7-上下文窗口context-window">7. 上下文窗口（Context Window）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/7qpR/img_aHR0cHM6.png">
+<p>每个 AI 模型都有记忆容量上限，称为<strong>上下文窗口</strong>。</p>
+<p>它是模型在单次处理中能”看到”的最大 Token 数量，涵盖：你的消息 + 模型的回复 + 历史对话记录。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>模型</th><th>上下文窗口大小</th></tr></thead><tbody><tr><td>早期 GPT</td><td>约 4,000 Token</td></tr><tr><td>GPT-4</td><td>128,000 Token</td></tr><tr><td>Claude 3.5</td><td>200,000 Token</td></tr><tr><td>Gemini 1.5 Pro</td><td>1,000,000 Token</td></tr></tbody></table>
+<p>窗口越大 = 上下文越多 = 回答越准确。</p>
+<p>但有个陷阱：<strong>模型并不均匀地读取所有内容</strong>。</p>
+<p>它的注意力更集中于上下文的开头和结尾，中间部分？往往被忽略。</p>
+<p>这就是所谓的 <strong>“中间遗忘”（Lost in the Middle）问题</strong>。</p>
+<p>上下文窗口大 ≠ 完美记忆。</p>
+<p>理解这一点，就能解释为什么 AI 有时会”忘记”你明明提到过的内容。</p>
+<hr>
+<h3 id="8-温度参数temperature">8. 温度参数（Temperature）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/No6q/img_aHR0cHM6.png">
+<p>AI 生成文本时，并不总是选择最可能出现的下一个词。它有一个名为<strong>温度</strong>的调节旋钮：</p>
+<ul>
+<li><strong>Temperature = 0</strong>：始终选择最安全、最可预期的词</li>
+<li><strong>Temperature = 1</strong>：选择更具创意、更多变化的词</li>
+<li><strong>Temperature ≥ 2</strong>：输出趋于混乱，有时语无伦次</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>低温度</th><th>高温度</th></tr></thead><tbody><tr><td>代码生成、事实查询、摘要总结</td><td>头脑风暴、创意写作、方案发散</td></tr></tbody></table>
+<p>大多数工具会自动设置该参数。</p>
+<p>但理解它，就能解释为什么 AI 有时显得”墨守成规”，有时又令你出乎意料。</p>
+<hr>
+<h3 id="9-幻觉hallucination">9. 幻觉（Hallucination）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/np5S/img_aHR0cHM6.png">
+<p>AI 会满怀信心地撒谎。</p>
+<p>并非有意为之——它从根本上就无法避免。</p>
+<p>原因如下：</p>
+<p>大语言模型不会”查找”事实，它预测的是<strong>最可能出现的下一个 Token</strong>。</p>
+<p>如果一个错误的陈述在模式上”看起来像是该出现的内容”，模型就会生成它——没有核实，没有查询，纯粹是模式匹配。</p>
+<p>因此，模型可能会：</p>
+<ul>
+<li>引用一篇根本不存在的论文</li>
+<li>编造一个从未有过的 API 函数</li>
+<li>以十足的把握陈述一个虚假的”历史事实”</li>
+</ul>
+<p>这就是<strong>幻觉</strong>。</p>
+<p><strong>应对方法</strong>：对于事实性内容，绝不盲目信任 AI 的输出，务必核实。使用 RAG（见概念 16）将其锚定于真实数据之上。</p>
+<hr>
+<h3 id="10-提示词工程prompt-engineering">10. 提示词工程（Prompt Engineering）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/io7G/img_aHR0cHM6.png">
+<p><strong>你的提问方式决定一切。</strong></p>
+<p>相同的模型，相同的问题，仅因提问方式不同，输出结果可能天差地别。</p>
+<p><strong>低质量提示词</strong>：</p>
+<blockquote>
+<p>“解释 API”
+→ 输出：泛泛而谈，浮于表面</p>
+</blockquote>
+<p><strong>高质量提示词</strong>：</p>
+<blockquote>
+<p>“解释 REST API 如何处理身份验证，附带实际代码示例，假设我是一名初级开发者。”
+→ 输出：具体、结构清晰、立即可用</p>
+</blockquote>
+<p>提示词工程本质上是<strong>清晰的表达</strong>。</p>
+<p>真正有效的技巧：</p>
+<ul>
+<li><strong>提供背景</strong>：<code>"我正在为 X 构建一个 SaaS 产品"</code></li>
+<li><strong>赋予角色</strong>：<code>"请扮演一名资深后端工程师"</code></li>
+<li><strong>给出示例</strong>：<code>"这是我偏好的格式：___"</code></li>
+<li><strong>明确输出要求</strong>：<code>"给我 5 个选项，以编号列表呈现"</code></li>
+<li><strong>分步拆解</strong>：将复杂问题拆解为若干步骤</li>
+</ul>
+<p>提示词工程不是旁门左道——它是你与模型沟通的主要方式。</p>
+<hr>
+<h2 id="第三部分ai-模型如何持续改进原始模型如何进化为实用产品">第三部分：AI 模型如何持续改进（原始模型如何进化为实用产品）</h2>
+<h3 id="11-迁移学习transfer-learning">11. 迁移学习（Transfer Learning）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/nFi3/img_aHR0cHM6.png">
+<p>从零开始训练代价极高：海量数据、巨大算力、数周时长。</p>
+<p><strong>迁移学习</strong>解决了这个问题。</p>
+<p>做法是：取一个已在大规模通用任务上训练好的模型，再针对特定任务进行适配——<strong>不是从零开始，而是在已有基础上继续构建</strong>。</p>
+<p>类比理解：</p>
+<blockquote>
+<ul>
+<li>你已经会骑自行车</li>
+<li>学摩托车因此快得多——你在迁移已有的知识</li>
+</ul>
+</blockquote>
+<p>当今几乎所有 AI 产品的运作方式：</p>
+<ol>
+<li>OpenAI 训练大型基础模型</li>
+<li>各公司针对各自的垂直场景进行微调</li>
+<li>节省数百万算力成本与数月训练时间</li>
+</ol>
+<p>没有公司还在从头训练模型。</p>
+<hr>
+<h3 id="12-微调fine-tuning">12. 微调（Fine-Tuning）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/Nc3j/img_aHR0cHM6.png">
+<p>迁移学习是理念，<strong>微调</strong>是实现手段。</p>
+<p>做法是：取一个预训练模型，用更小、更聚焦的数据集继续训练它。</p>
+<p>模型已经”会说话”了——现在你在教它你的专业领域。</p>
+<p>典型场景：</p>
+<ul>
+<li>在临床笔记上微调的医疗模型</li>
+<li>在合同文本上微调的法律模型</li>
+<li>在 GitHub 代码上微调的编程模型</li>
+</ul>
+<p><strong>成果</strong>：针对你的使用场景响应精准的模型。</p>
+<p><strong>代价</strong>：需要更新数十亿个参数，这要求相当的算力——多块 GPU 和完善的基础设施。</p>
+<p>（这正是下一个概念 LoRA 如此重要的原因。）</p>
+<hr>
+<h3 id="13-基于人类反馈的强化学习rlhfreinforcement-learning-from-human-feedback">13. 基于人类反馈的强化学习（RLHF，Reinforcement Learning from Human Feedback）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/nc5M/img_aHR0cHM6.png">
+<p>微调让模型专业化，<strong>RLHF</strong> 让模型变得有益且安全。</p>
+<p><strong>没有 RLHF</strong>：模型只是预测文本。流畅，但不对齐。</p>
+<p><strong>有了 RLHF</strong>：模型学会了人类真正偏好的是什么。</p>
+<p><strong>工作流程</strong>：</p>
+<ol>
+<li>向模型输入一个提示词</li>
+<li>模型生成多个回复</li>
+<li>人类对回复进行排序</li>
+<li>模型学习偏向人类更喜欢的回复</li>
+</ol>
+<p>如此反复数千次。</p>
+<p>模型逐渐建立起对”好答案”的判断：清晰、有帮助、诚实、安全。</p>
+<p>这正是 ChatGPT 和 Claude 的行为像助手而非随机文本生成器的原因。</p>
+<p>没有 RLHF，它们依然令人印象深刻，但远没有那么实用、可信，也难以管控。</p>
+<hr>
+<h3 id="14-低秩适配loralow-rank-adaptation">14. 低秩适配（LoRA，Low-Rank Adaptation）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/5mnV/img_aHR0cHM6.png">
+<p>微调效果强大，但成本高昂——更新数十亿个参数需要多块 GPU 和完善的基础设施。</p>
+<p><strong>LoRA</strong> 解决了这个问题。</p>
+<p>LoRA 不改变整个模型，而是：</p>
+<ul>
+<li>保持原始模型参数冻结不变</li>
+<li>在其之上附加极小的可训练层</li>
+<li>这些附加层的参数量仅为完整模型的极小一部分</li>
+</ul>
+<p><strong>核心洞见</strong>：大多数微调所引入的变化是微小的。你不需要重写整个模型，只需进行小而精准的调整。</p>
+<p><strong>实际效果</strong>：</p>
+<ul>
+<li>在单块消费级 GPU 上完成微调：可行</li>
+<li>保存一个基础模型 + 按需切换不同的 LoRA 适配器：可实用</li>
+<li>无需海量存储即可维护多个专用模型：可实现</li>
+</ul>
+<p>LoRA 是开源 AI 爆炸式增长的关键。</p>
+<p>它让任何人都能在笔记本电脑上微调强大的模型。</p>
+<hr>
+<h3 id="15-量化quantization">15. 量化（Quantization）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/vH2c/img_aHR0cHM6.png">
+<p>模型体积越来越大，运行所需的内存和算力也随之攀升。</p>
+<p><strong>量化</strong>让模型更小、运行成本更低。</p>
+<p><strong>方法</strong>：降低每个权重的数值精度。</p>
+<ul>
+<li>全精度存储的权重占用 <strong>32 位</strong></li>
+<li>量化至 4 位 → <strong>体积缩小 8 倍</strong></li>
+</ul>
+<p>出人意料的是：精度损失往往相当有限。</p>
+<p>这就是为什么你现在可以：</p>
+<ul>
+<li>在 MacBook 上运行 LLaMA</li>
+<li>在消费级 GPU 上本地运行 Mistral</li>
+<li>在手机上使用强大的模型</li>
+</ul>
+<p>没有量化，大型模型只能困守于数据中心。有了量化，它们可以在你的设备上直接运行。</p>
+<hr>
+<h2 id="第四部分真实-ai-系统的构建方式你日常使用的产品背后是什么">第四部分：真实 AI 系统的构建方式（你日常使用的产品背后是什么）</h2>
+<h3 id="16-检索增强生成ragretrieval-augmented-generation">16. 检索增强生成（RAG，Retrieval-Augmented Generation）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/8mVi/img_aHR0cHM6.png">
+<p>大语言模型会产生幻觉，根源在于它只能凭记忆作答。</p>
+<p><strong>RAG</strong> 的解法是：让模型先查阅资料，再作答。</p>
+<p><strong>工作流程</strong>：</p>
+<ol>
+<li>用户提出问题</li>
+<li>系统在知识库中检索相关文档</li>
+<li>将检索到的文档作为上下文传递给模型</li>
+<li>模型基于真实信息作答——而非凭空猜测</li>
+</ol>
+<p>类比理解：</p>
+<ul>
+<li><strong>闭卷考试（无 RAG）</strong>：凭记忆作答，错误率高</li>
+<li><strong>开卷考试（有 RAG）</strong>：查阅原始资料，准确率高得多</li>
+</ul>
+<p><strong>为什么强大</strong>：</p>
+<ul>
+<li>数据更新时无需重新训练——只需更新文档即可</li>
+<li>模型始终基于最新、准确的信息作答</li>
+<li>大幅减少幻觉</li>
+</ul>
+<p>所有严肃的 AI 产品都在使用 RAG：客户支持机器人、法律工具、医疗助手、企业内部知识库……</p>
+<hr>
+<h3 id="17-向量数据库vector-databases">17. 向量数据库（Vector Databases）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/a4nI/img_aHR0cHM6.png">
+<p>RAG 需要快速找到正确的文档。</p>
+<p>但如何在数百万份文档中按<strong>语义</strong>检索，而不仅仅靠关键词匹配？</p>
+<p>答案是<strong>向量数据库</strong>。</p>
+<p><strong>工作原理</strong>：</p>
+<ol>
+<li>每份文档被转换为嵌入向量（一组数字），存入数据库</li>
+<li>用户提问时，问题同样被转换为向量</li>
+<li>数据库找出与问题向量最接近的文档向量</li>
+<li>返回语义上最相似的文档</li>
+</ol>
+<p><strong>为何优于关键词搜索</strong>：</p>
+<blockquote>
+<p>检索 <code>"心脏病治疗"</code> 时，可以命中包含 <code>"心脏护理方案"</code> 的文档——即便措辞完全不同，语义却高度吻合。</p>
+</blockquote>
+<p><strong>常用工具</strong>：Pinecone、Qdrant、Weaviate、pgvector</p>
+<p>向量数据库使 AI 系统真正”理解”语义，而不只是进行字符串匹配。</p>
+<hr>
+<h3 id="18-ai-智能体ai-agents">18. AI 智能体（AI Agents）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/7nYb/img_aHR0cHM6.png">
+<p>大语言模型负责<strong>回复消息</strong>，AI 智能体则能够<strong>真正采取行动</strong>。</p>
+<p><strong>区别</strong>：</p>
+<ul>
+<li><strong>大语言模型</strong>：你问，它答，结束。</li>
+<li><strong>AI 智能体</strong>：你给出目标，它规划、执行、观察结果、调整策略、循环反复。</li>
+</ul>
+<p><strong>智能体的运作循环</strong>：</p>
+<blockquote>
+<p><strong>思考 → 行动 → 观察 → 重复</strong></p>
+</blockquote>
+<p><strong>示例</strong>：修复 Bug 的编程智能体：</p>
+<ol>
+<li>读取问题描述</li>
+<li>探索代码库</li>
+<li>定位问题所在</li>
+<li>编写修复代码</li>
+<li>运行测试</li>
+<li>分析失败原因</li>
+<li>调整修复方案</li>
+<li>循环直至完成</li>
+</ol>
+<p><strong>模型是大脑，工具是双手。</strong></p>
+<p>智能体可以使用哪些工具？</p>
+<ul>
+<li>网络搜索</li>
+<li>代码执行</li>
+<li>文件系统</li>
+<li>外部 API</li>
+<li>电子邮件 / 日历</li>
+<li>数据库</li>
+</ul>
+<p>AI 智能体将 AI 从一个聊天机器人，变成一位真正的工作伙伴。</p>
+<hr>
+<h3 id="19-思维链cotchain-of-thought">19. 思维链（CoT，Chain of Thought）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/4hYj/img_aHR0cHM6.png">
+<p>有时 AI 给出错误答案，并非因为它不够聪明，而是因为<strong>它跳得太快</strong>。</p>
+<p><strong>思维链</strong>解决了这个问题。</p>
+<p>与其直接要求最终答案：</p>
+<blockquote>
+<p><code>"计算：一列火车以 60 英里/小时的速度行驶 2.5 小时，走了多远？"</code></p>
+</blockquote>
+<p>不如引导模型逐步推理：</p>
+<blockquote>
+<p><code>"分步计算：速度 = 60 英里/小时，时间 = 2.5 小时，距离 = 速度 × 时间 = ？"</code></p>
+</blockquote>
+<p>模型将一步步推演：</p>
+<ol>
+<li>确定公式</li>
+<li>代入数值</li>
+<li>完成计算</li>
+</ol>
+<p>这一方法在数学、逻辑和多步骤问题上<strong>大幅提升准确性</strong>。</p>
+<p><strong>核心洞见</strong>：给模型足够的空间去思考，而不是仅仅要求它直接反应。</p>
+<p>这也是为什么提示词中加入 <code>"请逐步思考"</code> 或 <code>"请仔细推理"</code> 真的有效。</p>
+<hr>
+<h3 id="20-扩散模型diffusion-models">20. 扩散模型（Diffusion Models）</h3>
+<img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/fIk0/img_aHR0cHM6.png">
+<p>前面讨论的一切都关乎文本。<strong>扩散模型</strong>解释的是 AI 如何生成图像。</p>
+<p>这个过程有些反直觉。</p>
+<p><strong>模型并非学习”如何绘画”，而是学习”如何销毁图像”。</strong></p>
+<p><strong>训练阶段</strong>：</p>
+<ol>
+<li>从一张真实图像出发</li>
+<li>逐步叠加噪声，直至图像变为纯粹的随机噪点</li>
+<li>训练模型学会<strong>逆转这一过程</strong>——逐步去除噪声</li>
+</ol>
+<p><strong>生成阶段</strong>：</p>
+<ol>
+<li>从纯随机噪声出发</li>
+<li>模型逐步去除噪声</li>
+<li>由你的文字提示词引导方向</li>
+<li>图像从随机性中逐渐浮现</li>
+</ol>
+<p>名称来源于物理学——粒子在介质中随机扩散，如墨水在水中散开。这里，模型学会的是<strong>逆扩散</strong>。</p>
+<p>应用已远不止于图像：</p>
+<ul>
+<li>视频（Sora、Runway）</li>
+<li>音频</li>
+<li>三维内容</li>
+<li>药物分子设计</li>
+</ul>
+<p>扩散模型是 AI 生成一切视觉内容的核心机制。</p>
+<hr>
+<h2 id="总结20-个概念速览">总结：20 个概念速览</h2>
+<h3 id="ai-底层原理">AI 底层原理</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>#</th><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>1</td><td>神经网络</td><td>多层感知与学习的模式识别结构</td></tr><tr><td>2</td><td>分词</td><td>将文本拆解为基本构件</td></tr><tr><td>3</td><td>嵌入</td><td>以数字向量表征语义</td></tr><tr><td>4</td><td>注意力机制</td><td>上下文改变词语含义</td></tr><tr><td>5</td><td>Transformer 架构</td><td>支撑一切的底层架构</td></tr></tbody></table>
+<h3 id="大语言模型工作原理">大语言模型工作原理</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>#</th><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>6</td><td>大语言模型</td><td>超大规模的下一词预测</td></tr><tr><td>7</td><td>上下文窗口</td><td>记忆容量与中间遗忘问题</td></tr><tr><td>8</td><td>温度参数</td><td>创意程度的调节旋钮</td></tr><tr><td>9</td><td>幻觉</td><td>满怀信心却可能出错</td></tr><tr><td>10</td><td>提示词工程</td><td>与模型沟通的方式</td></tr></tbody></table>
+<h3 id="模型改进方法">模型改进方法</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>#</th><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>11</td><td>迁移学习</td><td>在已有基础上继续构建</td></tr><tr><td>12</td><td>微调</td><td>让模型专业化</td></tr><tr><td>13</td><td>RLHF</td><td>训练模型学会有益行为</td></tr><tr><td>14</td><td>LoRA</td><td>低成本实现微调</td></tr><tr><td>15</td><td>量化</td><td>在小设备上运行大模型</td></tr></tbody></table>
+<h3 id="真实系统构建方式">真实系统构建方式</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>#</th><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>16</td><td>RAG</td><td>先检索，再作答</td></tr><tr><td>17</td><td>向量数据库</td><td>按语义检索信息</td></tr><tr><td>18</td><td>AI 智能体</td><td>从回答问题到执行任务</td></tr><tr><td>19</td><td>思维链</td><td>给模型足够的思考空间</td></tr><tr><td>20</td><td>扩散模型</td><td>从噪声到图像</td></tr></tbody></table>
+<hr>
+<p>你现在理解了 AI 真正的运作方式。</p>
+<p>每天使用 AI 的大多数人并不明白这些。</p>
+<p><strong>这份认知，就是你的优势。</strong></p>  </div> </div> </article> 

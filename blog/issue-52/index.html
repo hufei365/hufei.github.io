@@ -1,0 +1,456 @@
+<!DOCTYPE html><style>.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:0 2px 8px #0000001f}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 32px);margin:auto;padding:1em}.breadcrumb[data-astro-cid-bvzihdzo]{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0 0 1rem;font-size:.875rem;color:#6b7280}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]{display:flex;align-items:center}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]:not(:last-child):after{content:"/";margin:0 .5rem;color:#9ca3af}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]{color:#3b82f6;text-decoration:none}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]:hover{text-decoration:underline}.title[data-astro-cid-bvzihdzo]{margin-bottom:2rem}.date[data-astro-cid-bvzihdzo]{display:flex;align-items:center;gap:.4rem;font-size:.875rem;color:#6b7280;margin-bottom:.5rem}h1[data-astro-cid-bvzihdzo]{font-size:2rem;font-weight:700;line-height:1.3;margin:0}.content[data-astro-cid-bvzihdzo]{line-height:1.8}.content[data-astro-cid-bvzihdzo] img{max-width:100%;border-radius:8px}.content[data-astro-cid-bvzihdzo] pre{padding:1rem;border-radius:8px;overflow-x:auto;font-size:.875rem}.content[data-astro-cid-bvzihdzo] h2{margin-top:2rem;font-size:1.5rem}.content[data-astro-cid-bvzihdzo] h3{margin-top:1.5rem;font-size:1.25rem}.content[data-astro-cid-bvzihdzo] blockquote{border-left:3px solid #c3dafe;padding-left:1rem;color:#4b5563;margin:1rem 0}.content[data-astro-cid-bvzihdzo] hr{border:none;border-top:1px solid #e5e7eb;margin:2rem 0}
+</style><article data-astro-cid-bvzihdzo>  <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-bvzihdzo> <ol class="breadcrumb" data-astro-cid-bvzihdzo> <li data-astro-cid-bvzihdzo><a href="/" data-astro-cid-bvzihdzo>Home</a></li> <li data-astro-cid-bvzihdzo><a href="/blog/" data-astro-cid-bvzihdzo>Blog</a></li> <li data-astro-cid-bvzihdzo><span aria-current="page" data-astro-cid-bvzihdzo>CodeGraph：让 AI Agent 真正读懂你的代码库</span></li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" viewBox="0 0 24 24" data-astro-cid-bvzihdzo> <path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z" data-astro-cid-bvzihdzo></path> </svg> <time datetime="2026-05-27T00:48:31.000Z" data-astro-cid-bvzihdzo>May 27, 2026</time> </div> <h1 data-astro-cid-bvzihdzo>CodeGraph：让 AI Agent 真正读懂你的代码库</h1> </div> <div class="content" data-astro-cid-bvzihdzo>  <h2 id="一从一个真实困境说起">一、从一个真实困境说起</h2>
+<p>当你把一个大型项目交给 AI Agent 处理时，你会发现它经常”迷路”——打开了错误的文件、误判了模块间的依赖关系、花费大量 token 在无关代码上，最终给出一个似是而非的答案。</p>
+<p>这不是 LLM 不够聪明，而是一个结构性问题：</p>
+<p><strong>AI 只能看到局部，却被要求理解整体。</strong></p>
+<p>LLM 的上下文窗口是有限的。它每次只能”读到”你塞进去的那几个文件，无法感知整个代码库的调用链、模块依赖和数据流向。传统的应对方式——grep 搜索、embedding 向量检索——在代码场景下都有明显短板。</p>
+<p>CodeGraph 正是为了解决这个问题而生的。</p>
+<hr>
+<h2 id="二codegraph-是什么">二、CodeGraph 是什么？</h2>
+<p>CodeGraph 是一套<strong>代码语义图谱系统（Code Semantic Graph System）</strong>，它的核心工作是：</p>
+<blockquote>
+<p>将你的代码库解析为一张可遍历的语义图，让 AI Agent 能够像资深工程师一样理解代码结构与依赖关系。</p>
+</blockquote>
+<p>它不是搜索工具，不是文档生成器，也不是 LSP 的替代品。它做的是更底层的事：把代码库里散落的 symbol、引用关系、模块依赖，组织成一张结构化的图，供 AI Agent 在推理时按需查询和遍历。</p>
+<p>技术层面，CodeGraph 的核心是：</p>
+<ul>
+<li><strong>AST 解析</strong>：从源代码中提取 symbol 定义与引用</li>
+<li><strong>Reference Graph</strong>：建立函数、变量、类之间的调用与被调用关系</li>
+<li><strong>显式路径索引</strong>：通过 <code>codegraph init [path]</code> / <code>codegraph index [path]</code> 指定源码目录，不依赖当前工作目录</li>
+</ul>
+<h3 id="核心命令一览">核心命令一览</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody><tr><td><code>codegraph init [path]</code></td><td>在项目中初始化 CodeGraph</td></tr><tr><td><code>codegraph index [path]</code></td><td>全量建立索引</td></tr><tr><td><code>codegraph sync [path]</code></td><td>增量更新索引（只处理变化文件）</td></tr><tr><td><code>codegraph status [path]</code></td><td>查看当前索引状态与统计信息</td></tr><tr><td><code>codegraph query &#x3C;search></code></td><td>搜索 symbol</td></tr><tr><td><code>codegraph callers &#x3C;symbol></code></td><td>查找谁调用了某个函数/方法</td></tr><tr><td><code>codegraph callees &#x3C;symbol></code></td><td>查找某个函数/方法调用了什么</td></tr><tr><td><code>codegraph impact &#x3C;symbol></code></td><td>分析修改某个 symbol 会影响哪些代码</td></tr><tr><td><code>codegraph affected [files...]</code></td><td>找出受变更影响的测试文件</td></tr><tr><td><code>codegraph context &#x3C;task></code></td><td>为某个任务构建 AI 所需的上下文</td></tr><tr><td><code>codegraph serve --mcp</code></td><td>以 MCP server 模式启动，供 AI Agent 调用</td></tr></tbody></table>
+<p>其中 <code>impact</code>、<code>callers</code>、<code>context</code> 是面向 AI Agent 工作流最核心的三个命令，后文会重点介绍。</p>
+<hr>
+<h2 id="三它解决的核心问题">三、它解决的核心问题</h2>
+<h3 id="问题-1ai-无法建立全局视野">问题 1：AI 无法建立”全局视野”</h3>
+<p>LLM 本质上是局部读者。它看到的是你推送给它的文件片段，却无法自行建立：</p>
+<ul>
+<li>全局调用链（A 调用了 B，B 依赖了 C）</li>
+<li>模块边界（哪些是业务核心，哪些是工具层）</li>
+<li>数据流路径（一个字段从哪里来，流向哪里）</li>
+</ul>
+<p>CodeGraph 用图结构补足了这一点。AI Agent 在推理时，可以通过 graph 查询”谁调用了这个函数”、“这个变量被哪些组件引用”，而不必把整个代码库都塞进上下文。</p>
+<hr>
+<h3 id="问题-2embedding-rag-在代码场景效果不稳定">问题 2：Embedding RAG 在代码场景效果不稳定</h3>
+<p>Embedding 向量检索在自然语言场景表现良好，但代码有其特殊性：</p>
+<ul>
+<li><strong>相似的名字，不一定有相关的逻辑</strong>：<code>data</code>、<code>value</code>、<code>list</code> 这类通用名称在所有模块都存在，向量相似度高，但语义无关</li>
+<li><strong>代码语义是结构性的，不是字面性的</strong>：<code>getUserById</code> 和 <code>fetchUserProfile</code> 在语义上相关，但字面差异很大，向量相似度可能很低</li>
+</ul>
+<p>CodeGraph 采用的是 <strong>AST + Reference Graph</strong>，不依赖字面相似度，而是依赖实际的引用关系。这让检索结果更精准、更可解释。</p>
+<hr>
+<h3 id="问题-3grep-只能回答在哪里不能回答为什么">问题 3：grep 只能回答”在哪里”，不能回答”为什么”</h3>
+<p>grep 能告诉你某个词出现在哪个文件的哪一行，但它无法告诉你：</p>
+<ul>
+<li>这个函数是谁调用的？</li>
+<li>修改这个变量会影响哪些模块？</li>
+<li>这条数据流是怎么流动的？</li>
+</ul>
+<p>这些是 AI Agent 做代码分析、重构、影响评估时真正需要的信息。CodeGraph 通过 dependency graph 和 reference graph，直接给出这些”关系”层面的答案。</p>
+<hr>
+<h3 id="问题-4lsp-是为人设计的不适合-agent">问题 4：LSP 是为人设计的，不适合 Agent</h3>
+<p>Language Server Protocol（LSP）解决的是 IDE 中”单点、交互式”的代码导航需求：你点击一个函数，跳转到定义。</p>
+<p>但 AI Agent 的需求截然不同：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>维度</th><th>LSP（面向人）</th><th>CodeGraph（面向 Agent）</th></tr></thead><tbody><tr><td>查询方式</td><td>单点、交互式</td><td>批量、程序化</td></tr><tr><td>推理深度</td><td>单跳（go-to-definition）</td><td>多跳（调用链追踪）</td></tr><tr><td>使用场景</td><td>人在 IDE 中操作</td><td>Agent 自主决策</td></tr><tr><td>结果形式</td><td>UI 展示</td><td>结构化数据供推理</td></tr></tbody></table>
+<p>CodeGraph 天然面向 AI tool calling、MCP server 和 autonomous agent 的使用模式。</p>
+<hr>
+<h3 id="问题-5ai-agent-在没有图的情况下容易随机游走">问题 5：AI Agent 在没有图的情况下容易”随机游走”</h3>
+<p>没有代码语义图时，Agent 往往：</p>
+<ul>
+<li>猜测打开哪个文件，经常猜错</li>
+<li>误判模块上下文，引入无关代码</li>
+<li>反复加载重复内容，浪费大量 token</li>
+</ul>
+<p>CodeGraph 提供稳定的代码导航路径，Agent 的每一步查询都有明确的图结构作为依据，而不是靠猜测。</p>
+<hr>
+<h3 id="问题-6缺乏影响分析能力">问题 6：缺乏影响分析能力</h3>
+<p>当 AI Agent 需要修改一个函数或变量时，它必须知道：这个改动会影响哪些地方？</p>
+<p>没有 CodeGraph 时，这个问题几乎无解——Agent 只能靠有限的上下文猜测影响范围，极易遗漏。</p>
+<p><code>codegraph impact &#x3C;symbol></code> 直接给出完整的影响链路，让 Agent 在动手改代码之前先评估波及范围：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> impact</span><span style="color:#9ECBFF"> UserStore.currentTenantDisplayName</span></span></code></pre>
+<p>结合 <code>codegraph affected</code> 还可以进一步找出需要联动更新的测试文件：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># 找出本次改动需要跑哪些测试，避免全量 CI</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> diff</span><span style="color:#79B8FF"> --name-only</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> xargs</span><span style="color:#9ECBFF"> codegraph</span><span style="color:#9ECBFF"> affected</span></span></code></pre>
+<hr>
+<h2 id="四codegraph-的正确使用边界">四、CodeGraph 的正确使用边界</h2>
+<h3 id="应该索引什么">应该索引什么？</h3>
+<p>CodeGraph 最适合索引<strong>业务代码</strong>——你自己写的、公司内部的、需要 AI 理解其逻辑与结构的代码。</p>
+<h3 id="不建议索引-node_modules">不建议索引 node_modules</h3>
+<p>这是一个常见的误区。将 <code>node_modules</code> 加入索引通常弊大于利：</p>
+<ul>
+<li><strong>体积爆炸</strong>：依赖库通常远大于业务代码，索引时间极长，graph 数据库膨胀严重</li>
+<li><strong>语义噪音</strong>：大量通用 symbol（如 <code>map</code>、<code>data</code>、<code>createElement</code>）会导致 reference fan-out 极大，AI 无法聚焦业务代码</li>
+<li><strong>收益极低</strong>：LLM 本身已经”理解”主流开源库（React、Lodash 等），再索引并不带来额外信息</li>
+<li><strong>已有更好工具</strong>：TypeScript 的 <code>tsserver</code> 已经负责类型推导和 declaration resolution，这部分不需要 CodeGraph 重复覆盖</li>
+</ul>
+<p><strong>例外情况</strong>：内部私有 SDK（如 <code>@company/*</code>）、需要深入研究的 framework 源码、特定依赖的 debug 场景，可以选择性地部分索引。</p>
+<h3 id="跨目录场景同样支持">跨目录场景同样支持</h3>
+<p>CodeGraph 是”显式路径索引模型”，不依赖当前工作目录（cwd）。即使 Agent 的工作目录与源码目录完全分离，也可以通过指定路径正常运行——只要进程能够访问源码文件系统即可。</p>
+<hr>
+<h2 id="五命名质量被忽视的影响因素">五、命名质量：被忽视的影响因素</h2>
+<p>CodeGraph 的效果不仅取决于工具本身，还取决于代码的<strong>命名质量</strong>。</p>
+<p>这里有一个重要的分层认知：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>层级</th><th>影响程度</th><th>说明</th></tr></thead><tbody><tr><td>graph 构建层</td><td>影响较小</td><td>AST 仍能正确解析 symbol 定义与引用关系</td></tr><tr><td>retrieval 层</td><td>影响中等</td><td>通用名称导致 fan-out 过大，排序混乱</td></tr><tr><td>Agent reasoning 层</td><td>影响最大</td><td>AI 选错上下文，引入错误模块，产生幻觉</td></tr></tbody></table>
+<p>问题的本质是：<strong>symbol 名字是否携带领域语义</strong>。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#6A737D">// 低语义密度：graph 可以构建，但 AI 难以正确使用</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> data</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> fetchUser</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> list</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> getOrders</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 高语义密度：graph 构建更准确，AI 检索更精准</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> userProfile</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> fetchUser</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> orderList</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> getOrders</span><span style="color:#E1E4E8">()</span></span></code></pre>
+<p>这并不意味着要为了 AI 而过度命名（<code>userProfileDataFromBackendV2ResponseFinal</code> 这类名字同样有害）。正确的原则是：</p>
+<ol>
+<li><strong>优先人类可读性</strong>——代码首先是给人看的</li>
+<li><strong>避免纯容器型词汇</strong>——少用 <code>data</code>、<code>value</code>、<code>item</code>、<code>list</code> 单独作为变量名</li>
+<li><strong>使用领域语言</strong>——<code>tenantConfig</code>、<code>billingAddress</code>、<code>paymentState</code> 这类名字对人和 AI 都更友好</li>
+<li><strong>局部短命名可以接受</strong>——函数内部的临时变量不需要过度展开</li>
+</ol>
+<p>好的命名是 CodeGraph 发挥最大价值的基础条件。</p>
+<hr>
+<h2 id="六如何验证-codegraph-索引是否正确">六、如何验证 CodeGraph 索引是否正确？</h2>
+<p>在接入 CodeGraph 后，可以用以下真实命令快速验证索引质量。</p>
+<h3 id="先看整体状态">先看整体状态</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> status</span></span></code></pre>
+<p>输出当前索引的文件数量、symbol 数量、graph 规模等统计信息，可以快速判断索引是否正常构建。</p>
+<h3 id="反向引用测试">反向引用测试</h3>
+<p>选择一个在代码库中<strong>独一无二</strong>的 symbol 做验证，例如：</p>
+<p><strong>Step 1</strong>：在 store 中定义它：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> UserStore</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#FFAB70">  currentTenantDisplayName</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> ""</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>Step 2</strong>：在 React 组件中使用它：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">>{userStore.currentTenantDisplayName}&#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p><strong>Step 3</strong>：用真实命令验证引用关系：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># 确认 symbol 已被索引</span></span>
+<span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> query</span><span style="color:#9ECBFF"> currentTenantDisplayName</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 查找谁引用了它（反向引用）</span></span>
+<span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> callers</span><span style="color:#9ECBFF"> currentTenantDisplayName</span></span></code></pre>
+<p>如果 <code>callers</code> 返回了正确的 React 组件文件路径，说明 graph 的引用关系建立正确。如果返回为空或结果错误，说明索引存在问题，可以尝试 <code>codegraph index --force</code> 强制重建。</p>
+<p>MobX 场景是特别好的测试对象，因为它包含 <code>makeAutoObservable</code>、<code>computed</code>、解构赋值、<code>observer</code> HOC 等多种模式，能充分暴露 graph 对动态引用关系的处理能力。</p>
+<hr>
+<h2 id="七git-分支切换与索引维护">七、Git 分支切换与索引维护</h2>
+<p>CodeGraph 的索引本质上是<strong>某一时刻文件系统状态的快照</strong>。当 git 切换分支后，磁盘上的文件内容发生了变化，索引与现实就产生了偏差。</p>
+<h3 id="失效的三种形态">失效的三种形态</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>变化类型</th><th>对索引的影响</th></tr></thead><tbody><tr><td>文件内容修改</td><td>symbol 定义或引用关系已变，但 graph 记录的是旧版本</td></tr><tr><td>文件新增</td><td>新文件的 symbol 完全不在 graph 中</td></tr><tr><td>文件删除</td><td>graph 中存在”幽灵节点”——指向已不存在的文件路径</td></tr></tbody></table>
+<p>其中文件删除最危险：AI Agent 查询时会得到指向不存在文件的路径，产生错误的置信度。<strong>一份过期的 graph，比没有 graph 更危险。</strong></p>
+<h3 id="用-git-hook-自动维护索引">用 git hook 自动维护索引</h3>
+<p>切换分支后应执行 <code>codegraph sync</code>（增量更新），而非 <code>codegraph index</code>（全量重建）——sync 只处理变化的文件，速度快得多。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># .git/hooks/post-checkout   ← 处理 git checkout / git switch</span></span>
+<span class="line"><span style="color:#6A737D">#!/bin/sh</span></span>
+<span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> sync</span><span style="color:#9ECBFF"> ./src</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># .git/hooks/post-merge       ← 处理 git merge / git pull</span></span>
+<span class="line"><span style="color:#6A737D">#!/bin/sh</span></span>
+<span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> sync</span><span style="color:#9ECBFF"> ./src</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># .git/hooks/post-rewrite     ← 处理 git rebase</span></span>
+<span class="line"><span style="color:#6A737D">#!/bin/sh</span></span>
+<span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> sync</span><span style="color:#9ECBFF"> ./src</span></span></code></pre>
+<p>挂载后每次切换分支，索引会自动增量更新，无需手动干预。</p>
+<h3 id="主要分支建议全量重建">主要分支建议全量重建</h3>
+<p>对于 <code>main</code>、<code>release</code> 等长期维护的主干分支，建议在 CI 中定期执行全量重建，保证索引的绝对准确性：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> index</span><span style="color:#79B8FF"> --force</span><span style="color:#9ECBFF"> ./src</span></span></code></pre>
+<p><code>--force</code> 会忽略现有索引，从头重建，适合分支间差异较大的场景。</p>
+<h3 id="注意-stash-和-rebase-场景">注意 stash 和 rebase 场景</h3>
+<p>除了切换分支，以下操作同样会让索引失效，但往往更容易被忽略：</p>
+<ul>
+<li><code>git stash pop</code>：本地改动恢复，索引未感知</li>
+<li><code>git rebase</code>：文件内容重写，引用关系变化</li>
+<li><code>git pull</code>：拉取远端新提交后文件更新</li>
+</ul>
+<p>这些都已由上面的 <code>post-rewrite</code>、<code>post-merge</code> hook 覆盖。</p>
+<hr>
+<h2 id="八完整使用流程">八、完整使用流程</h2>
+<h3 id="步骤总览">步骤总览</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>codegraph install          ← 【必须】全局注册，让 AI 工具能发现 MCP 工具</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>codegraph init -i [path]   ← 【必须】初始化 + 建立索引（合并为一步）</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>codegraph status [path]    ← 【可选】验证索引是否正确建立</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>接入 AI 工具               ← 【必须】根据你使用的工具选择对应方式</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>切分支 / 拉代码后：</span></span>
+<span class="line"><span>codegraph sync [path]      ← 【建议】增量更新，保持索引准确</span></span></code></pre>
+<hr>
+<h3 id="第一步全局注册只做一次">第一步：全局注册（只做一次）</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> install</span></span></code></pre>
+<p>这是最容易被忽略、也最关键的一步。它将 CodeGraph 注册进 AI 工具的 MCP 系统，让 Agent 能够发现并调用 CodeGraph 提供的工具。光在配置文件里写 MCP 配置是不够的，没有 <code>install</code> 这一步，Agent 的工具列表里不会出现任何 CodeGraph 工具。</p>
+<hr>
+<h3 id="第二步初始化并建立索引每个项目做一次">第二步：初始化并建立索引（每个项目做一次）</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># init -i 等价于 init + index 两步合并</span></span>
+<span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> init</span><span style="color:#79B8FF"> -i</span><span style="color:#9ECBFF"> ./your-project</span></span></code></pre>
+<p><code>init</code> 与 <code>index</code> 的区别：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody><tr><td><code>codegraph init [path]</code></td><td>只搭架子：创建 <code>.codegraph/</code> 目录和配置文件</td></tr><tr><td><code>codegraph index [path]</code></td><td>只建内容：解析 AST，构建 symbol 引用图</td></tr><tr><td><code>codegraph init -i [path]</code></td><td>两步合并，适合直接上手的场景</td></tr></tbody></table>
+<p>如果项目较大、需要先调整忽略规则等配置再建索引，可以把两步分开执行。</p>
+<hr>
+<h3 id="第三步验证索引可选但建议首次执行">第三步：验证索引（可选但建议首次执行）</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> status</span><span style="color:#9ECBFF"> ./your-project</span></span></code></pre>
+<p>确认 symbol 数量、文件数量正常后，后续日常使用就不需要每次都检查。</p>
+<hr>
+<h3 id="第四步接入-ai-工具">第四步：接入 AI 工具</h3>
+<p>这一步的本质是<strong>让你的 AI 工具知道 CodeGraph MCP server 的存在</strong>，不同工具的方式不同：</p>
+<p><strong>OpenCode</strong>：在 <code>opencode.jsonc</code> 里配置，启动时自动拉起，无需手动 <code>serve</code>：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsonc"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "mcp"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "codegraph-p1"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"local"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "command"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"codegraph"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "args"</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">"serve"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"--mcp"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"./P1"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#79B8FF">      "enabled"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>Claude Code</strong>：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">claude</span><span style="color:#9ECBFF"> mcp</span><span style="color:#9ECBFF"> add</span><span style="color:#9ECBFF"> codegraph</span><span style="color:#79B8FF"> --</span><span style="color:#9ECBFF"> codegraph</span><span style="color:#9ECBFF"> serve</span><span style="color:#79B8FF"> --mcp</span><span style="color:#9ECBFF"> ./your-project</span></span></code></pre>
+<p><strong>Cursor / Windsurf 等</strong>：在对应工具的 MCP 配置文件中添加 server 条目，参考各工具文档。</p>
+<p><strong>通用方式</strong>（适合不自动管理进程的客户端）：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> serve</span><span style="color:#79B8FF"> --mcp</span><span style="color:#9ECBFF"> ./your-project</span></span></code></pre>
+<hr>
+<h3 id="第五步日常维护">第五步：日常维护</h3>
+<p>切换分支或拉取代码后，运行增量更新保持索引准确：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> sync</span><span style="color:#9ECBFF"> ./your-project</span></span></code></pre>
+<p>建议通过 git hook 自动化，彻底不用手动操心（详见第七节）。</p>
+<hr>
+<h3 id="常用查询命令速查">常用查询命令速查</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> query</span><span style="color:#F97583"> &#x3C;</span><span style="color:#9ECBFF">symbo</span><span style="color:#E1E4E8">l</span><span style="color:#F97583">></span><span style="color:#6A737D">        # 确认 symbol 是否被正确索引</span></span>
+<span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> callers</span><span style="color:#F97583"> &#x3C;</span><span style="color:#9ECBFF">symbo</span><span style="color:#E1E4E8">l</span><span style="color:#F97583">></span><span style="color:#6A737D">      # 查找谁调用了它（反向引用）</span></span>
+<span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> callees</span><span style="color:#F97583"> &#x3C;</span><span style="color:#9ECBFF">symbo</span><span style="color:#E1E4E8">l</span><span style="color:#F97583">></span><span style="color:#6A737D">      # 查找它调用了什么</span></span>
+<span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> impact</span><span style="color:#F97583"> &#x3C;</span><span style="color:#9ECBFF">symbo</span><span style="color:#E1E4E8">l</span><span style="color:#F97583">></span><span style="color:#6A737D">       # 分析改动影响范围</span></span>
+<span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> context</span><span style="color:#9ECBFF"> "&#x3C;task>"</span><span style="color:#6A737D">      # 为 AI 构建任务相关的代码上下文</span></span>
+<span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> affected</span><span style="color:#E1E4E8"> [files...]   </span><span style="color:#6A737D"># 找出受变更影响的测试文件</span></span></code></pre>
+<hr>
+<h2 id="九mcp-集成agent-如何使用-codegraph">九、MCP 集成：Agent 如何使用 CodeGraph</h2>
+<p>接入成功后，CodeGraph 的查询能力以工具的形式暴露给 AI Agent，Agent 可以在推理过程中直接调用：</p>
+<ul>
+<li><code>callers</code> — 查找调用链</li>
+<li><code>impact</code> — 评估改动影响范围</li>
+<li><code>context</code> — 为当前任务构建最相关的代码上下文</li>
+</ul>
+<p><code>context &#x3C;task></code> 是其中最值得关注的命令。它不是简单的 symbol 搜索，而是根据任务描述，自动决策”AI 应该看哪些文件”：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> context</span><span style="color:#9ECBFF"> "重构用户认证模块，需要了解相关依赖"</span></span></code></pre>
+<p>返回的是一组经过 graph 推理筛选后的高相关性文件列表，直接送入 Agent 上下文，避免无效的文件读取和 token 浪费。</p>
+<hr>
+<h2 id="十总结">十、总结</h2>
+<p>CodeGraph 本质上是在解决一个 AI 时代的新问题：</p>
+<blockquote>
+<p>当代码的读者从”人”变成”人 + AI Agent”时，如何让代码库对 AI 同样清晰可导航？</p>
+</blockquote>
+<p>它的答案是：<strong>把代码变成一张可遍历的语义图。</strong></p>
+<p>这张图不替代 grep、不替代 LSP、不替代 embedding 搜索，而是在它们之上提供了一种全新的能力层——<strong>关系理解</strong>。知道谁调用了谁，知道改动影响了哪里，知道数据从哪里来、流向哪里。</p>
+<p>这正是 AI Agent 在大型代码库中做出可靠决策所需要的基础。</p>
+<hr>
+<p><em>适用场景：MCP + CodeGraph + LLM 的 AI Agent 驱动开发模式</em></p>
+<hr>
+<h2 id="附录-amcp-项目信息">附录 A：MCP 项目信息</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项目</th><th>内容</th></tr></thead><tbody><tr><td>npm 包名</td><td><code>@colbymchenry/codegraph</code></td></tr><tr><td>当前版本</td><td>v0.9.4</td></tr><tr><td>开源协议</td><td>MIT</td></tr><tr><td>最低 Node 版本</td><td>≥ 20.0</td></tr><tr><td>核心依赖</td><td>web-tree-sitter, tree-sitter-wasms, commander</td></tr></tbody></table>
+<p>该包是 CodeGraph 的唯一官方分发渠道，包含 CLI 工具和 MCP server。</p>
+<hr>
+<h2 id="附录-bcli-安装方式">附录 B：CLI 安装方式</h2>
+<h3 id="推荐npm-全局安装">推荐：npm 全局安装</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> -g</span><span style="color:#9ECBFF"> @colbymchenry/codegraph</span></span></code></pre>
+<p>或通过包管理器：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#6A737D"># pnpm</span></span>
+<span class="line"><span style="color:#B392F0">pnpm</span><span style="color:#9ECBFF"> add</span><span style="color:#79B8FF"> -g</span><span style="color:#9ECBFF"> @colbymchenry/codegraph</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># yarn</span></span>
+<span class="line"><span style="color:#B392F0">yarn</span><span style="color:#9ECBFF"> global</span><span style="color:#9ECBFF"> add</span><span style="color:#9ECBFF"> @colbymchenry/codegraph</span></span></code></pre>
+<h3 id="claude-code-快速接入">Claude Code 快速接入</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">claude</span><span style="color:#9ECBFF"> mcp</span><span style="color:#9ECBFF"> add</span><span style="color:#9ECBFF"> codegraph</span><span style="color:#79B8FF"> --</span><span style="color:#9ECBFF"> codegraph</span><span style="color:#9ECBFF"> serve</span><span style="color:#79B8FF"> --mcp</span><span style="color:#9ECBFF"> ./your-project</span></span></code></pre>
+<h3 id="cursor--windsurf">Cursor / Windsurf</h3>
+<p>在对应工具的 MCP 配置文件中添加 server 条目：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "mcpServers"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "codegraph"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">      "command"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"codegraph"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "args"</span><span style="color:#E1E4E8">: [</span><span style="color:#FDAEB7;font-style:italic">\</span><span style="color:#9ECBFF">"serve</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">, </span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">--mcp</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">, </span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">./your-project</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">],</span></span>
+<span class="line"><span style="color:#9ECBFF">      "</span><span style="color:#FDAEB7;font-style:italic">enabled</span><span style="color:#9ECBFF">": true</span></span>
+<span class="line"><span style="color:#9ECBFF">    }</span></span>
+<span class="line"><span style="color:#9ECBFF">  }</span></span>
+<span class="line"><span style="color:#9ECBFF">}</span></span></code></pre>
+<h3 id="验证安装">验证安装</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#79B8FF"> --version</span></span>
+<span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> init</span><span style="color:#9ECBFF"> ./my-project</span></span>
+<span class="line"><span style="color:#B392F0">codegraph</span><span style="color:#9ECBFF"> index</span><span style="color:#9ECBFF"> ./my-project</span></span></code></pre>  </div> </div> </article> 

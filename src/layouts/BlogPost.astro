@@ -17,7 +17,7 @@ const formattedDate = pubDate.toLocaleDateString('en-us', {
 <article>
   {heroImage && (
     <div class="hero-image">
-      <img width="720" height="360" src={heroImage} alt={title} />
+      <img src={heroImage} alt={title} loading="lazy" />
     </div>
   )}
   <div class="prose">
@@ -46,9 +46,14 @@ const formattedDate = pubDate.toLocaleDateString('en-us', {
 <style>
   .hero-image {
     width: 100%;
+    margin-bottom: 1.5rem;
   }
   .hero-image img {
     display: block;
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+    object-fit: cover;
     margin: 0 auto;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,.12);
@@ -106,6 +111,7 @@ const formattedDate = pubDate.toLocaleDateString('en-us', {
   }
   .content :global(img) {
     max-width: 100%;
+    height: auto;
     border-radius: 8px;
   }
   .content :global(pre) {

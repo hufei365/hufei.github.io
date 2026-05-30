@@ -1,0 +1,64 @@
+<!DOCTYPE html><style>.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:0 2px 8px #0000001f}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 32px);margin:auto;padding:1em}.breadcrumb[data-astro-cid-bvzihdzo]{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0 0 1rem;font-size:.875rem;color:#6b7280}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]{display:flex;align-items:center}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]:not(:last-child):after{content:"/";margin:0 .5rem;color:#9ca3af}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]{color:#3b82f6;text-decoration:none}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]:hover{text-decoration:underline}.title[data-astro-cid-bvzihdzo]{margin-bottom:2rem}.date[data-astro-cid-bvzihdzo]{display:flex;align-items:center;gap:.4rem;font-size:.875rem;color:#6b7280;margin-bottom:.5rem}h1[data-astro-cid-bvzihdzo]{font-size:2rem;font-weight:700;line-height:1.3;margin:0}.content[data-astro-cid-bvzihdzo]{line-height:1.8}.content[data-astro-cid-bvzihdzo] img{max-width:100%;border-radius:8px}.content[data-astro-cid-bvzihdzo] pre{padding:1rem;border-radius:8px;overflow-x:auto;font-size:.875rem}.content[data-astro-cid-bvzihdzo] h2{margin-top:2rem;font-size:1.5rem}.content[data-astro-cid-bvzihdzo] h3{margin-top:1.5rem;font-size:1.25rem}.content[data-astro-cid-bvzihdzo] blockquote{border-left:3px solid #c3dafe;padding-left:1rem;color:#4b5563;margin:1rem 0}.content[data-astro-cid-bvzihdzo] hr{border:none;border-top:1px solid #e5e7eb;margin:2rem 0}
+</style><article data-astro-cid-bvzihdzo>  <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-bvzihdzo> <ol class="breadcrumb" data-astro-cid-bvzihdzo> <li data-astro-cid-bvzihdzo><a href="/" data-astro-cid-bvzihdzo>Home</a></li> <li data-astro-cid-bvzihdzo><a href="/blog/" data-astro-cid-bvzihdzo>Blog</a></li> <li data-astro-cid-bvzihdzo><span aria-current="page" data-astro-cid-bvzihdzo>CSS 布局之如何使用CSS构建一个瀑布流</span></li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" viewBox="0 0 24 24" data-astro-cid-bvzihdzo> <path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z" data-astro-cid-bvzihdzo></path> </svg> <time datetime="2024-04-05T13:56:23.000Z" data-astro-cid-bvzihdzo>Apr 5, 2024</time> </div> <h1 data-astro-cid-bvzihdzo>CSS 布局之如何使用CSS构建一个瀑布流</h1> </div> <div class="content" data-astro-cid-bvzihdzo>  <h1 id="如何使用css构建一个瀑布流布局">如何使用CSS构建一个瀑布流布局</h1>
+<p>瀑布流布局是一种常见的网页布局方式，其中元素以不同的大小排列，且行与列之间没有不均匀的间隙。在瀑布流布局中，即使某一行或列中的元素较短，下一个元素也会占据空间。</p>
+<h2 id="如何实现瀑布流布局">如何实现瀑布流布局</h2>
+<p>实现这一目标的方法有很多，但最好的方法就是使用<code>grid-template-columns</code>和<code>repeat()</code>函数。</p>
+<h3 id="grid-template-columns-属性"><code>grid-template-columns</code> 属性</h3>
+<p>除了明确的列大小之外，CSS Grid最有价值、最实用的功能之一就是重复列，直到列满为止，然后自动将项目放置其中。尤其是，我们可以在网格中指定所需的列数，然后让浏览器控制这些列的响应性，这样就能在视口尺寸较小的情况下显示较少的列，而在屏幕宽度增加时显示较多的列。</p>
+<p>这可以通过使用 <code>repeat()</code> 函数和<code>auto-placement</code>属性来实现。简而言之，<code>repeat()</code>函数允许我们根据需要重复列。例如，如果我们要创建一个 12 列的网格，我们可以写如下代码：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#B392F0">.grid</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">  display</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">grid</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">  /* 定义网格列数 */</span></span>
+<span class="line"><span style="color:#79B8FF">  grid-template-columns</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">repeat</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">12</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#F97583">fr</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>我们使用<code>1fr</code>告诉浏览器将可用空间平均分配给每一列，使每一列获得相等的份额。也就是说，无论网格有多大，本例中的网格总是有 12 列。然而，这还不够好，因为在较小的视口中，内容会被挤压得太厉害。</p>
+<p>因此，我们需要指定列的最小宽度，确保它们不会太窄。为此，我们可以使用minmax()函数。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#85E89D">grid-template-columns</span><span style="color:#E1E4E8">: repeat(12, minmax(300px, 1fr));</span></span></code></pre>
+<p>但由于CSS Grid的特性，该行会溢出。我们明确指示浏览器每行重复列 12 次，因此即使视口宽度太小，无法按照新的最小宽度要求全部容纳这些列，超出视窗范围的列也不会自动换行。</p>
+<p>要实现换行，我们可以使用<code>auto-fit</code>或<code>auto-fill</code>属性。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#85E89D">grid-template-columns</span><span style="color:#E1E4E8">: repeat(</span><span style="color:#85E89D">auto-fit</span><span style="color:#E1E4E8">, minmax(300px,1fr));</span></span></code></pre>
+<p>通过使用这些关键字，我们可以指示浏览器为我们处理元素换行和列的大小，使原本会溢出的元素自动换行。</p>
+<p>这就是Grid现在的样子：
+<img width="1357" alt="截屏2024-04-05 21 41 09" src="https://files.seeusercontent.com/2026/05/30/9Wsb/img_999bb2ba576d.png"></p>
+<p>但这不是砌体布局。那么如何实现呢？让我们来看看。</p>
+<h3 id="grid-column-和-grid-row属性"><code>grid-column</code> 和 <code>grid-row</code>属性</h3>
+<p><code>grid-column</code>和<code>grid-row</code>属性指定了grid item在网格布局中的大小和位置。因此，我们可以指定网格中单个grid item的宽度或高度。为此，我们可以使用<code>span</code>特性。</p>
+<p>要增加第一个grid item的宽度，我们可以这样写：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#B392F0">.grid-item:nth-child</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">    grid-column</span><span style="color:#E1E4E8">: span </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    grid-row</span><span style="color:#E1E4E8">: span </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>因此，第一个网格单元格将横跨两列，展示结果如下：
+<img width="1370" alt="截屏2024-04-05 21 43 03" src="https://files.seeusercontent.com/2026/05/30/W5hf/img_1d5950c40659.png"></p>
+<p>同理，如果要增加第二个grid item的高度，我们可以这样写：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#B392F0">.grid-item:nth-child</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">    grid-column</span><span style="color:#E1E4E8">: span </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    grid-row</span><span style="color:#E1E4E8">: span </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>因此，第二个grid item将横跨两行，展示效果如下：
+<img width="1364" alt="截屏2024-04-05 21 45 07" src="https://files.seeusercontent.com/2026/05/30/k9Dk/img_ba90c3b065d5.png"></p>
+<p>同样，如果我们以所需的方式处理每个grid item，就会得到以下结果：
+<img width="1361" alt="截屏2024-04-05 21 47 56" src="https://files.seeusercontent.com/2026/05/30/o6Ke/img_a1a83dd9556c.png"></p>
+<p>但是，如果grid item的数量过多，就无法为每个grid item指定精确的高度和宽度。因此，我们可以动态分配这些值：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"></span>
+<span class="line"><span style="color:#B392F0">.grid-item</span><span style="color:#E1E4E8">: nth-child(7n</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">1) {</span></span>
+<span class="line"><span style="color:#79B8FF">    grid-column</span><span style="color:#E1E4E8">: span </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    grid-row</span><span style="color:#E1E4E8">: span </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">.grid-item</span><span style="color:#E1E4E8">: nth-child(7n</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">2) {</span></span>
+<span class="line"><span style="color:#79B8FF">    grid-column</span><span style="color:#E1E4E8">: span </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    grid-row</span><span style="color:#E1E4E8">: span </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">.grid-item</span><span style="color:#E1E4E8">: nth-child(7n</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">4) {</span></span>
+<span class="line"><span style="color:#79B8FF">    grid-column</span><span style="color:#E1E4E8">: span </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    grid-row</span><span style="color:#E1E4E8">: span </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">.grid-item</span><span style="color:#E1E4E8">: nth-child(7n</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">5) {</span></span>
+<span class="line"><span style="color:#79B8FF">    grid-column</span><span style="color:#E1E4E8">: span </span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    grid-row</span><span style="color:#E1E4E8">: span </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>最终效果如下：
+<img width="1361" alt="截屏2024-04-05 21 47 56" src="https://files.seeusercontent.com/2026/05/30/o6Ke/img_a1a83dd9556c.png"></p>  </div> </div> </article> 

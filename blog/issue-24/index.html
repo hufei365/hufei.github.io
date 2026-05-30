@@ -1,0 +1,86 @@
+<!DOCTYPE html><style>.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:0 2px 8px #0000001f}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 32px);margin:auto;padding:1em}.breadcrumb[data-astro-cid-bvzihdzo]{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0 0 1rem;font-size:.875rem;color:#6b7280}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]{display:flex;align-items:center}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]:not(:last-child):after{content:"/";margin:0 .5rem;color:#9ca3af}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]{color:#3b82f6;text-decoration:none}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]:hover{text-decoration:underline}.title[data-astro-cid-bvzihdzo]{margin-bottom:2rem}.date[data-astro-cid-bvzihdzo]{display:flex;align-items:center;gap:.4rem;font-size:.875rem;color:#6b7280;margin-bottom:.5rem}h1[data-astro-cid-bvzihdzo]{font-size:2rem;font-weight:700;line-height:1.3;margin:0}.content[data-astro-cid-bvzihdzo]{line-height:1.8}.content[data-astro-cid-bvzihdzo] img{max-width:100%;border-radius:8px}.content[data-astro-cid-bvzihdzo] pre{padding:1rem;border-radius:8px;overflow-x:auto;font-size:.875rem}.content[data-astro-cid-bvzihdzo] h2{margin-top:2rem;font-size:1.5rem}.content[data-astro-cid-bvzihdzo] h3{margin-top:1.5rem;font-size:1.25rem}.content[data-astro-cid-bvzihdzo] blockquote{border-left:3px solid #c3dafe;padding-left:1rem;color:#4b5563;margin:1rem 0}.content[data-astro-cid-bvzihdzo] hr{border:none;border-top:1px solid #e5e7eb;margin:2rem 0}
+</style><article data-astro-cid-bvzihdzo>  <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-bvzihdzo> <ol class="breadcrumb" data-astro-cid-bvzihdzo> <li data-astro-cid-bvzihdzo><a href="/" data-astro-cid-bvzihdzo>Home</a></li> <li data-astro-cid-bvzihdzo><a href="/blog/" data-astro-cid-bvzihdzo>Blog</a></li> <li data-astro-cid-bvzihdzo><span aria-current="page" data-astro-cid-bvzihdzo>JavaScript 之 原型和原型链</span></li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" viewBox="0 0 24 24" data-astro-cid-bvzihdzo> <path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z" data-astro-cid-bvzihdzo></path> </svg> <time datetime="2019-06-29T13:52:05.000Z" data-astro-cid-bvzihdzo>Jun 29, 2019</time> </div> <h1 data-astro-cid-bvzihdzo>JavaScript 之 原型和原型链</h1> </div> <div class="content" data-astro-cid-bvzihdzo>  <h1 id="javascript-之-原型和原型链">JavaScript 之 原型和原型链</h1>
+<h2 id="几个概念">几个概念</h2>
+<ol>
+<li>构造函数： 构造函数实际上是一个普通函数，通过new操作符，可以利用构造函数快速创建对象；</li>
+<li>prototype：每个构造函数自身上都会有一个prototype属性，该属性值为一个对象，这个对象具有一个constructor属性，constructor指向构造函数自身；</li>
+<li>实例： 通过构造函数创建的对象，可以看做是该构造函数的实例；</li>
+<li>__proto__：通过构造函数创建的每个对象上面，都会有一个__proto__属性，该属性指向构造函数的prototype；</li>
+</ol>
+<h2 id="什么是原型">什么是原型</h2>
+<p>在JavaScript中，每个对象会有一个原型对象。对象会从原型对象继承一些属性和方法。</p>
+<h2 id="什么是原型链">什么是原型链</h2>
+<p>在JavaScript中，访问一个对象的属性时，JS引擎会首先在该对象自身上线查找该属性。如果找到了，则直接返回该属性的值；如果没有找到，则会去改对象的原型上面继续查找。如果对象的原型上面也没有这个属性，则继续在原型对象的上原型上面查找，如此一级级继续往上，直到原型为null，此时JS引擎返回该对象的属性值为undefined。</p>
+<h2 id="继承">继承</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">		/**</span></span>
+<span class="line"><span style="color:#6A737D">		 * two methods to implement inheritance;</span></span>
+<span class="line"><span style="color:#6A737D">		*/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">		function</span><span style="color:#B392F0"> Base</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">type</span><span style="color:#E1E4E8">){ </span></span>
+<span class="line"><span style="color:#79B8FF">			this</span><span style="color:#E1E4E8">.type </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> type;</span></span>
+<span class="line"><span style="color:#79B8FF">			this</span><span style="color:#E1E4E8">.nums </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"><span style="color:#79B8FF">			this</span><span style="color:#E1E4E8">.level</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">				value: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">				name: </span><span style="color:#9ECBFF">'base'</span></span>
+<span class="line"><span style="color:#E1E4E8">			}</span></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"><span style="color:#79B8FF">		Base</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">prototype</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">base</span><span style="color:#F97583">=function</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#E1E4E8">			console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`${</span><span style="color:#79B8FF">this</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">type</span><span style="color:#9ECBFF">} is in base func`</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"><span style="color:#6A737D">		// method one</span></span>
+<span class="line"><span style="color:#F97583">		function</span><span style="color:#B392F0"> Sub</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">type</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#E1E4E8">			Base.</span><span style="color:#B392F0">call</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">, type);</span><span style="color:#6A737D">// 属性值也继承过来</span></span>
+<span class="line"><span style="color:#79B8FF">			this</span><span style="color:#E1E4E8">.type </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> type;</span></span>
+<span class="line"><span style="color:#6A737D">			// this.level={</span></span>
+<span class="line"><span style="color:#6A737D">			// 	value: 2,</span></span>
+<span class="line"><span style="color:#6A737D">			// 	name: 'sub'</span></span>
+<span class="line"><span style="color:#6A737D">			// }</span></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"><span style="color:#79B8FF">		Sub</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">prototype</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Object.</span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Base</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'base'</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#79B8FF">		Sub</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">prototype</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">sub</span><span style="color:#F97583">=function</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#E1E4E8">			console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`${</span><span style="color:#79B8FF">this</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">type</span><span style="color:#9ECBFF">} is in sub func`</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">		// method two</span></span>
+<span class="line"><span style="color:#F97583">		function</span><span style="color:#B392F0"> Foo</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">type</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#E1E4E8">			Sub.</span><span style="color:#B392F0">call</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">, type);</span></span>
+<span class="line"><span style="color:#79B8FF">			this</span><span style="color:#E1E4E8">.type </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> type;</span></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"><span style="color:#E1E4E8">		Object.</span><span style="color:#B392F0">setPrototypeOf</span><span style="color:#E1E4E8">( </span><span style="color:#79B8FF">Foo</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">prototype</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">new</span><span style="color:#B392F0"> Sub</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'sub'</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#79B8FF">		Foo</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">prototype</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">foo</span><span style="color:#F97583">=function</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#E1E4E8">			console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`${</span><span style="color:#79B8FF">this</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">type</span><span style="color:#9ECBFF">} is in foo func`</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">		let</span><span style="color:#E1E4E8"> sub </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Sub</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'sub1'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">		sub.</span><span style="color:#B392F0">base</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">		sub.</span><span style="color:#B392F0">sub</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">		sub </span><span style="color:#F97583">instanceof</span><span style="color:#B392F0"> Sub</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">		sub </span><span style="color:#F97583">instanceof</span><span style="color:#B392F0"> Base</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">		let</span><span style="color:#E1E4E8"> foo </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Foo</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'foo1'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">		foo.</span><span style="color:#B392F0">base</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">		foo.</span><span style="color:#B392F0">sub</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">		foo.</span><span style="color:#B392F0">foo</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">		foo </span><span style="color:#F97583">instanceof</span><span style="color:#B392F0"> Foo</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">		foo </span><span style="color:#F97583">instanceof</span><span style="color:#B392F0"> Sub</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">		foo </span><span style="color:#F97583">instanceof</span><span style="color:#B392F0"> Base</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">		let</span><span style="color:#E1E4E8"> foo2 </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Foo</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'foo2'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		foo2.words.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'black'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">		console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(foo.words);</span></span></code></pre>
+<h2 id="一些实例">一些实例</h2>
+<h3 id="objectgetprototype">Object.getPrototype</h3>
+<p>预测下面几个表达式的结果</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#E1E4E8">Object.</span><span style="color:#B392F0">getPrototypeOf</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">function</span><span style="color:#E1E4E8">(){}).</span><span style="color:#79B8FF">constructor</span><span style="color:#F97583"> ===</span><span style="color:#E1E4E8"> Function;</span></span>
+<span class="line"><span style="color:#E1E4E8">Object.</span><span style="color:#B392F0">getPrototypeOf</span><span style="color:#E1E4E8">(Function).</span><span style="color:#79B8FF">constructor</span><span style="color:#F97583"> ===</span><span style="color:#E1E4E8"> Function;</span></span>
+<span class="line"><span style="color:#E1E4E8">Object.</span><span style="color:#B392F0">getPrototypeOf</span><span style="color:#E1E4E8">(Object.</span><span style="color:#B392F0">getPrototypeOf</span><span style="color:#E1E4E8">(Function)).</span><span style="color:#79B8FF">constructor</span><span style="color:#F97583"> ===</span><span style="color:#E1E4E8"> Object;</span></span></code></pre>
+<p>答案：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span></code></pre>
+<h3 id="如何创建一个没有任何原型的对象">如何创建一个没有任何原型的对象？</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> obj </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Object.</span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(obj);</span></span></code></pre>
+<p><img src="https://files.seeusercontent.com/2026/05/30/s8nJ/img_9a19b8ff0ecd.png" alt="image"></p>
+<p>这篇medium上获得8.6K赞的文章<a href="https://medium.com/better-programming/prototypes-in-javascript-5bba2990e04b">Prototypes in JavaScript</a>讲得很清楚了。</p>  </div> </div> </article> 

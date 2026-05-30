@@ -1,0 +1,37 @@
+<!DOCTYPE html><style>.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:0 2px 8px #0000001f}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 32px);margin:auto;padding:1em}.breadcrumb[data-astro-cid-bvzihdzo]{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0 0 1rem;font-size:.875rem;color:#6b7280}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]{display:flex;align-items:center}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]:not(:last-child):after{content:"/";margin:0 .5rem;color:#9ca3af}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]{color:#3b82f6;text-decoration:none}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]:hover{text-decoration:underline}.title[data-astro-cid-bvzihdzo]{margin-bottom:2rem}.date[data-astro-cid-bvzihdzo]{display:flex;align-items:center;gap:.4rem;font-size:.875rem;color:#6b7280;margin-bottom:.5rem}h1[data-astro-cid-bvzihdzo]{font-size:2rem;font-weight:700;line-height:1.3;margin:0}.content[data-astro-cid-bvzihdzo]{line-height:1.8}.content[data-astro-cid-bvzihdzo] img{max-width:100%;border-radius:8px}.content[data-astro-cid-bvzihdzo] pre{padding:1rem;border-radius:8px;overflow-x:auto;font-size:.875rem}.content[data-astro-cid-bvzihdzo] h2{margin-top:2rem;font-size:1.5rem}.content[data-astro-cid-bvzihdzo] h3{margin-top:1.5rem;font-size:1.25rem}.content[data-astro-cid-bvzihdzo] blockquote{border-left:3px solid #c3dafe;padding-left:1rem;color:#4b5563;margin:1rem 0}.content[data-astro-cid-bvzihdzo] hr{border:none;border-top:1px solid #e5e7eb;margin:2rem 0}
+</style><article data-astro-cid-bvzihdzo>  <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-bvzihdzo> <ol class="breadcrumb" data-astro-cid-bvzihdzo> <li data-astro-cid-bvzihdzo><a href="/" data-astro-cid-bvzihdzo>Home</a></li> <li data-astro-cid-bvzihdzo><a href="/blog/" data-astro-cid-bvzihdzo>Blog</a></li> <li data-astro-cid-bvzihdzo><span aria-current="page" data-astro-cid-bvzihdzo>现代浏览器的背后的工作原理</span></li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" viewBox="0 0 24 24" data-astro-cid-bvzihdzo> <path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z" data-astro-cid-bvzihdzo></path> </svg> <time datetime="2019-01-06T22:38:06.000Z" data-astro-cid-bvzihdzo>Jan 6, 2019</time> </div> <h1 data-astro-cid-bvzihdzo>现代浏览器的背后的工作原理</h1> </div> <div class="content" data-astro-cid-bvzihdzo>  <h2 id="现代浏览器背后的机制">现代浏览器背后的机制</h2>
+<p>主要介绍从地址输入一个URL到浏览器呈现出最终内容，都经过了哪些步骤。</p>
+<p>首先来说，在这个过程中会涉及到多个模块的工作。</p>
+<ul>
+<li>浏览器主模块</li>
+<li>render渲染</li>
+<li>UI</li>
+<li>网络</li>
+<li>存储</li>
+<li>JS引擎</li>
+</ul>
+<h3 id="第一个阶段">第一个阶段</h3>
+<p>在地址栏开始输入URL到浏览器发出网络请求之前，都是浏览器的主模块在工作。浏览器的主模块主要负责浏览器中地址栏、书签、前进/后退按钮等除了用户内容展示区域以外的部分。在URL输入完成后，？？browser会先检查缓存信息，如果有效则直接从缓存处获取数据；否则通知网络模块去服务端查询数据。</p>
+<h3 id="第二个阶段">第二个阶段</h3>
+<p>网络模块首先会进行DNS查询，对URL进行lookup查询（先查询本地hosts文件，如果没有则向网络服务商查询知道根域名解析服务器）。获取IP地址后，跟服务端建立HTTP连接，然后开始取数据。</p>
+<h3 id="第三个阶段">第三个阶段</h3>
+<p>解析数据，从服务端获取到HTML数据（通常情况下是这样，其它格式属于浏览器的扩展功能，暂且不讨论）后，交给render渲染模块进行解析。渲染引擎解析分为三种类型：</p>
+<ul>
+<li>HTML代码解析，生成DOM tree</li>
+<li>CSS代码解析，生成style tree</li>
+<li>JavaScript代码解析，执行相应的操作</li>
+</ul>
+<h4 id="第三个阶段中的第一部分">第三个阶段中的第一部分</h4>
+<p>html/css 代码的解析可以同步进行。</p>
+<p>浏览器解析HTML/CSS代码是词法分析和解析的过程。生成的DOM tree上， 每一个节点可以看作是对应的一个标签，这个标签下的子元素则对应dom tree中的子节点。</p>
+<p>在解析css代码时候，会不断的把解析出来的style tree附加到dom tree上。</p>
+<p>dom tree 和 style tree合并后会形成 render tree。 UI模块就是根据render tree进行内容绘制呈现给用户。</p>
+<h4 id="第三阶段中的第二部分">第三阶段中的第二部分</h4>
+<p>在解析HTML代码的过程中，如果遇到script标签，则去解析JS代码。</p>
+<p>如果script标签存在src属性值，引用了外部代码；浏览器则会先通过网络获取对应的代码到本地然后执行。否则，直接执行script内部的代码。在这个过程中，对DOM到解析是暂停的。因为在JS代码中，可能会存在DOM操作的情况，如果此时解析DOM到进程仍在进行，至于解析到哪一步谁也无法预知，因此DOM操作就存在了一定的不可预知性。</p>
+<p>不过此处存在 scrpte标签带有 defer 属性的情况。如果存在defer属性，且script引用了外部脚本，则该script标签下的代码会等到DOMContentLoaded后再执行。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">script</span><span style="color:#B392F0"> defer</span><span style="color:#B392F0"> src</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"./index.js"</span><span style="color:#E1E4E8">> &#x3C;/</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">p</span><span style="color:#B392F0"> id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"defered"</span><span style="color:#E1E4E8">>defer&#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p>index.js 文件内容</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'defered'</span><span style="color:#E1E4E8">));</span></span></code></pre>
+<p>在整个文档解析的过程中，Dom tree的解析和script的解析通常是交替进行的。</p>  </div> </div> </article> 

@@ -1,0 +1,54 @@
+<!DOCTYPE html><style>.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:0 2px 8px #0000001f}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 32px);margin:auto;padding:1em}.breadcrumb[data-astro-cid-bvzihdzo]{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0 0 1rem;font-size:.875rem;color:#6b7280}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]{display:flex;align-items:center}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]:not(:last-child):after{content:"/";margin:0 .5rem;color:#9ca3af}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]{color:#3b82f6;text-decoration:none}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]:hover{text-decoration:underline}.title[data-astro-cid-bvzihdzo]{margin-bottom:2rem}.date[data-astro-cid-bvzihdzo]{display:flex;align-items:center;gap:.4rem;font-size:.875rem;color:#6b7280;margin-bottom:.5rem}h1[data-astro-cid-bvzihdzo]{font-size:2rem;font-weight:700;line-height:1.3;margin:0}.content[data-astro-cid-bvzihdzo]{line-height:1.8}.content[data-astro-cid-bvzihdzo] img{max-width:100%;border-radius:8px}.content[data-astro-cid-bvzihdzo] pre{padding:1rem;border-radius:8px;overflow-x:auto;font-size:.875rem}.content[data-astro-cid-bvzihdzo] h2{margin-top:2rem;font-size:1.5rem}.content[data-astro-cid-bvzihdzo] h3{margin-top:1.5rem;font-size:1.25rem}.content[data-astro-cid-bvzihdzo] blockquote{border-left:3px solid #c3dafe;padding-left:1rem;color:#4b5563;margin:1rem 0}.content[data-astro-cid-bvzihdzo] hr{border:none;border-top:1px solid #e5e7eb;margin:2rem 0}
+</style><article data-astro-cid-bvzihdzo>  <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-bvzihdzo> <ol class="breadcrumb" data-astro-cid-bvzihdzo> <li data-astro-cid-bvzihdzo><a href="/" data-astro-cid-bvzihdzo>Home</a></li> <li data-astro-cid-bvzihdzo><a href="/blog/" data-astro-cid-bvzihdzo>Blog</a></li> <li data-astro-cid-bvzihdzo><span aria-current="page" data-astro-cid-bvzihdzo>Set VS Array</span></li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" viewBox="0 0 24 24" data-astro-cid-bvzihdzo> <path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z" data-astro-cid-bvzihdzo></path> </svg> <time datetime="2024-03-27T11:53:25.000Z" data-astro-cid-bvzihdzo>Mar 27, 2024</time> </div> <h1 data-astro-cid-bvzihdzo>Set VS Array</h1> </div> <div class="content" data-astro-cid-bvzihdzo>  <p>数组（Array）和集合（Set）数据结构类型有很多共同点，下面我们就来看看它们有哪些相似之处、彼此有何不同以及它们的使用情况。</p>
+<h1 id="什么是set和array">什么是Set和Array？</h1>
+<h2 id="set">Set</h2>
+<p>Set是一种数据类型，可用于存储任何类型的数据，无论是原始数据还是对象的引用。Set将数据存储在具有键的集合中，这些键可以按照插入时的顺序进行迭代。</p>
+<h2 id="array">Array</h2>
+<p>Array是一种用于在连续内存中存储数据的高级列表式对象。每个数组都有多个单元格，每个单元格都有一个用于访问其数据的数字索引。它是所有数据结构中最基本、最常用的一种。</p>
+<p>现在，我们已经知道了它们是什么，让我们来看看它们之间的异同点。</p>
+<h1 id="异同点">异同点</h1>
+<p>我们需要了解如何构造或初始化这两个对象。</p>
+<p>这两个对象都有一个内置的构造函数，它使用新的语法来声明新的数据结构。不过，与<code>Set</code>不同，<code>Array</code>并不局限于这种声明方法。<code>Array</code>也可以用字面量的方式来声明。</p>
+<p>Set类型的初始化方式</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> set</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Set</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<p>Array类型的初始化方式</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> arr</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Array</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">// or</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> arr</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> [];</span></span></code></pre>
+<p>另外，字面量的方法初始化数组的速度要快得多；从构造上看是如此，从性能上看也是如此。构造函数的方法与前者相比速度较慢，而且容易出现下面这样的错误：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> arr</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Array</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">arr[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">]  </span><span style="color:#6A737D">//outputs: undefined</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">arr.</span><span style="color:#79B8FF">length</span><span style="color:#6A737D"> //outputs: 10</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 字面量的方式</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> arrLtr</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">arrLtr[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">] </span><span style="color:#6A737D">//outputs: 20</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">arrLtr.</span><span style="color:#79B8FF">length</span><span style="color:#6A737D"> //outputs: 1</span></span>
+<span class="line"></span></code></pre>
+<p>接下来，继续深入探讨一下<code>Set</code>和<code>Array</code>的区别。</p>
+<p><code>Set </code>和 <code>Array</code> 的相似之处是显而易见的。如果你以前接触过数组（跟谁没有接触过似的），你会很容易注意到它们的一些共同点。 但是，它们之间的差别也是相当大的。</p>
+<p><code>Set</code> 和 <code>Array</code> 之间最大的差别就是：Set 只能包含一个值的一个实例。例如，在一个数组中，一个值为<code>hufei</code>的字符串可以出现很多次。而在 Set 中，只会存在一个<code>hufei</code> 。如果尝试继续添加<code>hufei</code>，其实不会发生任何事情。</p>
+<h2 id="如果在-set-中强制添加重复的值会发生什么情况">如果在 Set 中强制添加重复的值，会发生什么情况？</h2>
+<p>Set 只会选择其中一个重复值，并删除其余的值。
+不过，Set 对重复数据值的不容忍也有它的好处，尤其是在你不希望数据结构中出现重复值或数据泄露的情况下。</p>
+<p>Set 和 Array 的大部分相似之处在于它们的操作方式；它们如何用数据或其他方式填充数据。</p>
+<p>Array：有多种方法可以插入或移除值，例如<code>push()</code>、<code>pop()</code>、<code>unshift()</code>、<code>shift()</code>和<code>splice()</code>。
+Set：只有一个方法<code>add()</code>用于添加元素，<code>delete()</code>用于移除元素。</p>
+<h1 id="使用set还是array">使用Set还是Array？</h1>
+<p>可以从两个角度入手：<strong>元素唯一性</strong>和<strong>性能</strong>。</p>
+<ul>
+<li>当需要在数据结构中使用唯一元素时，应当使用<code>Set</code>。虽然数据经过修改后，也能做到这一点，但是Set针对这个点进行了优化；</li>
+<li>如果需要高性能的元素查找，应当使用Set的<code>hast()</code>方法；</li>
+<li>如果想比较直接地访问元素、交换元素或者二分查找，应当使用数组；</li>
+<li>如果要想防止数据产生内存泄漏，应当使用Set；</li>
+<li>如果想要更多灵活和更多的功能，应当使用数组；</li>
+</ul>
+<h1 id="总结">总结</h1>
+<p>相比Set，数组具有更好的灵活性，像一把瑞士军刀；而在特定领域，Set具有更高的性能和自动去重的能力。
+明确了以上几点，就可以根据自己的需求，有选择性的选择应该使用Set或者Array了～～</p>
+<p>拜拜～</p>  </div> </div> </article> 

@@ -1,0 +1,61 @@
+<!DOCTYPE html><style>.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:0 2px 8px #0000001f}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 32px);margin:auto;padding:1em}.breadcrumb[data-astro-cid-bvzihdzo]{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0 0 1rem;font-size:.875rem;color:#6b7280}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]{display:flex;align-items:center}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]:not(:last-child):after{content:"/";margin:0 .5rem;color:#9ca3af}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]{color:#3b82f6;text-decoration:none}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]:hover{text-decoration:underline}.title[data-astro-cid-bvzihdzo]{margin-bottom:2rem}.date[data-astro-cid-bvzihdzo]{display:flex;align-items:center;gap:.4rem;font-size:.875rem;color:#6b7280;margin-bottom:.5rem}h1[data-astro-cid-bvzihdzo]{font-size:2rem;font-weight:700;line-height:1.3;margin:0}.content[data-astro-cid-bvzihdzo]{line-height:1.8}.content[data-astro-cid-bvzihdzo] img{max-width:100%;border-radius:8px}.content[data-astro-cid-bvzihdzo] pre{padding:1rem;border-radius:8px;overflow-x:auto;font-size:.875rem}.content[data-astro-cid-bvzihdzo] h2{margin-top:2rem;font-size:1.5rem}.content[data-astro-cid-bvzihdzo] h3{margin-top:1.5rem;font-size:1.25rem}.content[data-astro-cid-bvzihdzo] blockquote{border-left:3px solid #c3dafe;padding-left:1rem;color:#4b5563;margin:1rem 0}.content[data-astro-cid-bvzihdzo] hr{border:none;border-top:1px solid #e5e7eb;margin:2rem 0}
+</style><article data-astro-cid-bvzihdzo>  <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-bvzihdzo> <ol class="breadcrumb" data-astro-cid-bvzihdzo> <li data-astro-cid-bvzihdzo><a href="/" data-astro-cid-bvzihdzo>Home</a></li> <li data-astro-cid-bvzihdzo><a href="/blog/" data-astro-cid-bvzihdzo>Blog</a></li> <li data-astro-cid-bvzihdzo><span aria-current="page" data-astro-cid-bvzihdzo>元组Tuple究竟是什么数据结构？</span></li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" viewBox="0 0 24 24" data-astro-cid-bvzihdzo> <path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z" data-astro-cid-bvzihdzo></path> </svg> <time datetime="2024-05-11T08:05:32.000Z" data-astro-cid-bvzihdzo>May 11, 2024</time> </div> <h1 data-astro-cid-bvzihdzo>元组Tuple究竟是什么数据结构？</h1> </div> <div class="content" data-astro-cid-bvzihdzo>  <h2 id="tuple元组是什么">Tuple（元组）是什么？</h2>
+<p>元组（Tuple）是一种数据结构，它是一个不可变的有序元素序列。由于元组是不可变的，因此，无法修改它们的值。</p>
+<p>一般来说，元组比数组或列表占用更少的内存空间。</p>
+<p>元组允许像数组一样进行切片和索引，但没有删除或更改任何元素的方法。</p>
+<p>元组一般通过在括号内利用逗号分隔元素。与数组类似，它们是序列。元组与数组的主要区别在于一旦分配了元组，就无法更改它，而数组可以。元组有时使用方括号或尖括号表示。</p>
+<p>大多数类型化的函数式编程语言（如Lisp、Python和Linda）使用元组作为乘积类型。元组作为数据类型的用途包括将一系列参数从一个程序传递到另一个程序，并在关系数据库中表示一组值属性。在某些语言中，元组可以嵌套在括号或方括号中的其他元组中。</p>
+<p>一些编程语言提供了称为记录类型的元组替代方案，其特点是通过标签访问无序元素。像 Haskell 这样的语言将元组乘积类型和无序记录类型组合成一个单一的结构。</p>
+<h2 id="example">Example</h2>
+<p><strong>python</strong>：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># creating a tuple </span></span>
+<span class="line"><span style="color:#E1E4E8">mySiblings </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">'Susan'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'James'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'Bryan'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># accessing an element within a tuple:</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">mySiblings[</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">]</span></span></code></pre>
+<h2 id="数学中的tuple">数学中的Tuple</h2>
+<p>在数学中，元组是一个有序的值序列。这些值可以重复，但数量总是有限的。以下元组使用括号，并包含四个值，其中一个值重复。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>(6, 12, 6, 4)</span></span></code></pre>
+<p>因为元组包含四个值，所以有时被称为 4 元组或四元组。元组通常根据包含的值的数量以这些特定的名称来称呼，特别是那些包含较少值的元组。例如，包含一到六个值的元组可能分别被称为：</p>
+<p>1元组或单子。
+2元组或对。
+3元组或三元组。
+4元组或四元组。
+5元组或五元组。
+6元组或六元组。</p>
+<p>这些并不是唯一给包含一到六个值的元组的名称。此外，通常还会给包含超过六个值的元组命名。元组也可以被称为n元组，其中n是元组内可能的值的数量。n元组可以用以下表达式表示。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>(x1, ..., xn)</span></span></code></pre>
+<p>元组被认为是有序的，因为该顺序唯一地定义了元组，就比较它与其他元组而言。例如，以下表达式只有在<code>a1</code>等于<code>b1</code>，<code>a2</code>等于<code>b2</code>，<code>a3</code>等于<code>b3</code>等时才为真。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>(a1, a2, a3, ..., an) = (b1, b2, b3, ..., bn)</span></span></code></pre>
+<p>如果根据指定的顺序，各个值不相等，则该表达式为假。如果<code>a1</code>等于<code>b2</code>且<code>a2</code>等于<code>b1</code>，但<code>a1</code>不等于<code>b1</code>且<code>a2</code>不等于<code>b2</code>，则该表达式为假。</p>
+<p>元组可以一起使用，作为更大计算的一部分。如以下方程式简单示例，将两个4元组相加。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>  (3, 1, 17, 7)</span></span>
+<span class="line"><span>+ (6, 12, 6, 4)</span></span>
+<span class="line"><span>  </span></span>
+<span class="line"><span>= (3 + 6, 1 + 12, 17 + 6, 7 + 4)</span></span>
+<span class="line"><span>  </span></span>
+<span class="line"><span>= (9, 13, 23, 11)</span></span></code></pre>
+<p>值根据在元组中的位置相加，每个位置一起计算，但独立于其他位置的值。</p>
+<p>第一个元组中的第一个值是3，第二个元组中的第一个值是6。将它们相加，总和为9，这成为计算返回的元组中的第一个值。对元组内的每个位置都重复相同的过程。</p>
+<p>在数学中，元组也可以以列格式而不是单行元素表示。当使用列格式时，值用括号包围，不用逗号，如下例所示。</p>
+<p>列格式元组的示例。
+以这种格式的元组也可以相加，采取与前面示例类似的方法。</p>
+<p>列格式元组相加的示例。
+值根据在元组内的位置相加。因为每个元组有四个值，所以方程式返回一个包含每个位置总和的4元组。</p>
+<p>元组在数学中有多种用途。例如，它们可能用于跟踪一系列值，例如1到100之间的所有素数。它们也可能用于二维和三维空间中的向量，或者在涉及集合和函数的计算中。</p>
+<h2 id="在计算机编程领域">在计算机编程领域</h2>
+<p>元组（tuple）是一种常见的数据结构，许多编程语言都支持元组，包括 Python、Swift、C# 和 Rust 。而像Java这样的语言虽然不直接支持元组，但可以通过引入特定的库来实现。每种语言对元组的定义和访问方式都有所不同。</p>
+<p>以 Python 为例，它是一种面向对象的语言，创建元组非常简单。下面是一个创建元组的示例：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">tuple1 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">'book'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">47.932</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1872</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'elevate'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p>在这个例子中，<code>tuple1</code>是一个包含五个不同类型元素的元组。元组可以通过整体或单个元素的方式进行访问。例如，使用<code>print(tuple1)</code>可以打印出元组中的所有元素，而<code>print(tuple1[0])</code>则可以访问元组的第一个元素。</p>
+<p>Python 还支持元组的索引和切片操作，如<code>print(tuple1[1:3])</code>将返回元组中的第二个和第三个元素。此外，Python提供了如<code>len</code>函数来获取元组的长度，以及<code>tuple</code>函数来显式创建元组：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">tuple2 </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> tuple</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0.11</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">88</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'test'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'test'</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">477.62</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p>在Python中，创建空元组只需使用空括号：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">tuple3 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ()</span></span></code></pre>
+<p>如果元组中只有一个元素，需要在该元素后面加上逗号，以区分它是一个元组而非字符串：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">tuple4 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">'single'</span><span style="color:#E1E4E8">,)</span></span></code></pre>
+<p>Python还允许在元组中嵌套元组或其他数据结构，如下所示：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">tuple5 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">'carry'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">192</span><span style="color:#E1E4E8">, (</span><span style="color:#F97583">-</span><span style="color:#79B8FF">89.73773</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">18</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'distinct'</span><span style="color:#E1E4E8">))</span></span></code></pre>
+<p>尽管 Python 是实现元组的一个例子，但不同语言中元组的规则和特性可能会有所不同。例如，在 C# 中，可以使用<code>Tuple</code>类的构造函数或<code>Create</code>方法来创建元组，而 Swift 则提供了命名元组内元素的能力。</p>
+<p>每种语言都有其特定的语法和功能来处理元组。</p>  </div> </div> </article> 

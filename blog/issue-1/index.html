@@ -1,0 +1,118 @@
+<!DOCTYPE html><style>.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:0 2px 8px #0000001f}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 32px);margin:auto;padding:1em}.breadcrumb[data-astro-cid-bvzihdzo]{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0 0 1rem;font-size:.875rem;color:#6b7280}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]{display:flex;align-items:center}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]:not(:last-child):after{content:"/";margin:0 .5rem;color:#9ca3af}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]{color:#3b82f6;text-decoration:none}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]:hover{text-decoration:underline}.title[data-astro-cid-bvzihdzo]{margin-bottom:2rem}.date[data-astro-cid-bvzihdzo]{display:flex;align-items:center;gap:.4rem;font-size:.875rem;color:#6b7280;margin-bottom:.5rem}h1[data-astro-cid-bvzihdzo]{font-size:2rem;font-weight:700;line-height:1.3;margin:0}.content[data-astro-cid-bvzihdzo]{line-height:1.8}.content[data-astro-cid-bvzihdzo] img{max-width:100%;border-radius:8px}.content[data-astro-cid-bvzihdzo] pre{padding:1rem;border-radius:8px;overflow-x:auto;font-size:.875rem}.content[data-astro-cid-bvzihdzo] h2{margin-top:2rem;font-size:1.5rem}.content[data-astro-cid-bvzihdzo] h3{margin-top:1.5rem;font-size:1.25rem}.content[data-astro-cid-bvzihdzo] blockquote{border-left:3px solid #c3dafe;padding-left:1rem;color:#4b5563;margin:1rem 0}.content[data-astro-cid-bvzihdzo] hr{border:none;border-top:1px solid #e5e7eb;margin:2rem 0}
+</style><article data-astro-cid-bvzihdzo>  <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-bvzihdzo> <ol class="breadcrumb" data-astro-cid-bvzihdzo> <li data-astro-cid-bvzihdzo><a href="/" data-astro-cid-bvzihdzo>Home</a></li> <li data-astro-cid-bvzihdzo><a href="/blog/" data-astro-cid-bvzihdzo>Blog</a></li> <li data-astro-cid-bvzihdzo><span aria-current="page" data-astro-cid-bvzihdzo>DOM扩展</span></li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" viewBox="0 0 24 24" data-astro-cid-bvzihdzo> <path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z" data-astro-cid-bvzihdzo></path> </svg> <time datetime="2018-10-26T16:02:44.000Z" data-astro-cid-bvzihdzo>Oct 26, 2018</time> </div> <h1 data-astro-cid-bvzihdzo>DOM扩展</h1> </div> <div class="content" data-astro-cid-bvzihdzo>  <h3 id="dom扩展">DOM扩展</h3>
+<h4 id="选择符api">选择符API</h4>
+<p><code>querySelect()</code>, <code>querySelectAll()</code>这两个方法遵循CSS的选择器规则，IE8+及其它最新版浏览器均支持这两个方法。
+这两个方法的差别在于，一个返回符合匹配规则的第一个元素，一个返回匹配规则的所有元素。若遇到不匹配的情况，前者返回null，后者返回一个空的NodeList。</p>
+<h4 id="元素遍历">元素遍历</h4>
+<p><em>浏览器对于元素之间的空白，在解析上会有差异。</em>
+之前说过，对于下面这段代码，Chrome回认为ul下有7个子节点（3个<code>&#x3C;li></code>节点，4个文本（li之间的空白）节点）</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">ul</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>1&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>2&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>3&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">ul</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p>所以，在childNodes、firstChild及lastChild等的属性解析上，会有差异。
+为避免这一差异，在原有规范的基础上，添加了如下几个属性：</p>
+<ul>
+<li>childElementCount：返回子元素（不包括文本节点和注释）的个数。</li>
+<li>firstElementChild：指向第一个子元素；firstChild 的元素版。</li>
+<li>lastElementChild：指向最后一个子元素；lastChild 的元素版。</li>
+<li>previousElementSibling：指向前一个同辈元素；previousSibling 的元素版。</li>
+<li>nextElementSibling：指向后一个同辈元素；nextSibling 的元素版。</li>
+</ul>
+<h4 id="html5扩展">HTML5扩展</h4>
+<p><strong>getElementsByClassName</strong>
+与<code>getElementsByTagName</code>类似，返回一个NodeList。它的值是动态查询的。</p>
+<p><strong>classList</strong>
+classList的出现，是为了解决之前元素属性className的不便而添加的。在传统方式下，如果我们需要对一个元素的class属性进行操作，首先要找到className。而且对其中某个类的操作继续重写真个className属性。</p>
+<p>so， HTML5为元素都添加了一个classList属性。它有如下方法：</p>
+<ul>
+<li>add(value)：将给定的字符串值添加到列表中。如果值已经存在，就不添加了。</li>
+<li>contains(value)：表示列表中是否存在给定的值，如果存在则返回 true，否则返回 false。</li>
+<li>remove(value)：从列表中删除给定的字符串。</li>
+<li>toggle(value)：如果列表中已经存在给定的值，删除它；如果列表中没有给定的值，添加它。</li>
+</ul>
+<h4 id="焦点管理">焦点管理</h4>
+<ul>
+<li>document.activeElement：这个属性始终指向当前文档中，获得焦点的元素</li>
+<li>hasFocus()：判断当前元素是否获得焦点；</li>
+</ul>
+<h4 id="htmldocument">HTMLDocument</h4>
+<p><strong>readyState</strong>：当前文档的加载状态，只有两个值：</p>
+<ul>
+<li>loading： 文档正在加载中；</li>
+<li>complete： 文档加载完成；</li>
+</ul>
+<p><strong>兼容模式</strong>： document.compatMode；
+在标准模式下，document.compatMode 的 值等于”CSS1Compat”，而在混杂模式下，document.compatMode 的值等于”BackCompat”</p>
+<p><strong>head属性</strong>： document.head；
+HTML5新的对文档中<code>&#x3C;head></code>元素的引用。</p>
+<h4 id="字符集属性">字符集属性</h4>
+<p>document.charset：表示文档中实际使用的字符集， 也可以用来指定新字符集。</p>
+<h4 id="自定义数据属性">自定义数据属性</h4>
+<p>HTML5 规定可以为元素添加非标准的属性，但要添加前缀 data-，目的是为元素提供与渲染无关的 信息，或者提供语义信息。这些属性可以任意添加、随便命名，只要以 data-开头即可</p>
+<h4 id="插入标记">插入标记</h4>
+<p>在用于插入大量HTML标记的情况下，传统的节点操作方法（appendChild等）有些力不从心。
+所以HTML5提供了直接操作HTML字符串的方法和属性。</p>
+<p><strong>innerHTML</strong>： 返回当前节点下所有子节点对应的HTML标记。不同的浏览器对<code>innerHTML</code>特性支持有略微差异，需注意。
+<strong>outerHTML</strong>： 返回当前节点及其所有子节点对应的HTML标记。
+<strong>insertAdjacentHTML</strong>: 最早也是在 IE中出现的， 它接收两个参数：插入位置和要插入的 HTML 文本。</p>
+<p>insertAdjacentHTML方法的第一个参数是插入位置。插入一般包含两类： 同辈元素 或者子元素。</p>
+<ul>
+<li>“beforebegin”，在当前元素之前插入一个紧邻的同辈元素；</li>
+<li>“afterbegin”，在当前元素之下插入一个新的子元素或在第一个子元素之前再插入新的子元素；</li>
+<li>“beforeend”，在当前元素之下插入一个新的子元素或在最后一个子元素之后再插入新的子元素；</li>
+<li>“afterend”，在当前元素之后插入一个紧邻的同辈元素。</li>
+</ul>
+<h4 id="scrollintoview">scrollIntoView</h4>
+<p>将当前元素滚动到当前区域内。接收一个布尔类型的参数，用来确定滚到当前可视区域的具体位置（顶部/底部）。</p>
+<h3 id="专有扩展">专有扩展</h3>
+<h4 id="文档模式">文档模式</h4>
+<p>IE8引入的概念，文档模式决定了你可以使用哪个级别的 CSS。</p>
+<h4 id="children属性">children属性</h4>
+<p>因为浏览器处理元素间的空白字是有差异的，因此就出现了 children 属性。 这个属性是 HTMLCollection 的实例， 只包含元素中同样还是元素的子节点。 除此之外， children 属性与 childNodes 没有什么区别，即在元素只包含元素子节点时，这两个属性的值相同。</p>
+<h4 id="contains方法">contains方法</h4>
+<p>判断某个节点是不是另一个节点的后代。
+这个方法的兼容性比较好，还有另外一个DOM3的方法：<code>compareDocumentPosition()</code>。这个方法用于确定两个节点间的关系，执行该方法会返回一个表示节点关系的掩码（bitmask）。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="center">掩码</th><th align="left">节点关系</th></tr></thead><tbody><tr><td align="center">1</td><td align="left">无关：给定的节点不在当前文档中</td></tr><tr><td align="center">2</td><td align="left">居前：给定的节点在参考节点之前</td></tr><tr><td align="center">4</td><td align="left">居后：给定的节点在参考节点之后</td></tr><tr><td align="center">8</td><td align="left">包含：给定的节点是参考节点的祖先</td></tr><tr><td align="center">16</td><td align="left">被包含：给定的节点是参考节点的后代</td></tr></tbody></table>
+<h4 id="插入文本">插入文本</h4>
+<p><code>innerText</code>，类似于<code>innerHTML</code>属性，只不过innerText会将子节点删除，然后换成一个新的文本节点。
+<code>innerText</code>在低版本的火狐上（FireFox 44及以下）不支持，所以<code>innerText</code>还有一个高版本的属性，叫做<code>textContent</code>。</p>
+<p><code>outerText</code>属性类似于<code>innerText</code>，只不过在进行写属性时，它会将整个节点替换为一个新的文本节点。</p>
+<h4 id="滚动">滚动</h4>
+<p>对<code>scrollIntoView</code>的扩展，</p>
+<ul>
+<li>scrollIntoViewIfNeeded: 如果元素在当前视窗，则不需要做任何滚动操作；</li>
+<li>scrollByLines(lineCount)：将元素的内容滚动指定的行高，lineCount 值可以是正值， 也可以是负值。</li>
+<li>scrollByPages(pageCount)：将元素的内容滚动指定的页面高度，具体高度由元素的高度决定。</li>
+</ul>
+<p>上面这三个方法，只有Safari 和Chrome实现了支持。</p>  </div> </div> </article> 

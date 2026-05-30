@@ -7,9 +7,6 @@ tags: []
 
 人人都在用 AI，但你的身边又有多少人真正理解它的运作原理。
 
-> *本文由 blog-publisher 自动从 GitHub Issues 同步，CI 自动构建部署。*
-
-
 大家随口抛出“Transformer”、"嵌入"、"RAG"、"智能体"、"RLHF"这些词…………仿佛所有人都心知肚明。
 
 实际，一旦建立起正确的思维模型，AI 其实并没有那么复杂。
@@ -67,8 +64,6 @@ Token 是可复用的基本构件。即便模型从未见过某个词，也能�
 ### 3. 嵌入（Embeddings）
 
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/h0Xw/img_aHR0cHM6.png" />
-
-
 文本完成分词后，每个 Token 会被转换为一个数字——即**嵌入向量**，用于表征语义。
 
 可以把它想象成词语的"谷歌地图"：
@@ -91,8 +86,6 @@ Token 是可复用的基本构件。即便模型从未见过某个词，也能�
 ### 4. 注意力机制（Attention）
 
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/h0Xw/img_aHR0cHM6.png" />
-
-
 `"Apple"` 这个词在不同语境下含义迥异：
 
 - `"I ate an Apple"` → 水果
@@ -117,8 +110,6 @@ Token 是可复用的基本构件。即便模型从未见过某个词，也能�
 ### 5. Transformer 架构（Transformers）
 
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/W8tq/img_aHR0cHM6.png" />
-
-
 Transformer 是当今几乎所有 AI 模型的底层架构。
 
 2017 年，一篇名为《Attention Is All You Need》（注意力就是一切）的论文首次提出了这一架构。
@@ -147,8 +138,6 @@ GPT、Claude、Gemini、Llama、Mistral——全部基于 Transformer。
 ### 6. 大语言模型（LLMs，Large Language Models）
 
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/Jtp9/img_aHR0cHM6.png" />
-
-
 大语言模型是在海量文本上训练的 Transformer 模型。
 
 训练数据来源广泛：书籍、网页、代码、维基百科、Reddit——合计数万亿个 Token。
@@ -174,8 +163,6 @@ ChatGPT、Claude、Gemini——都是大语言模型。
 ### 7. 上下文窗口（Context Window）
 
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/7qpR/img_aHR0cHM6.png" />
-
-
 每个 AI 模型都有记忆容量上限，称为**上下文窗口**。
 
 它是模型在单次处理中能"看到"的最大 Token 数量，涵盖：你的消息 + 模型的回复 + 历史对话记录。
@@ -204,8 +191,6 @@ ChatGPT、Claude、Gemini——都是大语言模型。
 ### 8. 温度参数（Temperature）
 
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/No6q/img_aHR0cHM6.png" />
-
-
 AI 生成文本时，并不总是选择最可能出现的下一个词。它有一个名为**温度**的调节旋钮：
 
 - **Temperature = 0**：始终选择最安全、最可预期的词
@@ -250,8 +235,6 @@ AI 会满怀信心地撒谎。
 ### 10. 提示词工程（Prompt Engineering）
 
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/io7G/img_aHR0cHM6.png" />
-
-
 **你的提问方式决定一切。**
 
 相同的模型，相同的问题，仅因提问方式不同，输出结果可能天差地别。
@@ -329,8 +312,6 @@ AI 会满怀信心地撒谎。
 ### 13. 基于人类反馈的强化学习（RLHF，Reinforcement Learning from Human Feedback）
 
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/nc5M/img_aHR0cHM6.png" />
-
-
 微调让模型专业化，**RLHF** 让模型变得有益且安全。
 
 **没有 RLHF**：模型只是预测文本。流畅，但不对齐。
@@ -382,8 +363,6 @@ LoRA 是开源 AI 爆炸式增长的关键。
 ### 15. 量化（Quantization）
 
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/vH2c/img_aHR0cHM6.png" />
-
-
 模型体积越来越大，运行所需的内存和算力也随之攀升。
 
 **量化**让模型更小、运行成本更低。
@@ -409,8 +388,6 @@ LoRA 是开源 AI 爆炸式增长的关键。
 ### 16. 检索增强生成（RAG，Retrieval-Augmented Generation）
 
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/8mVi/img_aHR0cHM6.png" />
-
-
 大语言模型会产生幻觉，根源在于它只能凭记忆作答。
 
 **RAG** 的解法是：让模型先查阅资料，再作答。
@@ -437,8 +414,6 @@ LoRA 是开源 AI 爆炸式增长的关键。
 ### 17. 向量数据库（Vector Databases）
 
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/a4nI/img_aHR0cHM6.png" />
-
-
 RAG 需要快速找到正确的文档。
 
 但如何在数百万份文档中按**语义**检索，而不仅仅靠关键词匹配？
@@ -464,8 +439,6 @@ RAG 需要快速找到正确的文档。
 ### 18. AI 智能体（AI Agents）
 
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/7nYb/img_aHR0cHM6.png" />
-
-
 大语言模型负责**回复消息**，AI 智能体则能够**真正采取行动**。
 
 **区别**：
@@ -503,8 +476,6 @@ AI 智能体将 AI 从一个聊天机器人，变成一位真正的工作伙伴�
 ### 19. 思维链（CoT，Chain of Thought）
 
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/4hYj/img_aHR0cHM6.png" />
-
-
 有时 AI 给出错误答案，并非因为它不够聪明，而是因为**它跳得太快**。
 
 **思维链**解决了这个问题。
@@ -531,8 +502,6 @@ AI 智能体将 AI 从一个聊天机器人，变成一位真正的工作伙伴�
 ### 20. 扩散模型（Diffusion Models）
 
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/fIk0/img_aHR0cHM6.png" />
-
-
 前面讨论的一切都关乎文本。**扩散模型**解释的是 AI 如何生成图像。
 
 这个过程有些反直觉。
@@ -607,4 +576,3 @@ AI 智能体将 AI 从一个聊天机器人，变成一位真正的工作伙伴�
 每天使用 AI 的大多数人并不明白这些。
 
 **这份认知，就是你的优势。**
-

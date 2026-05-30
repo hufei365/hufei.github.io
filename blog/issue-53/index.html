@@ -1,8 +1,5 @@
 <!DOCTYPE html><style>.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:0 2px 8px #0000001f}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 32px);margin:auto;padding:1em}.breadcrumb[data-astro-cid-bvzihdzo]{display:flex;flex-wrap:wrap;list-style:none;padding:0;margin:0 0 1rem;font-size:.875rem;color:#6b7280}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]{display:flex;align-items:center}.breadcrumb[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]:not(:last-child):after{content:"/";margin:0 .5rem;color:#9ca3af}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]{color:#3b82f6;text-decoration:none}.breadcrumb[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]:hover{text-decoration:underline}.title[data-astro-cid-bvzihdzo]{margin-bottom:2rem}.date[data-astro-cid-bvzihdzo]{display:flex;align-items:center;gap:.4rem;font-size:.875rem;color:#6b7280;margin-bottom:.5rem}h1[data-astro-cid-bvzihdzo]{font-size:2rem;font-weight:700;line-height:1.3;margin:0}.content[data-astro-cid-bvzihdzo]{line-height:1.8}.content[data-astro-cid-bvzihdzo] img{max-width:100%;border-radius:8px}.content[data-astro-cid-bvzihdzo] pre{padding:1rem;border-radius:8px;overflow-x:auto;font-size:.875rem}.content[data-astro-cid-bvzihdzo] h2{margin-top:2rem;font-size:1.5rem}.content[data-astro-cid-bvzihdzo] h3{margin-top:1.5rem;font-size:1.25rem}.content[data-astro-cid-bvzihdzo] blockquote{border-left:3px solid #c3dafe;padding-left:1rem;color:#4b5563;margin:1rem 0}.content[data-astro-cid-bvzihdzo] hr{border:none;border-top:1px solid #e5e7eb;margin:2rem 0}
 </style><article data-astro-cid-bvzihdzo>  <div class="prose" data-astro-cid-bvzihdzo> <nav aria-label="Breadcrumb" data-astro-cid-bvzihdzo> <ol class="breadcrumb" data-astro-cid-bvzihdzo> <li data-astro-cid-bvzihdzo><a href="/" data-astro-cid-bvzihdzo>Home</a></li> <li data-astro-cid-bvzihdzo><a href="/blog/" data-astro-cid-bvzihdzo>Blog</a></li> <li data-astro-cid-bvzihdzo><span aria-current="page" data-astro-cid-bvzihdzo>20 个 AI 核心概念</span></li> </ol> </nav> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <svg width="20" height="20" aria-hidden="true" viewBox="0 0 24 24" data-astro-cid-bvzihdzo> <path fill="currentColor" d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z" data-astro-cid-bvzihdzo></path> </svg> <time datetime="2026-05-27T13:05:07.000Z" data-astro-cid-bvzihdzo>May 27, 2026</time> </div> <h1 data-astro-cid-bvzihdzo>20 个 AI 核心概念</h1> </div> <div class="content" data-astro-cid-bvzihdzo>  <p>人人都在用 AI，但你的身边又有多少人真正理解它的运作原理。</p>
-<blockquote>
-<p><em>本文由 blog-publisher 自动从 GitHub Issues 同步，CI 自动构建部署。</em></p>
-</blockquote>
 <p>大家随口抛出“Transformer”、“嵌入”、“RAG”、“智能体”、“RLHF”这些词…………仿佛所有人都心知肚明。</p>
 <p>实际，一旦建立起正确的思维模型，AI 其实并没有那么复杂。</p>
 <p>ChatGPT、Claude、Midjourney、Cursor、编程智能体——这些一个个耳熟能详的词语，读完下面这 20 个概念，你就全明白了。</p>
@@ -37,7 +34,7 @@
 <hr>
 <h3 id="3-嵌入embeddings">3. 嵌入（Embeddings）</h3>
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/h0Xw/img_aHR0cHM6.png">
-<p>文本完成分词后，每个 Token 会被转换为一个数字——即<strong>嵌入向量</strong>，用于表征语义。</p>
+文本完成分词后，每个 Token 会被转换为一个数字——即**嵌入向量**，用于表征语义。
 <p>可以把它想象成词语的”谷歌地图”：</p>
 <ul>
 <li><code>"医生"</code> 和 <code>"护士"</code> 在向量空间中彼此相邻</li>
@@ -55,7 +52,7 @@
 <hr>
 <h3 id="4-注意力机制attention">4. 注意力机制（Attention）</h3>
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/h0Xw/img_aHR0cHM6.png">
-<p><code>"Apple"</code> 这个词在不同语境下含义迥异：</p>
+`"Apple"` 这个词在不同语境下含义迥异：
 <ul>
 <li><code>"I ate an Apple"</code> → 水果</li>
 <li><code>"I bought Apple stock"</code> → 公司</li>
@@ -73,7 +70,7 @@
 <hr>
 <h3 id="5-transformer-架构transformers">5. Transformer 架构（Transformers）</h3>
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/W8tq/img_aHR0cHM6.png">
-<p>Transformer 是当今几乎所有 AI 模型的底层架构。</p>
+Transformer 是当今几乎所有 AI 模型的底层架构。
 <p>2017 年，一篇名为《Attention Is All You Need》（注意力就是一切）的论文首次提出了这一架构。</p>
 <p><strong>突破性创新</strong>：不再逐词处理文本，而是利用注意力机制对所有内容<strong>并行处理</strong>。</p>
 <p><strong>工作流程</strong>：</p>
@@ -93,7 +90,7 @@
 <h2 id="第二部分大语言模型的工作原理你与-ai-对话时究竟发生了什么">第二部分：大语言模型的工作原理（你与 AI 对话时，究竟发生了什么）</h2>
 <h3 id="6-大语言模型llmslarge-language-models">6. 大语言模型（LLMs，Large Language Models）</h3>
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/Jtp9/img_aHR0cHM6.png">
-<p>大语言模型是在海量文本上训练的 Transformer 模型。</p>
+大语言模型是在海量文本上训练的 Transformer 模型。
 <p>训练数据来源广泛：书籍、网页、代码、维基百科、Reddit——合计数万亿个 Token。</p>
 <p>训练任务听起来简单得难以置信：</p>
 <blockquote>
@@ -108,7 +105,7 @@
 <hr>
 <h3 id="7-上下文窗口context-window">7. 上下文窗口（Context Window）</h3>
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/7qpR/img_aHR0cHM6.png">
-<p>每个 AI 模型都有记忆容量上限，称为<strong>上下文窗口</strong>。</p>
+每个 AI 模型都有记忆容量上限，称为**上下文窗口**。
 <p>它是模型在单次处理中能”看到”的最大 Token 数量，涵盖：你的消息 + 模型的回复 + 历史对话记录。</p>
 
 
@@ -145,7 +142,7 @@
 <hr>
 <h3 id="8-温度参数temperature">8. 温度参数（Temperature）</h3>
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/No6q/img_aHR0cHM6.png">
-<p>AI 生成文本时，并不总是选择最可能出现的下一个词。它有一个名为<strong>温度</strong>的调节旋钮：</p>
+AI 生成文本时，并不总是选择最可能出现的下一个词。它有一个名为**温度**的调节旋钮：
 <ul>
 <li><strong>Temperature = 0</strong>：始终选择最安全、最可预期的词</li>
 <li><strong>Temperature = 1</strong>：选择更具创意、更多变化的词</li>
@@ -186,7 +183,7 @@
 <hr>
 <h3 id="10-提示词工程prompt-engineering">10. 提示词工程（Prompt Engineering）</h3>
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/io7G/img_aHR0cHM6.png">
-<p><strong>你的提问方式决定一切。</strong></p>
+**你的提问方式决定一切。**
 <p>相同的模型，相同的问题，仅因提问方式不同，输出结果可能天差地别。</p>
 <p><strong>低质量提示词</strong>：</p>
 <blockquote>
@@ -247,7 +244,7 @@
 <hr>
 <h3 id="13-基于人类反馈的强化学习rlhfreinforcement-learning-from-human-feedback">13. 基于人类反馈的强化学习（RLHF，Reinforcement Learning from Human Feedback）</h3>
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/nc5M/img_aHR0cHM6.png">
-<p>微调让模型专业化，<strong>RLHF</strong> 让模型变得有益且安全。</p>
+微调让模型专业化，**RLHF** 让模型变得有益且安全。
 <p><strong>没有 RLHF</strong>：模型只是预测文本。流畅，但不对齐。</p>
 <p><strong>有了 RLHF</strong>：模型学会了人类真正偏好的是什么。</p>
 <p><strong>工作流程</strong>：</p>
@@ -284,7 +281,7 @@
 <hr>
 <h3 id="15-量化quantization">15. 量化（Quantization）</h3>
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/vH2c/img_aHR0cHM6.png">
-<p>模型体积越来越大，运行所需的内存和算力也随之攀升。</p>
+模型体积越来越大，运行所需的内存和算力也随之攀升。
 <p><strong>量化</strong>让模型更小、运行成本更低。</p>
 <p><strong>方法</strong>：降低每个权重的数值精度。</p>
 <ul>
@@ -303,7 +300,7 @@
 <h2 id="第四部分真实-ai-系统的构建方式你日常使用的产品背后是什么">第四部分：真实 AI 系统的构建方式（你日常使用的产品背后是什么）</h2>
 <h3 id="16-检索增强生成ragretrieval-augmented-generation">16. 检索增强生成（RAG，Retrieval-Augmented Generation）</h3>
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/8mVi/img_aHR0cHM6.png">
-<p>大语言模型会产生幻觉，根源在于它只能凭记忆作答。</p>
+大语言模型会产生幻觉，根源在于它只能凭记忆作答。
 <p><strong>RAG</strong> 的解法是：让模型先查阅资料，再作答。</p>
 <p><strong>工作流程</strong>：</p>
 <ol>
@@ -327,7 +324,7 @@
 <hr>
 <h3 id="17-向量数据库vector-databases">17. 向量数据库（Vector Databases）</h3>
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/a4nI/img_aHR0cHM6.png">
-<p>RAG 需要快速找到正确的文档。</p>
+RAG 需要快速找到正确的文档。
 <p>但如何在数百万份文档中按<strong>语义</strong>检索，而不仅仅靠关键词匹配？</p>
 <p>答案是<strong>向量数据库</strong>。</p>
 <p><strong>工作原理</strong>：</p>
@@ -346,7 +343,7 @@
 <hr>
 <h3 id="18-ai-智能体ai-agents">18. AI 智能体（AI Agents）</h3>
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/7nYb/img_aHR0cHM6.png">
-<p>大语言模型负责<strong>回复消息</strong>，AI 智能体则能够<strong>真正采取行动</strong>。</p>
+大语言模型负责**回复消息**，AI 智能体则能够**真正采取行动**。
 <p><strong>区别</strong>：</p>
 <ul>
 <li><strong>大语言模型</strong>：你问，它答，结束。</li>
@@ -381,7 +378,7 @@
 <hr>
 <h3 id="19-思维链cotchain-of-thought">19. 思维链（CoT，Chain of Thought）</h3>
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/4hYj/img_aHR0cHM6.png">
-<p>有时 AI 给出错误答案，并非因为它不够聪明，而是因为<strong>它跳得太快</strong>。</p>
+有时 AI 给出错误答案，并非因为它不够聪明，而是因为**它跳得太快**。
 <p><strong>思维链</strong>解决了这个问题。</p>
 <p>与其直接要求最终答案：</p>
 <blockquote>
@@ -403,7 +400,7 @@
 <hr>
 <h3 id="20-扩散模型diffusion-models">20. 扩散模型（Diffusion Models）</h3>
 <img width="1672" height="941" alt="Image" src="https://files.seeusercontent.com/2026/05/30/fIk0/img_aHR0cHM6.png">
-<p>前面讨论的一切都关乎文本。<strong>扩散模型</strong>解释的是 AI 如何生成图像。</p>
+前面讨论的一切都关乎文本。**扩散模型**解释的是 AI 如何生成图像。
 <p>这个过程有些反直觉。</p>
 <p><strong>模型并非学习”如何绘画”，而是学习”如何销毁图像”。</strong></p>
 <p><strong>训练阶段</strong>：</p>

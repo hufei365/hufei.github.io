@@ -1,0 +1,21 @@
+{
+  "name": "HuFei's Site",
+  "short_name": "HuFei",
+  "start_url": "./",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "./android-chrome-192x192.png?v=125021a98c1b",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./android-chrome-512x512.png?v=125021a98c1b",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#0d1d3c",
+  "background_color": "#0d1d3c",
+  "display": "standalone"
+}

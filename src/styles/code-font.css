@@ -1,0 +1,48 @@
+/* Maple Mono NF v7.9, SIL Open Font License 1.1. See assets/fonts/maple-mono-nf/LICENSE.txt. */
+@font-face {
+  font-family: 'Maple Mono NF';
+  src: local('Maple Mono NF Regular'), local('MapleMono-NF-Regular'),
+    url('../assets/fonts/maple-mono-nf/MapleMono-NF-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maple Mono NF';
+  src: local('Maple Mono NF Bold'), local('MapleMono-NF-Bold'),
+    url('../assets/fonts/maple-mono-nf/MapleMono-NF-Bold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maple Mono NF';
+  src: local('Maple Mono NF Italic'), local('MapleMono-NF-Italic'),
+    url('../assets/fonts/maple-mono-nf/MapleMono-NF-Italic.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maple Mono NF';
+  src: local('Maple Mono NF Bold Italic'), local('MapleMono-NF-BoldItalic'),
+    url('../assets/fonts/maple-mono-nf/MapleMono-NF-BoldItalic.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --font-code: 'Maple Mono NF', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Liberation Mono', monospace;
+}
+
+.content pre,
+.content code,
+.content kbd,
+.content samp {
+  font-family: var(--font-code);
+  font-variant-ligatures: common-ligatures contextual;
+}

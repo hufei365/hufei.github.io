@@ -1,0 +1,26 @@
+name: Check publication records
+
+on:
+  pull_request:
+    paths:
+      - 'src/content/**'
+      - '.publication/**'
+      - 'scripts/**'
+      - '.github/workflows/check-publication.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test scripts/check-publication.test.mjs scripts/prepare-pages.test.mjs
+      - run: node scripts/check-publication.mjs

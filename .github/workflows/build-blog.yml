@@ -8,16 +8,21 @@ on:
       - 'src/**'
       - 'package.json'
       - 'astro.config.mjs'
+      - 'scripts/**'
+      - '.publication/**'
+      - '.github/workflows/build-blog.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-node@v4
         with:
@@ -26,18 +31,12 @@ jobs:
 
       - run: npm ci
 
-      - run: npx astro build
+      - run: npm run test:publication
 
-      - name: Merge build output into blog/
-        run: |
-          # Copy Astro-generated files into the existing blog/ directory
-          cp -r dist-blog/* blog/
-          rm -rf dist-blog
+      - run: npm run build:pages
 
-      - name: Commit and push
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add blog/
-          git diff --cached --quiet || git commit -m "build: astro $(date -u +%Y-%m-%d)"
-          git push
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cloudflare-pages-output
+          path: .pages-output/
+          include-hidden-files: true

@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://hufei365.github.io',
+  site: 'https://hufeispace.com',
+  base: '/blog',
   outDir: './dist-blog',
   publicDir: './public-blog',
   build: {

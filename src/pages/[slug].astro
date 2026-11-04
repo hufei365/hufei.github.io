@@ -18,6 +18,8 @@ const { Content } = await post.render();
   pubDate={post.data.pubDate}
   heroImage={post.data.heroImage}
   description={post.data.description}
+  sourceHash={post.data.sourceHash}
+  canonicalPath={`/blog/${post.data.slug || post.id.replace(/\.md$/, '')}/`}
 >
   <Content />
 </BlogPost>

@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:pages": "node scripts/check-publication.mjs && astro build && node scripts/prepare-pages.mjs",
+    "test:publication": "node --test scripts/check-publication.test.mjs scripts/prepare-pages.test.mjs",
     "preview": "astro preview"
   },
   "dependencies": {

@@ -1,7 +1,7 @@
 ---
 title: "利用clear清除浮动的一些问题"
 pubDate: "2019-01-17T14:41:07Z"
-description: "利用clear清除浮动的一些问题"
+description: "下面这段代码是用来清除浮动带来的高度塌陷问题 css .clearfix:before { content: \".\"; display: block; height: 0; clear: both; visibility: hidden; } Question 1: 上面的代码的能够实现清除浮动的问题吗 Answer： Can't. 因为clear属性只能控制元素本身与前面的浮动元素的关系。在本例…"
 tags: ["CSS","float","浮动"]
 sourceIssue: 10
 sourceUrl: "https://github.com/hufei365/notebook/issues/10"

@@ -18,7 +18,7 @@ sourceHash: "96a1648a94babbd51cd1af5a5aadae8043037da4147fd7e8359730af779d3d21"
 
 众所周知，目前主流的 JavaScript 引擎包括 V8（Chrome、Node.js、Deno）、JavaScriptCore（Safari）以及新兴的 Bun 等。十多年前，大多数引擎只是解释执行（interpreter），优点是简单，但速度较慢。
 
-![Image](https://github.com/user-attachments/assets/103489a7-3486-483e-bf9b-c3cec67c4920)
+![Image](https://files.seeusercontent.com/2026/05/30/Vn6s/img_2fa857ca93e9.png)
 
 V8 在 Chrome 中率先提出了 JIT（Just-in-time，即时编译），即先将 JavaScript 编译为机器码再执行，虽然复杂度更高，但大幅提升了性能。现代 JS 引擎一般包含解释器和多阶段 JIT，不同阶段平衡编译耗时与执行效率。
 

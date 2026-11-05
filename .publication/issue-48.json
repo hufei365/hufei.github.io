@@ -1,0 +1,13 @@
+{
+  "number": 48,
+  "sourceRepo": "hufei365/notebook",
+  "sourceUrl": "https://github.com/hufei365/notebook/issues/48",
+  "sourceHash": "96a1648a94babbd51cd1af5a5aadae8043037da4147fd7e8359730af779d3d21",
+  "renderedHash": "6122de24ac847aa56c6a2418be132a5cc74bebbb301fe558975b67e8f8efaa71",
+  "intent": "publish",
+  "title": "JavaScript 预编译（AOT）：现状与未来 —— Oliver Medhurst 演讲整理",
+  "canonicalPath": "/blog/issue-48/",
+  "images": [
+    "cadb39dabecef8dfaa537727657d573687b2bdea2985cdde36d2f6a49869335d"
+  ]
+}
